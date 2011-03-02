@@ -36,6 +36,8 @@ module Socialite
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
     
+    config.filter_parameters += [:password, :password_confirmation]
+    
     config.generators do |g|
       g.template_engine :haml
     end

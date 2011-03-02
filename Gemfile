@@ -6,6 +6,9 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'devise' 
+gem 'hpricot', :group => :development
+gem 'ruby_parser', :group => :development
 
 gem 'haml'
 # Use unicorn as the web server
