@@ -1,8 +1,10 @@
 class Submission < ActiveRecord::Base
-  before_validation :default_values
+  belongs_to :user
+  after_initialize :setup_default_values
+  validates :user, :presence => true
 
-  def default_values
-    self.score ||= 0
+  def setup_default_values
+    self.score = 0
   end
 
   def vote_up

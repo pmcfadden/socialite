@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+
   # POST /submissions/1/vote_up
   def vote_up
     @submission = Submission.find(params[:id])
@@ -46,7 +48,8 @@ class SubmissionsController < ApplicationController
   # POST /submissions
   # POST /submissions.xml
   def create
-    @submission = Submission.new(params[:submission])
+    values = params[:submission].merge({:user => current_user})
+    @submission = Submission.new(values)
 
     respond_to do |format|
       if @submission.save

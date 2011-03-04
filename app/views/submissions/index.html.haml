@@ -14,6 +14,8 @@
               = "("
               = link_to "comments", {:action => :show, :id => submission.id}
               = ")"
+            %span
+              = "posted by #{submission.user}"
             %br
             = submission.description
 
