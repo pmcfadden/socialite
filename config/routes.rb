@@ -7,9 +7,7 @@ Socialite::Application.routes.draw do
 
   root :to => "home#index"
 
-  match 'submissions/:id/vote_up' => 'submissions#vote_up', :defaults => { :format => 'js' }
-
-
+  match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
