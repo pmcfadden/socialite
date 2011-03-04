@@ -5,7 +5,7 @@ Socialite::Application.routes.draw do
 
   resources :submissions
 
-  root :to => "home#index"
+  root :to => "submissions#index"
 
   match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}
 
