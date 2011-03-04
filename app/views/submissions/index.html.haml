@@ -10,6 +10,10 @@
             = render :partial => "vote", :locals => {:submission => submission}
           %td{:class => 'description'}
             = link_to submission.title, submission.url, {:rel => 'nofollow'}
+            %span<
+              = "("
+              = link_to "comments", {:action => :show, :id => submission.id}
+              = ")"
             %br
             = submission.description
 
