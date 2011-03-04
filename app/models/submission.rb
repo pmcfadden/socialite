@@ -4,12 +4,14 @@ class Submission < ActiveRecord::Base
   validates :user, :presence => true
 
   def setup_default_values
-    self.score = 0
+    self.score ||= 0
   end
 
   def vote_up
     self.score += 1
+    self.user.increment_karma
     self.save
+    self.user.save
     self
   end
 end

@@ -1,0 +1,4 @@
+%span
+  = "posted by "
+  = link_to user, :controller => :users, :action => :profile, :id => user.id
+  = "[#{user.karma}]"

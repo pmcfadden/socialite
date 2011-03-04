@@ -3,22 +3,7 @@
 .center-pane
   .inner-center-pane
     %h1 Socialite
-    %table{:id => "submissions-list"}
-      - @submissions.each do |submission|
-        %tr
-          %td
-            = render :partial => "vote", :locals => {:submission => submission}
-          %td{:class => 'description'}
-            = link_to submission.title, submission.url, {:rel => 'nofollow'}
-            %span<
-              = "("
-              = link_to "comments", {:action => :show, :id => submission.id}
-              = ")"
-            %span
-              = "posted by #{submission.user}"
-            %br
-            = submission.description
-
+    = render :partial => "list", :locals => {:submissions => @submissions}
     %br
 
     = link_to 'Submit a new story', new_submission_path

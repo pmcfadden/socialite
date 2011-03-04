@@ -3,7 +3,7 @@
 %p= render :partial => "vote", :locals => {:submission => @submission}
 %p
   %b= link_to @submission.title, @submission.url
-  %span= "posted by #{@submission.user}"
+  = render :partial => "users/posted_by", :locals => {:user => @submission.user}
 %p= @submission.description
 
 = link_to 'Edit', edit_submission_path(@submission)

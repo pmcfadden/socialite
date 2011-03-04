@@ -2,10 +2,13 @@ require 'spec_helper'
 
 describe "submissions/show.html.haml" do
   before(:each) do
+    user = User.new
+    user.id = 1
     @submission = assign(:submission, stub_model(Submission,
       :title => "Title",
       :url => "Url",
-      :description => "MyText"
+      :description => "MyText",
+      :user => user
     ))
   end
 

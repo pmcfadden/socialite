@@ -9,6 +9,8 @@ Socialite::Application.routes.draw do
 
   match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}
 
+  match 'users/:id', :to => 'users#profile', :via => "get"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
