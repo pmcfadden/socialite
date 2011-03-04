@@ -6,6 +6,11 @@ Socialite::Application.routes.draw do
   resources :submissions
 
   root :to => "home#index"
+
+  match 'submissions/:id/vote_up' => 'submissions#vote_up', :defaults => { :format => 'js' }
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

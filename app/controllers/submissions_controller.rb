@@ -1,4 +1,10 @@
 class SubmissionsController < ApplicationController
+  # POST /submissions/1/vote_up
+  def vote_up
+    @submission = Submission.find(params[:id])
+    @submission.vote_up    
+  end
+    
   # GET /submissions
   # GET /submissions.xml
   def index

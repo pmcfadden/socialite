@@ -1,7 +1,13 @@
 class Submission < ActiveRecord::Base
-  default_scope where(:score => 0)
+  before_validation :default_values
+
+  def default_values
+    self.score ||= 0
+  end
+
   def vote_up
     self.score += 1
+    self.save
     self
   end
 end

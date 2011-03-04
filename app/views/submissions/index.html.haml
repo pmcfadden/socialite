@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th Actions
     %th Title
     %th Url
     %th Description
@@ -10,7 +11,12 @@
     %th
 
   - @submissions.each do |submission|
-    %tr
+    %tr{:id => "submission#{submission.id}"}
+      %td
+        = link_to 'Vote up', "#{submission.id}/vote_up", :method => :post, :remote => true, :class => "vote-up"
+        = "("
+        %span{:id => "score"}= submission.score
+        = ")"
       %td= submission.title
       %td= submission.url
       %td= submission.description
@@ -21,3 +27,11 @@
 %br
 
 = link_to 'New Submission', new_submission_path
+
+:javascript
+  $(document).ready(function(){
+    $('.vote-up').bind('ajax:success', function(obj, data){
+      data = eval("(" + data + ")");
+      $('#submission' + data['id'] + ' #score').text(data['score']);
+    });
+  });

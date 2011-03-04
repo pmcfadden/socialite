@@ -35,6 +35,8 @@ module Socialite
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+
+    config.action_view.javascript_expansions[:defaults] = ['jquery', 'rails']
     
     config.filter_parameters += [:password, :password_confirmation]
     
