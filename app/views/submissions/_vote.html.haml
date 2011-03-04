@@ -1,0 +1,13 @@
+= link_to 'Vote up', {:action => "vote_up", :id => submission.id}, :method => :post, :remote => true, :class => "vote-up"
+= "("
+%span{:id => "scoreForSubmission#{submission.id}"}= submission.score
+= ")"
+
+:javascript
+  $(document).ready(function(){
+    $('.vote-up').bind('ajax:success', function(obj, data){
+      data = eval("(" + data + ")");
+      $('#scoreForSubmission' + data['id']).text(data['score']);
+    });
+  });
+
