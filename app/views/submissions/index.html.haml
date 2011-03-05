@@ -1,8 +1,1 @@
-.center-pane
-  .inner-center-pane
-    %h1 Socialite
-    = render :partial => "list", :locals => {:submissions => @submissions}
-    %br
-
-    = link_to 'Submit a new story', new_submission_path
-
+= render :partial => "list", :locals => {:submissions => @submissions}

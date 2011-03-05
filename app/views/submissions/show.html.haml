@@ -1,30 +1,28 @@
-.center-pane
-  .inner-center-pane
-    %p#notice= notice
+%p#notice= notice
 
-    %p= render :partial => "vote", :locals => {:submission => @submission}
-    %p
-      %b= link_to @submission.title, @submission.url
-      = render :partial => "users/posted_by", :locals => {:user => @submission.user}
-    %p= @submission.description
+%p= render :partial => "vote", :locals => {:submission => @submission}
+%p
+  %b= link_to @submission.title, @submission.url
+  = render :partial => "users/posted_by", :locals => {:user => @submission.user}
+%p= @submission.description
 
-    = form_for :comment, :url => {:controller => :comments, :action => :new}, :remote => true, :method => :post, :html => {:id => 'post-comment-at-top'} do |f|
-      %input{:type => :hidden, :name => "comment[submission_id]", :value => @submission.id}
-      = f.text_area :text
-      = f.submit "post"
-      :javascript
-        $(document).ready(function(){
-          $('#post-comment-at-top').bind('ajax:success', function(obj, data){
-            $("#comments-list tbody").prepend(data);
-            $(this).remove();
-          });
-        });
+= form_for :comment, :url => {:controller => :comments, :action => :new}, :remote => true, :method => :post, :html => {:id => 'post-comment-at-top'} do |f|
+  %input{:type => :hidden, :name => "comment[submission_id]", :value => @submission.id}
+  = f.text_area :text
+  = f.submit "post"
+  :javascript
+    $(document).ready(function(){
+      $('#post-comment-at-top').bind('ajax:success', function(obj, data){
+        $("#comments-list tbody").prepend(data);
+        $(this).remove();
+      });
+    });
 
 
-    %table{:id => "comments-list"}
-      - @submission.top_level_comments.each do |comment|
-        = render :partial => 'comments/comment', :locals => {:comment => comment}
+%table{:id => "comments-list"}
+  - @submission.top_level_comments.each do |comment|
+    = render :partial => 'comments/comment', :locals => {:comment => comment}
 
-    = link_to 'Edit', edit_submission_path(@submission)
-    \|
-    = link_to 'Back', submissions_path
+= link_to 'Edit', edit_submission_path(@submission)
+\|
+= link_to 'Back', submissions_path

@@ -1,9 +1,5 @@
-%link{"rel" => "stylesheet", "href" => "index.css", "type" => "text/css"}
+%h1= @user
+= render :partial => "submissions/list", :locals => {:submissions => @user.submissions}
 
-.center-pane
-  .inner-center-pane
-    %h1= @user
-    = render :partial => "submissions/list", :locals => {:submissions => @user.submissions}
-
-    %br
-    = link_to 'Back', submissions_path
+%br
+  = link_to 'Back', submissions_path
