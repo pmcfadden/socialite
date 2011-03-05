@@ -10,4 +10,12 @@ describe Submission do
     submission = Submission.new(:user => User.new)
     submission.vote_up.score.should eq(1)
   end
+
+  it "should return only the top-level comments" do
+    parent_comment = Comment.new
+    child_comment = Comment.new(:parent => parent_comment)
+    submission = Submission.new(:comments => [parent_comment, child_comment])
+    
+    submission.top_level_comments.should eq([parent_comment])
+  end
 end

@@ -1,0 +1,6 @@
+textarea {height:100px;}
+
+#comments-list tr {background-color:#eee; margin:1em;}
+#comments-list tr td {padding:0.2em 1em;}
+
+.reply-link, .comment-signature {font-size:80%; color:#999;}
