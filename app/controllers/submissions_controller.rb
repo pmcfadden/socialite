@@ -10,7 +10,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.xml
   def index
-    @submissions = Submission.all
+    @submissions = Submission.page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

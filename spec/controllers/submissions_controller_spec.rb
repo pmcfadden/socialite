@@ -22,8 +22,8 @@ describe SubmissionsController do
   end
 
   describe "GET index" do
-    it "assigns all submissions as @submissions" do
-      Submission.stub(:all) { [mock_submission] }
+    it "assigns first page of submissions as @submissions" do
+      Submission.stub(:page) { [mock_submission] }
       get :index
       assigns(:submissions).should eq([mock_submission])
     end

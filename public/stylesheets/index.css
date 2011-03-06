@@ -8,5 +8,7 @@ td.vote-area {width:60px;}
 
 .alert {color:red; font-weight:bold;}
 
-.karma-indicator {font-size:70%;}
+.karma-indicator, .rank {font-size:70%;}
+
+.rank {color:#aaa;}
 

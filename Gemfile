@@ -11,6 +11,7 @@ gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development
 
 gem 'haml'
+gem 'kaminari'
 # Use unicorn as the web server
 # gem 'unicorn'
 

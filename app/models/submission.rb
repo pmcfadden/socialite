@@ -1,12 +1,17 @@
 class Submission < ActiveRecord::Base
   @@voting_momentum = 12096
+
   belongs_to :user
-  after_initialize :setup_default_values
+  has_many :comments
+
   validates :user, :presence => true
   validates :url, :presence => true
   validates :title, :presence => true
   validates :description, :presence => true
-  has_many :comments
+
+  after_initialize :setup_default_values
+
+  paginates_per 20
 
   # Here we order by interestingness.
   default_scope :order => "score * #{@@voting_momentum} - strftime('%s','now') + strftime('%s',created_at) DESC"
