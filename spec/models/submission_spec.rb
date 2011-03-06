@@ -8,7 +8,7 @@ describe Submission do
   
   it 'increases the score when you vote it up' do
     submission = Submission.new(:user => User.new)
-    submission.vote_up.score.should eq(1)
+    submission.vote_up(User.new).score.should eq(1)
   end
 
   it "should return only the top-level comments" do
@@ -40,5 +40,17 @@ describe Submission do
   it "should turn all urls into absolute urls" do
     Submission.new(:url => "example.com").url.should eq("http://example.com")
     Submission.new(:url => "http://example.com").url.should eq("http://example.com")
+  end
+
+  it "should not allow two votes from the same user" do
+    voter = User.new
+    submission = Submission.new(:user => User.new)
+    submission.vote_up(voter).vote_up(voter).score.should eq(1)
+  end
+
+  it "should not allow a user to vote for their own submission" do
+    user = User.new
+    submission = Submission.new(:user => user)
+    submission.vote_up(user).score.should eq(0)
   end
 end

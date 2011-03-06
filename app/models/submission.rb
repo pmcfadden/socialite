@@ -3,6 +3,7 @@ class Submission < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments
+  has_many :votes
 
   validates :user, :presence => true
   validates :url, :presence => true
@@ -28,11 +29,18 @@ class Submission < ActiveRecord::Base
     self.url = "http://" + url if !self.url.nil? and self.url !~ /^http:\/\//
   end
 
-  def vote_up
-    self.score += 1
-    self.user.increment_karma
-    self.save
-    self.user.save
+  def vote_up user_who_voted
+    if not Vote.where(:submission_id => self.id, :user_id => user_who_voted.id).empty?
+      puts "User #{user_who_voted} tried to vote twice for submission ##{self.id}"
+    elsif user_who_voted == self.user
+      puts "User #{user_who_voted} tried to vote for their own submission ##{self.id}"
+    else
+      self.score += 1
+      self.user.increment_karma
+      Vote.new(:user => user_who_voted, :submission => self).save
+      self.save
+      self.user.save
+    end
     self
   end
 

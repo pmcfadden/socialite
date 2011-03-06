@@ -4,7 +4,7 @@ describe User do
   it "should increase karma as its submissions are voted up" do
     david = User.new
     david.karma.should eq(0)
-    Submission.new(:user => david).vote_up
+    Submission.new(:user => david).vote_up User.new
     david.karma.should eq(1)
   end
 end

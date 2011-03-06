@@ -36,7 +36,7 @@ end
 
 def create_comments
   Submission.all.each do |submission|
-    rand(3).times do
+    rand(4).times do
       comment = Comment.create([{:submission => submission, :text => random_text, :user => random_user}]).first
       if rand(2) == 0
         Comment.create([{:parent => comment, :submission => submission, :text => random_text, :user => random_user}])

@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions/1/vote_up
   def vote_up
     @submission = Submission.find(params[:id])
-    @submission.vote_up    
+    @submission.vote_up current_user
   end
     
   # GET /submissions
