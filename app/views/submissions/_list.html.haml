@@ -5,11 +5,13 @@
         = render :partial => "submissions/vote", :locals => {:submission => submission}
       %td{:class => 'description'}
         = link_to submission.title, submission.url, {:rel => 'nofollow'}
+        /
+          = "interestingness = #{submission.interestingness}"
         %span<
           = "("
           = link_to "comments", {:controller => :submissions, :action => :show, :id => submission.id}
           = ")"
-        = render :partial => "users/posted_by", :locals => {:user => submission.user}
+        = render :partial => "users/posted_by", :locals => {:user => submission.user, :resource => submission}
         %br
         = submission.description
 

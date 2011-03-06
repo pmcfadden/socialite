@@ -2,3 +2,4 @@
   = "posted by "
   = link_to user, :controller => :users, :action => :profile, :id => user.id
   = "[#{user.karma}]"
+  = " - #{time_ago_in_words_including_ago(resource.created_at)}"

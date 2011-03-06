@@ -1,4 +1,5 @@
 class Submission < ActiveRecord::Base
+  @@voting_momentum = 12096
   belongs_to :user
   after_initialize :setup_default_values
   validates :user, :presence => true
@@ -6,6 +7,16 @@ class Submission < ActiveRecord::Base
   validates :title, :presence => true
   validates :description, :presence => true
   has_many :comments
+
+  # Here we order by interestingness.
+  default_scope :order => "score * #{@@voting_momentum} - strftime('%s','now') + strftime('%s',created_at) DESC"
+
+  # Interestingness is calculated by multiplying the number of votes by a coefficient.
+  # The amount of time passed since creation is taken as a penalty.
+  # Equivalent ruby code would go like this:
+  def interestingness
+    self.score * @@voting_momentum - Time.now.to_i + created_at.to_i
+  end
 
   def setup_default_values
     self.score ||= 0
@@ -22,4 +33,5 @@ class Submission < ActiveRecord::Base
   def top_level_comments
     self.comments.reject {|comment| comment.has_parent}
   end
+
 end

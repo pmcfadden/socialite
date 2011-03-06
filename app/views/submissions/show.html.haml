@@ -2,7 +2,9 @@
 %p
   = render :partial => "vote", :locals => {:submission => @submission}
   %b= link_to @submission.title, @submission.url
-  = render :partial => "users/posted_by", :locals => {:user => @submission.user}
+  /
+    = "interestingness = #{@submission.interestingness}"
+  = render :partial => "users/posted_by", :locals => {:user => @submission.user, :resource => @submission}
 %p= @submission.description
 
 = form_for :comment, :url => {:controller => :comments, :action => :new}, :remote => true, :method => :post, :html => {:id => 'post-comment-at-top'} do |f|
