@@ -21,10 +21,18 @@
       .inner-center-pane
         %div{:class => "top-nav-bar"}
           .site-title
-            %h1 socialite
+            %h1 #{current_user.nil? ? "" : "(#{current_user}) - "}socialite
           %ul{:class => "cleared"}
             %li
               = link_to "Submissions", :root
             %li
               = link_to 'Submit a new story', new_submission_path
+            - if current_user.nil?
+              %li
+                = link_to "Sign in", new_session_path(:user)
+              %li
+                = link_to "Sign up", new_registration_path(:user)
+            - if !current_user.nil?
+              %li
+                = link_to "Sign out", destroy_user_session_path
         = yield
