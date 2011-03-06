@@ -29,7 +29,7 @@ def create_users
 end
 
 def create_submissions
-  30.times do
+  100.times do
     Submission.create([{:url => "example.com", :title => random_text, :description => random_text, :created_at => rand(2400).minutes.ago, :score => rand(50), :user => random_user}])
   end
 end
