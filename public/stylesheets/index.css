@@ -4,3 +4,7 @@ td.vote-area {width:60px;}
 
 .center-pane {text-align:center;}
 
+.notice {color:#3b0; font-weight:bold;}
+
+.alert {color:red; font-weight:bold;}
+

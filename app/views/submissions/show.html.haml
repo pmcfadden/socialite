@@ -1,7 +1,6 @@
-%p#notice= notice
-
-%p= render :partial => "vote", :locals => {:submission => @submission}
+= link_to 'Edit', edit_submission_path(@submission)
 %p
+  = render :partial => "vote", :locals => {:submission => @submission}
   %b= link_to @submission.title, @submission.url
   = render :partial => "users/posted_by", :locals => {:user => @submission.user}
 %p= @submission.description
@@ -23,6 +22,3 @@
   - @submission.top_level_comments.each do |comment|
     = render :partial => 'comments/comment', :locals => {:comment => comment}
 
-= link_to 'Edit', edit_submission_path(@submission)
-\|
-= link_to 'Back', submissions_path

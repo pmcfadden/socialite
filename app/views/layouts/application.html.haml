@@ -13,10 +13,6 @@
       = "zoom: 1;"
       = "}"
     <![endif]-->
-    %p{:class => "notice"}
-      = notice
-    %p{:class => "alert"}
-      = alert
     .center-pane
       .inner-center-pane
         %div{:class => "top-nav-bar"}
@@ -35,4 +31,8 @@
             - if !current_user.nil?
               %li
                 = link_to "Sign out", destroy_user_session_path
+        %p{:class => "notice"}
+          = notice
+        %p{:class => "alert"}
+          = alert
         = yield

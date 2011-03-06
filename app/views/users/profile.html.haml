@@ -1,5 +1,2 @@
 %h1= @user
 = render :partial => "submissions/list", :locals => {:submissions => @user.submissions}
-
-%br
-  = link_to 'Back', submissions_path

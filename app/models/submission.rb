@@ -2,6 +2,9 @@ class Submission < ActiveRecord::Base
   belongs_to :user
   after_initialize :setup_default_values
   validates :user, :presence => true
+  validates :url, :presence => true
+  validates :title, :presence => true
+  validates :description, :presence => true
   has_many :comments
 
   def setup_default_values
