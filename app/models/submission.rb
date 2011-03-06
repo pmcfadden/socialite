@@ -25,6 +25,7 @@ class Submission < ActiveRecord::Base
 
   def setup_default_values
     self.score ||= 0
+    self.url = "http://" + url if !self.url.nil? and self.url !~ /^http:\/\//
   end
 
   def vote_up

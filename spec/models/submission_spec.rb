@@ -36,4 +36,9 @@ describe Submission do
     assert poor_submission.interestingness < old_submission.interestingness
     assert good_submission.interestingness > old_submission.interestingness
   end
+
+  it "should turn all urls into absolute urls" do
+    Submission.new(:url => "example.com").url.should eq("http://example.com")
+    Submission.new(:url => "http://example.com").url.should eq("http://example.com")
+  end
 end
