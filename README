@@ -1,4 +1,4 @@
-== Welcome to Socialite
+<h1>Welcome to Socialite</h1>
 
 Socialite is a social news website in a box.
 We want to make it ridiculously easy to spin off a new social news website.
@@ -13,8 +13,10 @@ Here is a list of features we will be building soon:
   - easy deployment
 
 
-== Deploying Socialite
+<h1>Deploying Socialite</h1>
 
 We're not ready for prime time yet but if you want to check out the app, you can pull the code with git and run "rails server". Then point your browser to http://localhost:3000.
 
-You can also check out the screenshot in the top-level directory (screenshot.png)
+You can also check out the <a href="https://github.com/pmcfadden/socialite/blob/master/screenshot.png">screenshot</a> in the top-level directory:
+
+<img src="https://github.com/pmcfadden/socialite/blob/master/screenshot.png?raw=true">
