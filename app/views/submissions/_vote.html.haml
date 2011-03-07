@@ -1,4 +1,4 @@
-= link_to '+', {:controller => :submissions, :action => :vote_up, :id => submission.id}, :method => :post, :remote => true, :class => "vote-up"
+%span{:id => "voting-booth-#{submission.id}"}= link_to '^', {:controller => :submissions, :action => :vote_up, :id => submission.id}, :method => :post, :remote => true, :class => "vote-up"
 %span
   = "("
   %span{:id => "scoreForSubmission#{submission.id}"}>= submission.score.to_i
@@ -9,6 +9,7 @@
     $('.vote-up').bind('ajax:success', function(obj, data){
       data = eval("(" + data + ")");
       $('#scoreForSubmission' + data['id']).text(data['score']);
+      $('#voting-booth-' + data['id']).addClass('invisible');
     });
   });
 

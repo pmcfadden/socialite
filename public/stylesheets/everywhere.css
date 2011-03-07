@@ -1,6 +1,7 @@
 td {vertical-align:top;}
 table {width:100%;}
 .hidden {display:none;}
+.invisible {visibility:hidden;}
 
 .top-nav-bar ul {list-style-type: none; background-color: #eee; margin: 0;}
 .top-nav-bar li {display:inline; float:left; margin: 0 2em 0 0; padding:0;}
