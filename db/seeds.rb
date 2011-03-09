@@ -22,14 +22,15 @@ end
 
 def create_users
   users = ["john", "mike", "paul", "betty", "ashley"].map do |username|
-    john = {:username => username, :email => "#{username}@example.com", :password => '123456', :karma => rand(500)}
+    {:username => username, :email => "#{username}@example.com", :password => '123456', :karma => rand(500)}
   end
 
   User.create(users)
+  User.all.first.update_attribute :admin, true
 end
 
 def create_submissions
-  100.times do
+  50.times do
     Submission.create([{:url => "example.com", :title => random_text, :description => random_text, :created_at => rand(2400).minutes.ago, :score => rand(50), :user => random_user}])
   end
 end

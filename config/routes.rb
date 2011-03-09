@@ -11,6 +11,7 @@ Socialite::Application.routes.draw do
   match 'users/:id', :to => 'users#profile', :via => "get"
   match 'comments/new', :to => 'comments#new', :via => "post"
   match 'about', :to => "application#about", :via => "get"
+  match 'admin', :to => "application#admin", :via => "get"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

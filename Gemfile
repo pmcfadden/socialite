@@ -18,8 +18,8 @@ gem 'haml'
 gem 'kaminari'
 
 # spam filtering
-gem 'classifier'
-gem 'madeleine'
+#gem 'classifier' # this gem makes rake db:seed fail somehow
+#gem 'madeleine'
 
 # Use unicorn as the web server
 # gem 'unicorn'

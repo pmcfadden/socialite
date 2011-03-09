@@ -33,6 +33,9 @@
                 = link_to "Sign out", destroy_user_session_path
             %li
               = link_to "About", 'about'
+            - if current_user.try :admin
+              %li
+                = link_to "Admin", 'admin'
         %p{:class => "notice"}
           = notice
         %p{:class => "alert"}
