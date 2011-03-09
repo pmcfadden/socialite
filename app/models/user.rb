@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username, :presence => true
+
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma
 
   has_many :submissions

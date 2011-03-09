@@ -1,17 +1,17 @@
 Socialite::Application.routes.draw do
   get "home/index"
 
-  devise_for :users
-
-  resources :submissions
-
   root :to => "submissions#index"
 
+  devise_for :users
+
   match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}
-  match 'users/:id', :to => 'users#profile', :via => "get"
   match 'comments/new', :to => 'comments#new', :via => "post"
   match 'about', :to => "application#about", :via => "get"
-  match 'admin', :to => "application#admin", :via => "get"
+  match :admin, :to => "application#admin", :via => "get"
+
+  resources :users
+  resources :submissions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
