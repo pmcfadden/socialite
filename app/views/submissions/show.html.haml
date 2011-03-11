@@ -21,6 +21,7 @@
 
 
 %table{:id => "comments-list"}
-  - @submission.top_level_comments.each do |comment|
-    = render :partial => 'comments/comment', :locals => {:comment => comment}
+  %tbody
+    - @submission.top_level_comments.each do |comment|
+      = render :partial => 'comments/comment', :locals => {:comment => comment}
 
