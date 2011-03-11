@@ -35,7 +35,7 @@
               = link_to "About", 'about'
             - if current_user.try :admin
               %li
-                = link_to "Admin", :admin
+                = link_to "Admin", admin_path
         %p{:class => "notice"}
           = notice
         %p{:class => "alert"}

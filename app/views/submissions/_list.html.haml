@@ -14,7 +14,7 @@
           = "interestingness = #{submission.interestingness}"
         %span<
           = "("
-          = link_to "comments", {:controller => :submissions, :action => :show, :id => submission.id}
+          = link_to "comments", submission_path(submission)
           = ")"
         - if current_user.try :admin
           %span{:class => "admin-links"}
@@ -23,7 +23,7 @@
               - if submission.is_spam?
                 = "Marked as spam"
               - else
-                = link_to "mark as spam", {:controller => :admin, :action => :mark_as_spam, :id => submission.id}, :method => :post, :remote => true, :class => "mark-as-spam-link"
+                = link_to "mark as spam", mark_as_spam_path(:id => submission.id), :method => :post, :remote => true, :class => "mark-as-spam-link"
             = "]"
             :javascript
               $(document).ready(function(){

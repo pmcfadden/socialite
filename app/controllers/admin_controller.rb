@@ -1,6 +1,9 @@
 class AdminController < ApplicationController
   before_filter :require_admin!, :except => [:show]
 
+  def index
+  end
+
   def moderate_submissions
     @submissions = Submission.where(:is_spam => nil).page params[:page]
   end

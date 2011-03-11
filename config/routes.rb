@@ -1,19 +1,19 @@
 Socialite::Application.routes.draw do
-  get "home/index"
-
-  root :to => "submissions#index"
-
   devise_for :users
 
-  match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}
-  match 'comments/new', :to => 'comments#new', :via => "post"
-  match 'about', :to => "application#about", :via => "get"
-  match :admin, :to => "application#admin", :via => "get"
-  match 'admin/moderate_submissions', :to => "admin#moderate_submissions", :via => "get"
-  match 'admin/mark_as_spam', :to => "admin#mark_as_spam"
+  match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}, :as => 'vote_up'
+  match 'about', :to => "application#about", :via => "get", :as => 'about'
 
-  resources :users
+  get 'admin', :to => "admin#index", :as => 'admin'
+  match 'admin/moderate_submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
+  match 'admin/mark_as_spam', :to => "admin#mark_as_spam", :as => 'mark_as_spam'
+
+  scope "/admin" do
+    resources :users
+  end
+
   resources :submissions
+  resources :comments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -64,7 +64,7 @@ Socialite::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "welcome#index"
+  root :to => "submissions#index"
 
   # See how all your routes lay out with "rake routes"
 
