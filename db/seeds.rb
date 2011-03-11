@@ -11,9 +11,9 @@
 
 def random_text
   words = @@text.split
-  first = rand(words.size - 15)
-  last = rand(15)
-  words[first, last].join " "
+  first = rand(words.size - 16)
+  length = rand(15) + 1
+  words[first, length].join " "
 end
 
 def random_user
@@ -22,29 +22,29 @@ end
 
 def create_users
   users = ["john", "mike", "paul", "betty", "ashley"].map do |username|
-    {:username => username, :email => "#{username}@example.com", :password => '123456', :karma => rand(500)}
+    {:username => username, :email => "#{username}@example.com", :password => '123456', :karma => (rand(500) + 1)}
   end
 
-  User.create(users)
+  User.create!(users)
   User.all.first.update_attribute :admin, true
 end
 
 def create_submissions
   default_sub = lambda {{:url => "example.com", :title => random_text, :description => random_text, :created_at => rand(2400).minutes.ago, :score => rand(50), :user => random_user}}
   50.times do
-    Submission.create([default_sub.call])
+    Submission.create!([default_sub.call.merge :is_spam => false])
   end
   3.times do
-    Submission.create([default_sub.call.merge :is_spam => true])
+    Submission.create!([default_sub.call.merge :is_spam => true])
   end
 end
 
 def create_comments
   Submission.all.each do |submission|
     rand(4).times do
-      comment = Comment.create([{:submission => submission, :text => random_text, :user => random_user}]).first
+      comment = Comment.create!([{:submission => submission, :text => random_text, :user => random_user}]).first
       if rand(2) == 0
-        Comment.create([{:parent => comment, :submission => submission, :text => random_text, :user => random_user}])
+        Comment.create!([{:parent => comment, :submission => submission, :text => random_text, :user => random_user}])
       end
     end
   end

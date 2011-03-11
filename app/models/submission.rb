@@ -27,6 +27,7 @@ class Submission < ActiveRecord::Base
   def setup_default_values
     self.score ||= 0
     self.url = "http://" + url if !self.url.nil? and self.url !~ /^http:\/\//
+    self.is_spam ||= false
   end
 
   def vote_up user_who_voted

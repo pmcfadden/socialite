@@ -42,7 +42,8 @@ class Bayes
 		category = category.prepare_category_name
 		text.word_hash.each do |word, count|
 			if @total_words >= 0
-				orig = @categories[category][word]
+        # MTC: fixing the classifier: defaulting this to 0 to prevent count ever being set to nil
+				orig = @categories[category][word] || 0
 				@categories[category][word]     ||=     0
 				@categories[category][word]      -=     count
 				if @categories[category][word] <= 0
