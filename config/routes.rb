@@ -9,6 +9,8 @@ Socialite::Application.routes.draw do
   match 'comments/new', :to => 'comments#new', :via => "post"
   match 'about', :to => "application#about", :via => "get"
   match :admin, :to => "application#admin", :via => "get"
+  match 'admin/moderate_submissions', :to => "admin#moderate_submissions", :via => "get"
+  match 'admin/mark_as_spam', :to => "admin#mark_as_spam"
 
   resources :users
   resources :submissions

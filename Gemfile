@@ -18,8 +18,10 @@ gem 'haml'
 gem 'kaminari'
 
 # spam filtering
-#gem 'classifier' # this gem makes rake db:seed fail somehow
-#gem 'madeleine'
+# this gem makes rake db:seed fail so we freezed it and edited the vector.rb file in it
+gem 'classifier',  :path => "vendor/classifier-1.3.3"
+gem 'fast-stemmer'
+gem 'madeleine'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -42,6 +44,7 @@ gem 'kaminari'
 # and rake tasks are available in development mode:
  group :development, :test do
    gem 'rspec-rails'
+   gem 'ruby-debug'
  end
 
 gem 'haml-rails', :group => :development

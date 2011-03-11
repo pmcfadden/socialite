@@ -10,7 +10,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.xml
   def index
-    @submissions = Submission.page params[:page]
+    @submissions = Submission.where(:is_spam => nil).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,6 +50,7 @@ class SubmissionsController < ApplicationController
   def create
     values = params[:submission].merge({:user => current_user})
     @submission = Submission.new(values)
+    @submission.mark_as_spam if Antispam.new.is_spam? @submission
 
     respond_to do |format|
       if @submission.save

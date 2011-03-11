@@ -13,12 +13,13 @@ describe SubmissionsController do
   end
 
   def mock_user(stubs={})
-      @mock_user ||= mock_model(User, stubs).as_null_object
+    @mock_user ||= mock_model(User, stubs).as_null_object
   end
 
   before(:each) do
-      # mock up an authentication in the underlying warden library
-      request.env['warden'] = mock(Warden, :authenticate => mock_user, :authenticate! => mock_user)
+    # mock up an authentication in the underlying warden library
+    request.env['warden'] = mock(Warden, :authenticate => mock_user, :authenticate! => mock_user)
+    Antispam.stub(:new){mock(Antispam, {:is_spam? => true}).as_null_object}
   end
 
   describe "GET index" do
@@ -81,6 +82,16 @@ describe SubmissionsController do
         response.should render_template("new")
       end
     end
+
+    describe "creating a spam submission" do
+      it "should mark a spam submission as such" do
+        mocked_submission = mock_submission(:save => true)
+        Submission.stub(:new).with({"user" => mock_user}) {mocked_submission}
+        mocked_submission.should_receive :mark_as_spam
+        post :create, :submission => {}
+      end
+    end
+
   end
 
   describe "PUT update" do

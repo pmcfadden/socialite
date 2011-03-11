@@ -16,6 +16,23 @@
           = "("
           = link_to "comments", {:controller => :submissions, :action => :show, :id => submission.id}
           = ")"
+        - if current_user.try :admin
+          %span{:class => "admin-links"}
+            = "["
+            %span{:id => "admin-links-#{submission.id}"}
+              - if submission.is_spam?
+                = "Marked as spam"
+              - else
+                = link_to "mark as spam", {:controller => :admin, :action => :mark_as_spam, :id => submission.id}, :method => :post, :remote => true, :class => "mark-as-spam-link"
+            = "]"
+            :javascript
+              $(document).ready(function(){
+                $('.mark-as-spam-link').bind('ajax:success', function(obj, data){
+                  data = eval("(" + data + ")");
+                  $('#admin-links-' + data['id']).text(data['message']);
+                });
+              });
+
         = render :partial => "users/posted_by", :locals => {:user => submission.user, :resource => submission}
         %br
         = submission.description
