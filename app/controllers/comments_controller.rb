@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
-  def new
+  def create
     values = params[:comment].merge({:user => current_user})
     puts values
     @comment = Comment.new values
