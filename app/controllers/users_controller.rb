@@ -73,8 +73,9 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    #flash[:notice] = "User #{@user} was deleted."
+    @user.mark_as_deleted
+    @user.save!
+    flash[:notice] = "User #{@user} was deleted."
 
     respond_to do |format|
       format.html { redirect_to(users_url) }

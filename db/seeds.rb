@@ -54,4 +54,3 @@ end
 create_users
 create_submissions
 create_comments
-

@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-user_spec_rb.html">spec/models/user_spec.rb</a></td>
-            <td class='right_align'><tt>20</tt></td>
-            <td class='right_align'><tt>16</tt></td>
+            <td class='right_align'><tt>32</tt></td>
+            <td class='right_align'><tt>25</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -123,13 +123,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line12">12</a>     spammer = ObjectMother.create_user 'spammer'</pre></td>
+            <td><pre><a name="line12">12</a>     spammer = ObjectMother.create_user :username =&gt; 'spammer'</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>     legit_user = ObjectMother.create_user 'legit'</pre></td>
+            <td><pre><a name="line13">13</a>     legit_user = ObjectMother.create_user :username =&gt; 'legit'</pre></td>
           </tr>
         
           
@@ -170,14 +170,86 @@
         
           
           
+          <tr class="marked">
+            <td><pre><a name="line20">20</a>   it &quot;should mark a user as deleted and do the same for its submissions and comments&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line21">21</a>     user = ObjectMother.new_user :username =&gt; 'short-lived'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line22">22</a>     submission = ObjectMother.new_submission :user =&gt; user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line23">23</a>     comment = ObjectMother.new_comment :user =&gt; user</pre></td>
+          </tr>
+        
+          
+          
           <tr class="inferred">
-            <td><pre><a name="line20">20</a> end</pre></td>
+            <td><pre><a name="line24">24</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line25">25</a>     user.mark_as_deleted</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line26">26</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>     user.deleted?.should be(true)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>     submission.deleted?.should be(true)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line29">29</a>     comment.deleted?.should be(true)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line30">30</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line31">31</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line32">32</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 02:39:54 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sat Mar 12 13:50:37 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

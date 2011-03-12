@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-user_rb.html">app/models/user.rb</a></td>
-            <td class='right_align'><tt>31</tt></td>
-            <td class='right_align'><tt>21</tt></td>
+            <td class='right_align'><tt>36</tt></td>
+            <td class='right_align'><tt>24</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -111,7 +111,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma</pre></td>
+            <td><pre><a name="line10">10</a>   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma, :deleted</pre></td>
           </tr>
         
           
@@ -177,7 +177,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>     self.karma = 0 unless self.attributes['karma']</pre></td>
+            <td><pre><a name="line21">21</a>     self[:karma] ||= 0</pre></td>
           </tr>
         
           
@@ -237,13 +237,43 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line31">31</a> end</pre></td>
+            <td><pre><a name="line31">31</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line32">32</a>   def mark_as_deleted</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line33">33</a>     self.deleted = true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line34">34</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line35">35</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line36">36</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 02:39:54 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sat Mar 12 13:50:37 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

@@ -72,12 +72,15 @@ describe UsersController do
 
   describe "DELETE destroy" do
     it "destroys the requested user" do
+      @mock_user.should_receive(:mark_as_deleted)
+      @mock_user.should_receive(:save!)
       User.stub(:find).with("37") { @mock_user }
-      @mock_user.should_receive(:destroy)
       delete :destroy, :id => "37"
     end
 
     it "redirects to the users list" do
+      @mock_user.should_receive(:mark_as_deleted)
+      @mock_user.should_receive(:save!)
       User.stub(:find) { @mock_user }
       delete :destroy, :id => "1"
       response.should redirect_to(users_path)
