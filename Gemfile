@@ -23,8 +23,7 @@ gem 'classifier',  :path => "vendor/classifier-1.3.3"
 gem 'fast-stemmer'
 gem 'madeleine'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+#gem 'mongrel'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -45,6 +44,10 @@ gem 'madeleine'
  group :development, :test do
    gem 'rspec-rails'
    gem 'ruby-debug'
+
+   # the following gems are needed to run the browser tests
+   gem "hoe", "2.8.0"
+   gem 'vapir-firefox'
  end
 
 gem 'haml-rails', :group => :development
