@@ -4,3 +4,4 @@
 en:
   hello: "Hello world"
   marked_as_spam: "marked as spam"
+  no_longer_marked_as_spam: "no longer marked as spam"

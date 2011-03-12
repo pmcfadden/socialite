@@ -30,8 +30,22 @@ describe Antispam do
 
   it "should be very uncertain at the beginning and then have some certainty" do
     @antispam.compute_uncertainty(@submission).should eq(0)
-    @antispam.switch_to_spam(@submission)
+    @antispam.train_as_spam(@submission)
     @antispam.compute_uncertainty(@submission).should_not eq(0)
+  end
+
+  it "should untrain as spam and switch to content" do
+    # we train once for each category to help drive out issues when the classifier is new
+    @antispam.train_as_content "legitimate content"
+    @antispam.train_as_spam "some viagra"
+
+    @antispam.train_as_spam @submission
+    @antispam.is_classified_as_spam?(@submission).should eq(true)
+    @antispam.trained_entries.should eq(5)
+
+    @antispam.switch_to_content @submission
+    @antispam.is_classified_as_content?(@submission).should eq(true)
+    @antispam.trained_entries.should eq(5)
   end
 end
 

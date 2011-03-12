@@ -7,6 +7,7 @@ Socialite::Application.routes.draw do
   get 'admin', :to => "admin#index", :as => 'admin'
   match 'admin/moderate_submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
   match 'admin/mark_as_spam', :to => "admin#mark_as_spam", :as => 'mark_as_spam'
+  match 'admin/undo_mark_as_spam', :to => "admin#undo_mark_as_spam", :as => 'undo_mark_as_spam'
 
   scope "/admin" do
     resources :users
