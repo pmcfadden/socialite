@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
 
   def create
     values = params[:comment].merge({:user => current_user})
-    puts values
     @comment = Comment.new values
     @comment.save
 

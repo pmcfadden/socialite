@@ -32,9 +32,9 @@ class Submission < ActiveRecord::Base
 
   def vote_up user_who_voted
     if not Vote.where(:submission_id => self.id, :user_id => user_who_voted.id).empty?
-      puts "User #{user_who_voted} tried to vote twice for submission ##{self.id}"
+      logger.warn "User #{user_who_voted} tried to vote twice for submission ##{self.id}"
     elsif user_who_voted == self.user
-      puts "User #{user_who_voted} tried to vote for their own submission ##{self.id}"
+      logger.warn "User #{user_who_voted} tried to vote for their own submission ##{self.id}"
     else
       self.score += 1
       self.user.increment_karma
@@ -55,6 +55,10 @@ class Submission < ActiveRecord::Base
 
   def mark_as_spam
     self.is_spam = true
+  end
+
+  def to_s
+    "#{self.title} #{self.description}"
   end
 
 end

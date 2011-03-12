@@ -5,18 +5,18 @@ class Antispam
     @bayes = @madeleine.system
   end
 
-  def is_spam? submission
-    @bayes.classify(wordify submission) == :spam
+  def is_spam? stringable
+    compute_uncertainty(stringable) > 1 and @bayes.classify(submission.to_s) == 'Spam'
   end
 
-  def switch_to_spam submission
-    @bayes.untrain(:content, wordify(submission))
-    @bayes.train(:spam, wordify(submission))
+  def switch_to_spam stringable
+    @bayes.untrain(:content, stringable.to_s)
+    @bayes.train(:spam, stringable.to_s)
     @madeleine.take_snapshot
   end
 
-  def train_as_content submission
-    @bayes.train :content, wordify(submission)
+  def train_as_content stringable
+    @bayes.train :content, stringable.to_s
     @madeleine.take_snapshot
   end
 
@@ -24,8 +24,12 @@ class Antispam
     @bayes.instance_variable_get :@total_words
   end
 
-  private
-  def wordify submission
-    "#{submission.title} #{submission.description}"
+  def compute_uncertainty stringable
+    scores = @bayes.classifications(stringable.to_s)
+    sorted_scores = scores.sort_by{ |a| -a[1] }
+    delta = sorted_scores[1][1].abs - sorted_scores[0][1].abs
+    Rails.logger.info "The classifier thinks stringable '#{stringable}' is '#{sorted_scores[0][0]}' with a certainty of #{delta}"
+    delta.nan? ? 0 : delta
   end
+
 end
