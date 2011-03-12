@@ -42,7 +42,16 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/1/edit
   def edit
-    @submission = Submission.find(params[:id])
+    assign_submission
+  end
+
+  def assign_submission
+    if current_user.try :admin
+      @submission = Submission.find(params[:id])
+    else
+      @submission = Submission.where(:user_id => current_user.id, :id => params[:id]).first
+      raise "Could not find submission. Are you trying to edit someone else's?" if @submission.nil?
+    end
   end
 
   # POST /submissions

@@ -5,7 +5,7 @@ describe SubmissionsController do
   include ControllerMocking
 
   before(:each) do
-    @mock_user = mock_user
+    @current_user = mock_user
     @mock_submission = mock_submission
     Antispam.stub(:new){mock(Antispam, {:is_spam? => true}).as_null_object}
   end
@@ -36,16 +36,33 @@ describe SubmissionsController do
 
   describe "GET edit" do
     it "assigns the requested submission as @submission" do
-      Submission.stub(:find).with("37") { @mock_submission }
-      get :edit, :id => "37"
-      assigns(:submission).should be(@mock_submission)
+      submission = ObjectMother.create_submission :user => @current_user
+      get :edit, :id => submission.id
+      assigns(:submission).should == submission
+    end
+
+    it "should not allow fellow user to edit submission" do
+      submission = ObjectMother.create_submission :user => ObjectMother.create_user
+      begin
+        get :edit, :id => submission.id
+      rescue RuntimeError
+        next
+      end
+      raise "Should have thrown a runtime error"
+    end
+
+    it "should always allow admin to edit submission" do
+      @current_user.update_attribute :admin, true
+      submission = ObjectMother.create_submission :user => ObjectMother.create_user
+      get :edit, :id => submission.id
+      assigns(:submission).should == submission
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
       it "assigns a newly created submission as @submission" do
-        Submission.stub(:new).with({'these' => 'params', "user" => @mock_user}) { @mock_submission }
+        Submission.stub(:new).with({'these' => 'params', "user" => @current_user}) { @mock_submission }
         post :create, :submission => {'these' => 'params'}
         assigns(:submission).should be(@mock_submission)
       end
@@ -59,7 +76,7 @@ describe SubmissionsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved submission as @submission" do
-        Submission.stub(:new).with({'these' => 'params', "user" => @mock_user}) { @mock_submission.stub(:save => false); @mock_submission }
+        Submission.stub(:new).with({'these' => 'params', "user" => @current_user}) { @mock_submission.stub(:save => false); @mock_submission }
         post :create, :submission => {'these' => 'params'}
         assigns(:submission).should be(@mock_submission)
       end
@@ -73,7 +90,7 @@ describe SubmissionsController do
 
     describe "creating a spam submission" do
       it "should mark a spam submission as such" do
-        Submission.stub(:new).with({"user" => mock_user}) {@mock_submission}
+        Submission.stub(:new).with({"user" => @current_user}) {@mock_submission}
         @mock_submission.should_receive :mark_as_spam
         post :create, :submission => {}
       end

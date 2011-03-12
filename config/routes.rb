@@ -10,10 +10,10 @@ Socialite::Application.routes.draw do
   match 'admin/undo_mark_as_spam', :to => "admin#undo_mark_as_spam", :as => 'undo_mark_as_spam'
 
   scope "/admin" do
-    resources :users
     match 'spammers', :controller => 'users', :action => 'spammers', :via => "get", :as => 'spammers'
   end
 
+  resources :users
   resources :submissions
   resources :comments
 

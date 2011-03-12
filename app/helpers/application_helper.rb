@@ -8,4 +8,8 @@ module ApplicationHelper
     return text if action_name == controller.action_name
     link_to text, path
   end
+
+  def current_user_is_admin?
+    current_user.try :admin
+  end
 end

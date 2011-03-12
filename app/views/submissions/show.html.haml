@@ -1,4 +1,7 @@
-= link_to 'Edit', edit_submission_path(@submission)
+- if @submission.user == current_user
+  = link_to 'Edit your submission', edit_submission_path(@submission)
+- elsif current_user_is_admin?
+  = link_to 'Edit this submission', edit_submission_path(@submission)
 %p
   = render :partial => "vote", :locals => {:submission => @submission}
   %b= link_to @submission.title, @submission.url

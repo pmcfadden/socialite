@@ -1,4 +1,6 @@
 class ObjectMother
+  @@user_count = 0
+
   def self.create_user options={}
     user = new_user(options)
     user.save!
@@ -6,7 +8,7 @@ class ObjectMother
   end
 
   def self.new_user options={}
-    options[:username] ||= 'test-user' 
+    options[:username] ||= "test-user-#{@@user_count += 1}" 
     options[:email] ||= "#{options[:username]}@example.com"
     options[:password] ||= "123456"
     options[:password_confirmation] ||= "123456"

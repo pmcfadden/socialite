@@ -4,7 +4,7 @@ describe UsersController do
   include ControllerMocking
 
   before(:each) do
-    @mock_user = mock_user
+    @mock_user = mock_user :admin => true
   end
 
   describe "GET index" do

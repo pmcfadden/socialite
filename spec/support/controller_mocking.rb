@@ -9,8 +9,9 @@ module ControllerMocking
     mock_model(Submission).as_null_object
   end
 
-  def mock_user
-    user = mock_model(User, {:admin => true, :update_attributes => true, :save => true})
+  def mock_user options={}
+    user = ObjectMother.create_user options
+    user.update_attribute :admin, true if options[:admin]
     request.env['warden'] = mock(Warden, :authenticate => user, :authenticate! => user)
     user
   end
