@@ -3,8 +3,8 @@ table {width:100%;}
 .hidden {display:none;}
 .invisible {visibility:hidden;}
 
-.top-nav-bar ul {list-style-type: none; background-color: #eee; margin: 0;}
-.top-nav-bar li {display:inline; float:left; margin: 0 2em 0 0; padding:0;}
+.top-nav-bar ul, .filters-menu ul {list-style-type: none; background-color: #eee; margin: 0;}
+.top-nav-bar li, .filters-menu li {display:inline; float:left; margin: 0 2em 0 0; padding:0;}
 .site-title h1, .top-nav-bar ul {padding: 0.2em 0.4em;}
 
 .cleared:after {content: ".";display: block; height: 0; clear: both; visibility: hidden;}

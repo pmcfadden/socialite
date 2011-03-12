@@ -1,26 +1,16 @@
 require 'spec_helper'
 
 describe "submissions/index.html.haml" do
-  before(:each) do
-    assign(:submissions, [
-      stub_model(Submission,
-        :title => "Title",
-        :url => "Url",
-        :description => "MyText"
-      ),
-      stub_model(Submission,
-        :title => "Title",
-        :url => "Url",
-        :description => "MyText"
-      )
-    ])
-  end
+  include Devise::TestHelpers
+  include PaginationMocking
 
   it "renders a list of submissions" do
-    #render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    #assert_select "tr>td", :text => "Title".to_s, :count => 2
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    #assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    submissions = mock_pagination_of([ObjectMother.create_submission(:title => "Title"), ObjectMother.create_submission(:title => "MyText")])
+    assign(:submissions, submissions)
+
+    render
+
+    assert_select "tr>td", :text => /Title/, :count => 1
+    assert_select "tr>td", :text => /MyText/, :count => 1
   end
 end

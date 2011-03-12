@@ -1,20 +1,12 @@
 require 'spec_helper'
 
 describe "users/index.html.haml" do
-  before(:each) do
-    assign(:users, [
-      stub_model(User,
-        :username => "Username"
-      ),
-      stub_model(User,
-        :username => "Username"
-      )
-    ])
-  end
-
   it "renders a list of users" do
+    ObjectMother.create_user "michael"
+    ObjectMother.create_user "jones"
+    assign(:users, User.page)
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => "Username".to_s, :count => 2
+    assert_select "tr>td", :text => /michael/, :count => 1
+    assert_select "tr>td", :text => /jones/, :count => 1
   end
 end

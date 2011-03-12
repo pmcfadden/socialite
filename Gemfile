@@ -44,10 +44,11 @@ gem 'madeleine'
  group :development, :test do
    gem 'rspec-rails'
    gem 'ruby-debug'
+   gem 'rcov'
 
    # the following gems are needed to run the browser tests
-   gem "hoe", "2.8.0"
-   gem 'vapir-firefox'
+   #gem "hoe", "2.8.0"
+   #gem 'vapir-firefox'
  end
 
 gem 'haml-rails', :group => :development

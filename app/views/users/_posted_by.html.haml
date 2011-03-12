@@ -1,5 +1,4 @@
 %span
   = "posted by "
-  = link_to user, user_path(user.id)
-  %span{:class => "karma-indicator"}= "[#{user.karma}]"
+  = render :partial => 'users/user', :locals => {:user => user}
   = " - #{time_ago_in_words_including_ago(resource.created_at)}"

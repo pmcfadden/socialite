@@ -1,0 +1,8 @@
+%table
+  - users.each do |user|
+    %tr
+      %td= render :partial => 'users/user', :locals => {:user => user}
+      %td= link_to 'Edit', edit_user_path(user)
+      %td= link_to 'delete -- not implemented fully', user_path(user), :confirm => 'Are you sure?', :method => :delete
+
+= paginate users

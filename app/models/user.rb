@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, :presence => true
-  #validates :karma, :presence => true
+  validates :karma, :presence => true
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma
 
@@ -13,8 +13,12 @@ class User < ActiveRecord::Base
 
   after_initialize :setup_default_values
 
+  def self.find_spammers
+    User.joins(:submissions).where("submissions.is_spam" => true)
+  end
+
   def setup_default_values
-    self.karma ||= 0
+    self.karma = 0 unless self.attributes['karma']
   end
 
   def increment_karma
@@ -22,6 +26,6 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    self.username
+    self.attributes['username']
   end
 end

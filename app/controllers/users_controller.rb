@@ -5,10 +5,14 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
+  def spammers
+    @users = User.find_spammers.page params[:page]
+  end
+
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
+    @users = User.page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -70,6 +74,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    #flash[:notice] = "User #{@user} was deleted."
 
     respond_to do |format|
       format.html { redirect_to(users_url) }

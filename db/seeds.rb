@@ -21,7 +21,7 @@ def random_user
 end
 
 def create_users
-  users = ["john", "mike", "paul", "betty", "ashley"].map do |username|
+  users = "john mike paul betty ashley ricky jane minnie mickey sally harry hermione tom slim jim colin smith gordon gunther emily veronica ed al matt henry bob richard sandra lizzie deborah barbie".split.map do |username|
     {:username => username, :email => "#{username}@example.com", :password => '123456', :karma => (rand(500) + 1)}
   end
 

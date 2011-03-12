@@ -40,4 +40,4 @@
           = notice
         %p{:class => "alert"}
           = alert
-        = yield
+        = content_for?(:application) ? yield(:application) : yield

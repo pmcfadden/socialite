@@ -11,6 +11,7 @@ Socialite::Application.routes.draw do
 
   scope "/admin" do
     resources :users
+    match 'spammers', :controller => 'users', :action => 'spammers', :via => "get", :as => 'spammers'
   end
 
   resources :submissions
