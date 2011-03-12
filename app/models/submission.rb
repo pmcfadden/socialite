@@ -15,7 +15,7 @@ class Submission < ActiveRecord::Base
   paginates_per 20
 
   # Here we order by interestingness.
-  default_scope :order => "score * #{@@voting_momentum} - strftime('%s','now') + strftime('%s',created_at) DESC"
+  default_scope :order => "submissions.score * #{@@voting_momentum} - strftime('%s','now') + strftime('%s',submissions.created_at) DESC"
 
   # Interestingness is calculated by multiplying the number of votes by a coefficient.
   # The amount of time passed since creation is taken as a penalty.
@@ -28,6 +28,11 @@ class Submission < ActiveRecord::Base
     self.score ||= 0
     self.url = "http://" + url if !self.url.nil? and self.url !~ /^http:\/\//
     self.is_spam ||= false
+  end
+
+  def self.list
+    # I could not find a way to default the value of :deleted to false so we fetch all users where :deleted is null or false
+    Submission.joins(:user).where("is_spam = ? AND users.deleted IS NULL OR users.deleted = ?", false, false)
   end
 
   def vote_up user_who_voted
@@ -59,6 +64,10 @@ class Submission < ActiveRecord::Base
 
   def to_s
     "#{self.title} #{self.description}"
+  end
+
+  def deleted?
+    self.user.deleted?
   end
 
 end

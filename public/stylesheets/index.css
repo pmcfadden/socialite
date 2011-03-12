@@ -1,14 +1,8 @@
 td.vote-area {width:60px;}
-
 .inner-center-pane {width:90%; text-align:left; margin:auto;}
-
 .center-pane {text-align:center;}
-
 .notice {color:#3b0; font-weight:bold;}
-
 .alert {color:red; font-weight:bold;}
-
-.karma-indicator, .rank, .admin-links {font-size:70%;}
-
+.karma-indicator, .rank, .admin-links, .deletion-seal {font-size:70%;}
 .rank {color:#aaa;}
 

@@ -8,4 +8,13 @@ describe Comment do
 
     bottom.parent.parent.should eq(top)
   end
+
+  it "should know it the comment is spam or deleted" do
+    user = ObjectMother.new_user
+    comment = ObjectMother.new_comment :user => user
+    comment.spam_or_deleted?.should be(false)
+
+    user.mark_as_deleted
+    comment.spam_or_deleted?.should be(true)
+  end
 end

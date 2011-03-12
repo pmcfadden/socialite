@@ -1,6 +1,21 @@
 require 'spec_helper'
 
 describe Submission do
+
+  it "should not pull the deleted or spam submissions" do
+    legit_submission = ObjectMother.create_submission :is_spam => false
+    spam_submission = ObjectMother.create_submission :is_spam => true
+    deleted_user = ObjectMother.create_user :deleted => true
+    submission_from_deleted_user = ObjectMother.create_submission :user =>  deleted_user
+
+    list = Submission.list
+    list.should include(legit_submission)
+    list.should_not include(spam_submission)
+    deleted_user.deleted?.should be(true)
+    submission_from_deleted_user.deleted?.should be(true)
+    list.should_not include(submission_from_deleted_user)
+  end
+  
   it 'should start with a score of 0' do
     submission = Submission.new(:user => User.new)
     submission.score.should eq(0)

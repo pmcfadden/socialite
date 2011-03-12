@@ -27,6 +27,7 @@ def create_users
 
   User.create!(users)
   User.all.first.update_attribute :admin, true
+  User.all[1,6].each {|user| user.update_attribute :deleted, true }
 end
 
 def create_submissions

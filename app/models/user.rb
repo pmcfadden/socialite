@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :username, :presence => true
   validates :karma, :presence => true
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma, :deleted
 
   has_many :submissions
 
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def setup_default_values
-    self.karma = 0 unless self.attributes['karma']
+    self[:karma] ||= 0
   end
 
   def increment_karma
@@ -28,4 +28,9 @@ class User < ActiveRecord::Base
   def to_s
     self.attributes['username']
   end
+
+  def mark_as_deleted
+    self.deleted = true
+  end
+
 end

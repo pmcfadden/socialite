@@ -2,23 +2,26 @@ require 'spec_helper'
 
 describe "submissions/show.html.haml" do
   before(:each) do
-    user = User.new
-    user.id = 1
-    @submission = assign(:submission, stub_model(Submission,
-      :title => "Title",
-      :url => "Url",
-      :description => "MyText",
-      :user => user
-    ))
+    @submission = ObjectMother.create_submission
+    assign(:submission, @submission)
   end
 
   it "renders attributes in <p>" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Title/)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Url/)
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/MyText/)
+    rendered.should match(/#{@submission.title}/)
+    rendered.should match(/#{@submission.url}/)
+    rendered.should match(/#{@submission.description}/)
+  end
+
+  it "should render spam or deleted comments with the deletion seal" do
+    deleted_user = ObjectMother.create_user :deleted => true
+    comment = ObjectMother.create_comment :user => deleted_user, :submission => @submission
+
+    @submission.comments.should include(comment)
+
+    render
+
+    rendered.should_not match(/#{comment.text}/)
+    rendered.should match(/-- deleted --/)
   end
 end

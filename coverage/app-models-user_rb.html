@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-user_rb.html">app/models/user.rb</a></td>
-            <td class='right_align'><tt>27</tt></td>
-            <td class='right_align'><tt>17</tt></td>
+            <td class='right_align'><tt>31</tt></td>
+            <td class='right_align'><tt>21</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -98,8 +98,8 @@
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line8">8</a>   #validates :karma, :presence =&gt; true</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line8">8</a>   validates :karma, :presence =&gt; true</pre></td>
           </tr>
         
           
@@ -147,13 +147,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line16">16</a>   def setup_default_values</pre></td>
+            <td><pre><a name="line16">16</a>   def self.find_spammers</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line17">17</a>     self.karma ||= 0</pre></td>
+            <td><pre><a name="line17">17</a>     User.joins(:submissions).where(&quot;submissions.is_spam&quot; =&gt; true)</pre></td>
           </tr>
         
           
@@ -171,13 +171,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>   def increment_karma</pre></td>
+            <td><pre><a name="line20">20</a>   def setup_default_values</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>     self.karma += 1</pre></td>
+            <td><pre><a name="line21">21</a>     self.karma = 0 unless self.attributes['karma']</pre></td>
           </tr>
         
           
@@ -195,13 +195,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line24">24</a>   def to_s</pre></td>
+            <td><pre><a name="line24">24</a>   def increment_karma</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>     self.username</pre></td>
+            <td><pre><a name="line25">25</a>     self.karma += 1</pre></td>
           </tr>
         
           
@@ -213,13 +213,37 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line27">27</a> end</pre></td>
+            <td><pre><a name="line27">27</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>   def to_s</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line29">29</a>     self.attributes['username']</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line30">30</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line31">31</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Fri Mar 11 21:37:46 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sat Mar 12 02:39:54 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

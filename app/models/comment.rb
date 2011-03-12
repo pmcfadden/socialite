@@ -9,4 +9,13 @@ class Comment < ActiveRecord::Base
   def has_parent
     !self.parent.nil?
   end
+
+  def deleted?
+    self.user.deleted?
+  end
+
+  def spam_or_deleted?
+    deleted?
+  end
+
 end

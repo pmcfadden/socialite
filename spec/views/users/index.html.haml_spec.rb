@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "users/index.html.haml" do
   it "renders a list of users" do
-    ObjectMother.create_user "michael"
-    ObjectMother.create_user "jones"
+    ObjectMother.create_user :username => "michael"
+    ObjectMother.create_user :username => "jones"
     assign(:users, User.page)
     render
     assert_select "tr>td", :text => /michael/, :count => 1

@@ -6,6 +6,6 @@ end
 
 class Hash
   def to_s
-    keys.collect {|k| "#{k} => #{[k]}"}.join ", "
+    collect {|k, v| "#{k} => #{v}"}.join ", "
   end
 end

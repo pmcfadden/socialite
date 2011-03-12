@@ -1,17 +1,49 @@
 class ObjectMother
-  def self.create_user username
-    options = {:username => username, :email => "#{username}@example.com", :password => "123456", :password_confirmation => "123456"}
+  def self.create_user options={}
+    user = new_user(options)
+    user.save!
+    user
+  end
+
+  def self.new_user options={}
+    options[:username] ||= 'test-user' 
+    options[:email] ||= "#{options[:username]}@example.com"
+    options[:password] ||= "123456"
+    options[:password_confirmation] ||= "123456"
     TestLogger.log "creating test user with options = #{options}"
-    User.create! options
+    User.new options
   end
 
   def self.create_submission options={}
+    submission = new_submission(options)
+    submission.save!
+    submission
+  end
+
+  def self.new_submission options={}
     options[:title] ||= 'title'
     options[:url] ||= 'example.com'
     options[:description] ||= 'description'
     options[:is_spam] ||= false
-    options[:user] ||= create_user("test-user#{Time.now.to_f}")
+    options[:user] ||= random_user
     TestLogger.log "creating test submission with options = #{options}"
-    Submission.create! options
+    Submission.new options
+  end
+
+  def self.create_comment options={}
+    comment = new_comment(options)
+    comment.save!
+    comment
+  end
+
+  def self.new_comment options={}
+    options[:text] ||= 'test-text'
+    options[:user] ||= random_user
+    TestLogger.log "creating a test comment with options = #{options}"
+    Comment.new options
+  end
+
+  def self.random_user
+    create_user :username => "test-user#{Time.now.to_f}"
   end
 end

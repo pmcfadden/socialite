@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110311061707) do
+ActiveRecord::Schema.define(:version => 20110312171842) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20110311061707) do
     t.integer  "karma"
     t.string   "username"
     t.boolean  "admin"
+    t.boolean  "deleted"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
