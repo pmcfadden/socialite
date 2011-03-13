@@ -1,0 +1,12 @@
+%table{:class => 'list'}
+  - comments.each_with_index do |comment, index|
+    %tr
+      %td
+        %span{:class => 'comment-signature'}= "#{comment.user} - #{time_ago_in_words_including_ago(comment.created_at)}"
+        = render :partial => 'comments/admin_links', :locals => {:comment => comment}
+        %div= comment.text
+        %span
+          = link_to 'view submission', submission_path(comment.submission)
+
+= paginate comments
+

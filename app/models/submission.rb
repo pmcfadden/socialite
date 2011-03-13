@@ -54,10 +54,6 @@ class Submission < ActiveRecord::Base
     self.comments.reject {|comment| comment.has_parent}
   end
 
-  def is_spam?
-    self.is_spam == true
-  end
-
   def mark_as_spam
     self.is_spam = true
   end

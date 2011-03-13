@@ -1,0 +1,23 @@
+- if current_user.try :admin
+  %span{:class => "admin-links"}
+    = "["
+    %span{:id => "admin-links-#{comment.id}"}
+      - if comment.is_spam?
+        = I18n.t 'marked_as_spam'
+        = link_to "undo", undo_mark_comment_as_spam_path(:id => comment.id), :method => :post, :remote => true, :class => "undo-mark-comment-as-spam-link"
+      - else
+        = link_to "mark as spam", mark_comment_as_spam_path(:id => comment.id), :method => :post, :remote => true, :class => "mark-comment-as-spam-link"
+    = "]"
+    :javascript
+      $(document).ready(function(){
+        $('.undo-mark-comment-as-spam-link').bind('ajax:success', function(obj, data){
+          data = eval("(" + data + ")");
+          $('#admin-links-' + data['id']).text(data['message']);
+        });
+        $('.mark-comment-as-spam-link').bind('ajax:success', function(obj, data){
+          data = eval("(" + data + ")");
+          $('#admin-links-' + data['id']).text(data['message']);
+        });
+      });
+
+

@@ -15,7 +15,11 @@ class Comment < ActiveRecord::Base
   end
 
   def spam_or_deleted?
-    deleted?
+    deleted? || is_spam?
+  end
+
+  def mark_as_spam
+    self.is_spam = true
   end
 
 end

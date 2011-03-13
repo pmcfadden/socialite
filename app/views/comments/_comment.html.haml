@@ -1,6 +1,7 @@
 %tr
   %td{:class => comment.spam_or_deleted? ? '.spam-or-deleted' : ''}
-    %div{:class => 'comment-signature'}= "#{comment.user} - #{time_ago_in_words_including_ago(comment.created_at)}"
+    %span{:class => 'comment-signature'}= "#{comment.user} - #{time_ago_in_words_including_ago(comment.created_at)}"
+    = render :partial => 'comments/admin_links', :locals => {:comment => comment}
     - if comment.spam_or_deleted?
       .deletion-seal -- deleted --
     - else

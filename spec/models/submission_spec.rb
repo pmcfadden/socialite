@@ -11,8 +11,6 @@ describe Submission do
     list = Submission.list
     list.should include(legit_submission)
     list.should_not include(spam_submission)
-    deleted_user.deleted?.should be(true)
-    submission_from_deleted_user.deleted?.should be(true)
     list.should_not include(submission_from_deleted_user)
   end
   

@@ -5,9 +5,15 @@ Socialite::Application.routes.draw do
   match 'about', :to => "application#about", :via => "get", :as => 'about'
 
   get 'admin', :to => "admin#index", :as => 'admin'
-  match 'admin/moderate_submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
-  match 'admin/mark_as_spam', :to => "admin#mark_as_spam", :as => 'mark_as_spam'
-  match 'admin/undo_mark_as_spam', :to => "admin#undo_mark_as_spam", :as => 'undo_mark_as_spam'
+
+  match 'admin/moderate/submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
+  match 'admin/moderate/comments', :to => "admin#moderate_comments", :via => "get", :as => 'moderate_comments'
+
+  match 'admin/mark_submission_as_spam', :to => "admin#mark_submission_as_spam", :as => 'mark_submission_as_spam'
+  match 'admin/undo_mark_submission_as_spam', :to => "admin#undo_mark_submission_as_spam", :as => 'undo_mark_submission_as_spam'
+
+  match 'admin/mark_comment_as_spam', :to => "admin#mark_comment_as_spam", :as => 'mark_comment_as_spam'
+  match 'admin/undo_mark_comment_as_spam', :to => "admin#undo_mark_comment_as_spam", :as => 'undo_mark_comment_as_spam'
 
   scope "/admin" do
     match 'spammers', :controller => 'users', :action => 'spammers', :via => "get", :as => 'spammers'
