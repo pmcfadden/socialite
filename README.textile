@@ -7,13 +7,6 @@ The goal is to build a web application that will act as a social news website (t
 
 Here is a list of features we will be building soon:
 
-  * allow admins to moderate comments the same way they moderate submissions
-  * first comment on a submission does not show up ajax-style - i have to refresh the page to see it
-  * use watir or such to test one or two user journeys
-  * figure out test coverage and what tests are missing
-  * "allow admins to delete a user (mark all their submissions and comments as spam and remove those from public view)
-  * the comments should probably not be displayed but replaced with <marked as spam>"
-  * admin users can pull up a list of users that have submitted nothing but spam or at least 3 spam submissions - they can then killspam these users
   * add nice styling to all pages + images (JQueryUI theme roller?)
   * admin section to change the style (choose among all JQuery themes?)
   * streamline the deployment of a new instance of socialite (aka one-liner install)
@@ -25,10 +18,6 @@ Here is a list of features we will be building soon:
   * a bookmarklet to submit posts from the bookmark toolbar
   * admin section to change the title + logo
   * admin section to change the favicon
-  * allow original poster to edit their own post
-  * show comments as well as submissions in profile page
-  * hide the possibility to vote if user already voted for that submission
-  * color the submissions that were clicked on / voted up by the current user / just marked as spam
   * show stats like users with highest karma and stuff
   * have a new page for most recent submissions
   * have the user click a link in their email before they can submit stuff
