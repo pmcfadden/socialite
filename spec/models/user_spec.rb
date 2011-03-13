@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe User do
+
+  it "should know if user already voted for a submission" do
+    user = ObjectMother.create_user
+    submission = ObjectMother.create_submission
+
+    user.voted_for(submission).should == false
+    ObjectMother.create_vote user, submission
+    user.voted_for(submission).should == true
+  end
+
   it "should increase karma as its submissions are voted up" do
     david = User.new
     david.karma.should eq(0)

@@ -17,7 +17,7 @@
       .inner-center-pane
         %div{:class => "top-nav-bar"}
           .site-title
-            %h1 #{current_user.nil? ? "" : "(#{current_user}) - "}socialite
+            %h1 #{current_user.nil? ? "" : "#{current_user} | "}socialite
           %ul{:class => "cleared"}
             %li
               = link_to "Submissions", :root

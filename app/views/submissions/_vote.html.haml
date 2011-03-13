@@ -1,15 +1,16 @@
-%span{:id => "voting-booth-#{submission.id}"}= link_to '^', vote_up_path(:id => submission.id), :method => :post, :remote => true, :class => "vote-up"
+- if !current_user.nil? and !current_user.voted_for(submission)
+  %span{:id => "voting-booth-#{submission.id}"}= link_to '^', vote_up_path(:id => submission.id), :method => :post, :remote => true, :class => "vote-up"
+  :javascript
+    $(document).ready(function(){
+      $('.vote-up').bind('ajax:success', function(obj, data){
+        data = eval("(" + data + ")");
+        $('#scoreForSubmission' + data['id']).text(data['score']);
+        $('#voting-booth-' + data['id']).addClass('invisible');
+      });
+    });
 %span
   = "("
   %span{:id => "scoreForSubmission#{submission.id}"}>= submission.score.to_i
   = ")"
 
-:javascript
-  $(document).ready(function(){
-    $('.vote-up').bind('ajax:success', function(obj, data){
-      data = eval("(" + data + ")");
-      $('#scoreForSubmission' + data['id']).text(data['score']);
-      $('#voting-booth-' + data['id']).addClass('invisible');
-    });
-  });
 

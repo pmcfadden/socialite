@@ -9,6 +9,12 @@ class ObjectMother
     antispam
   end
 
+  def self.create_vote user, submission
+    vote = Vote.new :user => user, :submission => submission
+    vote.save!
+    vote
+  end
+
   def self.create_user options={}
     user = new_user(options)
     user.save!

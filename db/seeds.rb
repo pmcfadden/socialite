@@ -16,8 +16,14 @@ def random_text
   words[first, length].join " "
 end
 
+def random_submission
+  rand_id = rand(Submission.count)
+  rand_record = Submission.first(:conditions => [ "id >= ?", rand_id])
+end
+
 def random_user
-  User.find(rand(User.all.size) + 1)
+  rand_id = rand(User.count)
+  rand_record = User.first(:conditions => [ "id >= ?", rand_id])
 end
 
 def create_users
@@ -51,6 +57,14 @@ def create_comments
   end
 end
 
+def create_votes
+  50.times do
+    vote = Vote.new :user => random_user, :submission => random_submission
+    vote.save!
+  end
+end
+
 create_users
 create_submissions
 create_comments
+create_votes
