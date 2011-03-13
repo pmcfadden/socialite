@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     ! Vote.where(:user_id => self.id, :submission_id => submission.id).all.empty?
   end
 
+  def can_vote_for submission
+    submission.user != self and !voted_for(submission)
+  end
+
   def increment_karma
     self.karma += 1
   end

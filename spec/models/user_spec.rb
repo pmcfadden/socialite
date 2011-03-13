@@ -7,8 +7,17 @@ describe User do
     submission = ObjectMother.create_submission
 
     user.voted_for(submission).should == false
+    user.can_vote_for(submission).should == true
     ObjectMother.create_vote user, submission
     user.voted_for(submission).should == true
+    user.can_vote_for(submission).should == false
+  end
+
+  it "should not allow voting if author is current user" do
+    user = ObjectMother.create_user
+    submission = ObjectMother.create_submission :user => user
+
+    user.can_vote_for(submission).should == false
   end
 
   it "should increase karma as its submissions are voted up" do

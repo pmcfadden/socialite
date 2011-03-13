@@ -2,9 +2,13 @@ a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#555; }
 
+textarea {height:100px;}
+
 body { background-color: #fff; color: #111; font-size:80%;}
 body, p, ol, ul, td { font-family: verdana, arial, helvetica, sans-serif;}
+
 td {vertical-align:top;}
+
 table {width:100%;}
 table.list td {border-bottom:1px solid #eee;}
 table.list {width:auto;}
@@ -31,9 +35,9 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 .voted, .voted a, .rank {color:#aaa;}
 .marked-as-spam .admin-links {color:red;}
 
-textarea {height:100px;}
-
 #comments-list tr {background-color:#eee; margin:1em;}
 #comments-list tr td {padding:0.2em 1em;}
 
 .reply-link, .comment-signature {font-size:80%; color:#999;}
+
+#post-comment-at-top {margin-bottom:1em;}

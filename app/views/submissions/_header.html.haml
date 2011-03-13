@@ -1,0 +1,14 @@
+%tr{:class => resolve_class_for_coloring_submission(submission)}
+  - if index
+    %td{:class => 'rank'}
+      - rank = index + 1
+      - if !params[:page].nil? and params[:page].to_i > 1
+        - rank = rank + (params[:page].to_i - 1) * Submission.default_per_page
+      = "#{rank}."
+  %td{:class => 'vote-area'}
+    = render :partial => "submissions/vote", :locals => {:submission => submission}
+  %td{:class => 'description'}
+    = render :partial => "submissions/title", :locals => {:submission => submission}
+    = render :partial => "users/posted_by", :locals => {:user => submission.user, :resource => submission}
+    %br
+    = submission.description
