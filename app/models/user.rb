@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   after_initialize :setup_default_values
 
   def self.find_spammers
-    User.joins(:submissions).where("submissions.is_spam" => true)
+    User.includes([:submissions, :comments]).group("users.id").where(["submissions.is_spam = ? or comments.is_spam = ?", true, true])
   end
 
   def setup_default_values

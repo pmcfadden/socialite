@@ -1,6 +1,6 @@
 %table{:id => "submissions-list"}
   - submissions.each_with_index do |submission, index|
-    %tr
+    %tr{:class => resolve_class_for_coloring_submission(submission)}
       %td{:class => 'rank'}
         - rank = index + 1
         - if !params[:page].nil? and params[:page].to_i > 1

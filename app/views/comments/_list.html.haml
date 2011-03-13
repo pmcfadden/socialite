@@ -1,6 +1,6 @@
 %table{:class => 'list'}
   - comments.each_with_index do |comment, index|
-    %tr
+    %tr{:class => resolve_class_for_coloring_comment(comment)}
       %td
         %span{:class => 'comment-signature'}= "#{comment.user} - #{time_ago_in_words_including_ago(comment.created_at)}"
         = render :partial => 'comments/admin_links', :locals => {:comment => comment}

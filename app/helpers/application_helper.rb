@@ -12,4 +12,17 @@ module ApplicationHelper
   def current_user_is_admin?
     current_user.try :admin
   end
+
+  def resolve_class_for_coloring_comment comment
+    classes = []
+    classes << "marked-as-spam" if comment.is_spam?
+    classes.join " "
+  end
+
+  def resolve_class_for_coloring_submission submission
+    classes = []
+    classes << "voted" if !current_user.nil? && current_user.voted_for(submission)
+    classes << "marked-as-spam" if submission.is_spam?
+    classes.join " "
+  end
 end
