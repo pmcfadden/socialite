@@ -1,6 +1,4 @@
-%h1
-  %span= @user
-  %span{:class => "karma-indicator"}= "[#{@user.karma}]"
+= render :partial => 'users/profile_header', :locals => {:user => @user}
 = render :partial => "users/filters", :locals => {:user => @user}
 %p= "#{@user} posted #{pluralize @user.comments.size, "comment"}"
 = render :partial => "comments/list", :locals => {:comments => Comment.page(params[:page]).where(:user_id => @user)}
