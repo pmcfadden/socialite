@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
+  def show_comments
+    show
+  end
+
   def spammers
     @users = User.find_spammers.page params[:page]
   end

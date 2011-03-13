@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :karma, :deleted
 
   has_many :submissions
+  has_many :comments
 
   after_initialize :setup_default_values
 

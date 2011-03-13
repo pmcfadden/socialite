@@ -1,4 +1,4 @@
 .filters-menu
   %ul{:class => 'cleared'}
-    %li= link_to_unless_current_action "index", "All users", users_path
-    %li= link_to_unless_current_action "spammers", "Spammers", spammers_path
+    %li= link_to_unless_current_action "show", "Submissions", user_path(user)
+    %li= link_to_unless_current_action "show_comments", "Comments", user_comments_path(user)

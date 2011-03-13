@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-user_rb.html">app/models/user.rb</a></td>
-            <td class='right_align'><tt>36</tt></td>
-            <td class='right_align'><tt>24</tt></td>
+            <td class='right_align'><tt>37</tt></td>
+            <td class='right_align'><tt>25</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -128,152 +128,158 @@
         
           
           
+          <tr class="marked">
+            <td><pre><a name="line13">13</a>   has_many :comments</pre></td>
+          </tr>
+        
+          
+          
           <tr class="inferred">
-            <td><pre><a name="line13">13</a> </pre></td>
+            <td><pre><a name="line14">14</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line14">14</a>   after_initialize :setup_default_values</pre></td>
+            <td><pre><a name="line15">15</a>   after_initialize :setup_default_values</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line15">15</a> </pre></td>
+            <td><pre><a name="line16">16</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line16">16</a>   def self.find_spammers</pre></td>
+            <td><pre><a name="line17">17</a>   def self.find_spammers</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line17">17</a>     User.joins(:submissions).where(&quot;submissions.is_spam&quot; =&gt; true)</pre></td>
+            <td><pre><a name="line18">18</a>     User.joins(:submissions).where(&quot;submissions.is_spam&quot; =&gt; true)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line18">18</a>   end</pre></td>
+            <td><pre><a name="line19">19</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line19">19</a> </pre></td>
+            <td><pre><a name="line20">20</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>   def setup_default_values</pre></td>
+            <td><pre><a name="line21">21</a>   def setup_default_values</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>     self[:karma] ||= 0</pre></td>
+            <td><pre><a name="line22">22</a>     self[:karma] ||= 0</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line22">22</a>   end</pre></td>
+            <td><pre><a name="line23">23</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line23">23</a> </pre></td>
+            <td><pre><a name="line24">24</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line24">24</a>   def increment_karma</pre></td>
+            <td><pre><a name="line25">25</a>   def increment_karma</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>     self.karma += 1</pre></td>
+            <td><pre><a name="line26">26</a>     self.karma += 1</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line26">26</a>   end</pre></td>
+            <td><pre><a name="line27">27</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line27">27</a> </pre></td>
+            <td><pre><a name="line28">28</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line28">28</a>   def to_s</pre></td>
+            <td><pre><a name="line29">29</a>   def to_s</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line29">29</a>     self.attributes['username']</pre></td>
+            <td><pre><a name="line30">30</a>     self.attributes['username']</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line30">30</a>   end</pre></td>
+            <td><pre><a name="line31">31</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line31">31</a> </pre></td>
+            <td><pre><a name="line32">32</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line32">32</a>   def mark_as_deleted</pre></td>
+            <td><pre><a name="line33">33</a>   def mark_as_deleted</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line33">33</a>     self.deleted = true</pre></td>
+            <td><pre><a name="line34">34</a>     self.deleted = true</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line34">34</a>   end</pre></td>
+            <td><pre><a name="line35">35</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line35">35</a> </pre></td>
+            <td><pre><a name="line36">36</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line36">36</a> end</pre></td>
+            <td><pre><a name="line37">37</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 20:29:53 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sat Mar 12 20:49:21 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

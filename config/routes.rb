@@ -20,6 +20,7 @@ Socialite::Application.routes.draw do
   end
 
   resources :users
+  match 'users/:id/comments', :controller => 'users', :action => 'show_comments', :via => "get", :as => 'user_comments'
   resources :submissions
   resources :comments
 
