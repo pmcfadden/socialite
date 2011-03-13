@@ -8,7 +8,8 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 
 # authentication
-gem 'devise' 
+# we needed to comment out the use of authentication headers for 401 errors so we froze this gem
+gem 'devise', :path => "vendor/gems/devise-1.1.7"
 
 gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development
@@ -18,8 +19,8 @@ gem 'haml'
 gem 'kaminari'
 
 # spam filtering
-# this gem makes rake db:seed fail so we freezed it and edited the vector.rb file in it
-gem 'classifier',  :path => "vendor/classifier-1.3.3"
+# this gem makes rake db:seed fail so we froze it and edited the vector.rb file in it
+gem 'classifier',  :path => "vendor/gems/classifier-1.3.3"
 gem 'fast-stemmer'
 gem 'madeleine'
 

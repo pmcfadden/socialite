@@ -6,6 +6,8 @@ Socialite::Application.routes.draw do
 
   get 'admin', :to => "admin#index", :as => 'admin'
 
+  get 'sign_in_then_redirect', :to => "application#sign_in_then_redirect"
+
   match 'admin/moderate/submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
   match 'admin/moderate/comments', :to => "admin#moderate_comments", :via => "get", :as => 'moderate_comments'
 
