@@ -6,7 +6,7 @@ class Antispam
   end
 
   def is_spam? stringable
-    compute_uncertainty(stringable) > 1 and is_classified_as_spam?
+    compute_uncertainty(stringable) > 1 and is_classified_as_spam? stringable
   end
 
   def is_classified_as_content? stringable
