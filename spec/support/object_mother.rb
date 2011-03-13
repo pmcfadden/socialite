@@ -1,6 +1,14 @@
 class ObjectMother
   @@user_count = 0
 
+  def self.initialize_antispam_filter
+    FileUtils.rm_rf("test-antispam-memory") if File.exists? "test-antispam-memory"
+    antispam ||= Antispam.new "test-antispam-memory"
+    antispam.train_as_spam "buy this"
+    antispam.train_as_content "serious matter"
+    antispam
+  end
+
   def self.create_user options={}
     user = new_user(options)
     user.save!

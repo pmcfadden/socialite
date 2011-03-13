@@ -4,9 +4,7 @@
   = link_to 'Edit this submission', edit_submission_path(@submission)
 %p
   = render :partial => "vote", :locals => {:submission => @submission}
-  %b= link_to @submission.title, @submission.url
-  /
-    = "interestingness = #{@submission.interestingness}"
+  = render :partial => "submissions/title", :locals => {:submission => @submission}
   = render :partial => "users/posted_by", :locals => {:user => @submission.user, :resource => @submission}
 %p= @submission.description
 

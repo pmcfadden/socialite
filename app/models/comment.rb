@@ -22,4 +22,7 @@ class Comment < ActiveRecord::Base
     self.is_spam = true
   end
 
+  def to_s
+    self.text
+  end
 end

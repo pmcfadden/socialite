@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-support-object_mother_rb.html">spec/support/object_mother.rb</a></td>
+            <td class='right_align'><tt>59</tt></td>
             <td class='right_align'><tt>51</tt></td>
-            <td class='right_align'><tt>44</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -75,295 +75,343 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line4">4</a>   def self.create_user options={}</pre></td>
+            <td><pre><a name="line4">4</a>   def self.initialize_antispam_filter</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line5">5</a>     user = new_user(options)</pre></td>
+            <td><pre><a name="line5">5</a>     FileUtils.rm_rf(&quot;test-antispam-memory&quot;) if File.exists? &quot;test-antispam-memory&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line6">6</a>     user.save!</pre></td>
+            <td><pre><a name="line6">6</a>     antispam ||= Antispam.new &quot;test-antispam-memory&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line7">7</a>     user</pre></td>
+            <td><pre><a name="line7">7</a>     antispam.train_as_spam &quot;buy this&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line8">8</a>     antispam.train_as_content &quot;serious matter&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line9">9</a>     antispam</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line8">8</a>   end</pre></td>
+            <td><pre><a name="line10">10</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line9">9</a> </pre></td>
+            <td><pre><a name="line11">11</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>   def self.new_user options={}</pre></td>
+            <td><pre><a name="line12">12</a>   def self.create_user options={}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line11">11</a>     options[:username] ||= &quot;test-user-#{@@user_count += 1}&quot; </pre></td>
+            <td><pre><a name="line13">13</a>     user = new_user(options)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line12">12</a>     options[:email] ||= &quot;#{options[:username]}@example.com&quot;</pre></td>
+            <td><pre><a name="line14">14</a>     user.save!</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>     options[:password] ||= &quot;123456&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line14">14</a>     options[:password_confirmation] ||= &quot;123456&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line15">15</a>     TestLogger.log &quot;creating test user with options = #{options}&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line16">16</a>     User.new options</pre></td>
+            <td><pre><a name="line15">15</a>     user</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line17">17</a>   end</pre></td>
+            <td><pre><a name="line16">16</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line18">18</a> </pre></td>
+            <td><pre><a name="line17">17</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line19">19</a>   def self.create_submission options={}</pre></td>
+            <td><pre><a name="line18">18</a>   def self.new_user options={}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>     submission = new_submission(options)</pre></td>
+            <td><pre><a name="line19">19</a>     options[:username] ||= &quot;test-user-#{@@user_count += 1}&quot; </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>     submission.save!</pre></td>
+            <td><pre><a name="line20">20</a>     options[:email] ||= &quot;#{options[:username]}@example.com&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>     submission</pre></td>
+            <td><pre><a name="line21">21</a>     options[:password] ||= &quot;123456&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line22">22</a>     options[:password_confirmation] ||= &quot;123456&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line23">23</a>     TestLogger.log &quot;creating test user with options = #{options}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line24">24</a>     User.new options</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line23">23</a>   end</pre></td>
+            <td><pre><a name="line25">25</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line24">24</a> </pre></td>
+            <td><pre><a name="line26">26</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>   def self.new_submission options={}</pre></td>
+            <td><pre><a name="line27">27</a>   def self.create_submission options={}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line26">26</a>     options[:title] ||= 'title'</pre></td>
+            <td><pre><a name="line28">28</a>     submission = new_submission(options)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a>     options[:url] ||= 'example.com'</pre></td>
+            <td><pre><a name="line29">29</a>     submission.save!</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line28">28</a>     options[:description] ||= 'description'</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line29">29</a>     options[:is_spam] ||= false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line30">30</a>     options[:user] ||= random_user</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line31">31</a>     TestLogger.log &quot;creating test submission with options = #{options}&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line32">32</a>     Submission.new options</pre></td>
+            <td><pre><a name="line30">30</a>     submission</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line33">33</a>   end</pre></td>
+            <td><pre><a name="line31">31</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line34">34</a> </pre></td>
+            <td><pre><a name="line32">32</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line35">35</a>   def self.create_comment options={}</pre></td>
+            <td><pre><a name="line33">33</a>   def self.new_submission options={}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line36">36</a>     comment = new_comment(options)</pre></td>
+            <td><pre><a name="line34">34</a>     options[:title] ||= 'title'</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line37">37</a>     comment.save!</pre></td>
+            <td><pre><a name="line35">35</a>     options[:url] ||= 'example.com'</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line38">38</a>     comment</pre></td>
+            <td><pre><a name="line36">36</a>     options[:description] ||= 'description'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line37">37</a>     options[:is_spam] ||= false</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line38">38</a>     options[:user] ||= random_user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line39">39</a>     TestLogger.log &quot;creating test submission with options = #{options}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line40">40</a>     Submission.new options</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line39">39</a>   end</pre></td>
+            <td><pre><a name="line41">41</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line40">40</a> </pre></td>
+            <td><pre><a name="line42">42</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line41">41</a>   def self.new_comment options={}</pre></td>
+            <td><pre><a name="line43">43</a>   def self.create_comment options={}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line42">42</a>     options[:text] ||= 'test-text'</pre></td>
+            <td><pre><a name="line44">44</a>     comment = new_comment(options)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line43">43</a>     options[:user] ||= random_user</pre></td>
+            <td><pre><a name="line45">45</a>     comment.save!</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>     TestLogger.log &quot;creating a test comment with options = #{options}&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line45">45</a>     Comment.new options</pre></td>
+            <td><pre><a name="line46">46</a>     comment</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line46">46</a>   end</pre></td>
+            <td><pre><a name="line47">47</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line47">47</a> </pre></td>
+            <td><pre><a name="line48">48</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line48">48</a>   def self.random_user</pre></td>
+            <td><pre><a name="line49">49</a>   def self.new_comment options={}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line49">49</a>     create_user :username =&gt; &quot;test-user#{Time.now.to_f}&quot;</pre></td>
+            <td><pre><a name="line50">50</a>     options[:text] ||= 'test-text'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a>     options[:user] ||= random_user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line52">52</a>     TestLogger.log &quot;creating a test comment with options = #{options}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line53">53</a>     Comment.new options</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line50">50</a>   end</pre></td>
+            <td><pre><a name="line54">54</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line51">51</a> end</pre></td>
+            <td><pre><a name="line55">55</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line56">56</a>   def self.random_user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line57">57</a>     create_user :username =&gt; &quot;test-user#{Time.now.to_f}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line59">59</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 15:34:51 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sat Mar 12 20:29:53 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

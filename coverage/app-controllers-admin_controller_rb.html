@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-admin_controller_rb.html">app/controllers/admin_controller.rb</a></td>
-            <td class='right_align'><tt>26</tt></td>
-            <td class='right_align'><tt>22</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>42.31%</tt></div>
+            <td class='right_align'><tt>48</tt></td>
+            <td class='right_align'><tt>39</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.67%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:42px"></div>
-            <div class="uncovered" style="width:58px"></div>
+            <div class="covered" style="width:92px"></div>
+            <div class="uncovered" style="width:8px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>31.82%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>89.74%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:32px"></div>
-            <div class="uncovered" style="width:68px"></div>
+            <div class="covered" style="width:90px"></div>
+            <div class="uncovered" style="width:10px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -93,13 +93,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line7">7</a>   def moderate_submissions</pre></td>
+            <td><pre><a name="line7">7</a>   def moderate_comments</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line8">8</a>     @submissions = Submission.unscoped.order(&quot;created_at DESC&quot;).page params[:page]</pre></td>
+            <td><pre><a name="line8">8</a>     @comments = Comment.order(&quot;created_at DESC&quot;).page params[:page]</pre></td>
           </tr>
         
           
@@ -117,103 +117,235 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line11">11</a>   def mark_as_spam</pre></td>
+            <td><pre><a name="line11">11</a>   def moderate_submissions</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line12">12</a>     submission = Submission.find params[:id]</pre></td>
+            <td><pre><a name="line12">12</a>     @submissions = Submission.unscoped.order(&quot;created_at DESC&quot;).page params[:page]</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line13">13</a>     submission.mark_as_spam</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line14">14</a>     Antispam.new.switch_to_spam submission</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line15">15</a>     submission.save</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line16">16</a>     render :text =&gt; &quot;{id: #{submission.id}, message: '#{I18n.t 'marked_as_spam'}'}&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line17">17</a>   end</pre></td>
+            <td><pre><a name="line13">13</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line18">18</a>   </pre></td>
+            <td><pre><a name="line14">14</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line19">19</a>   def undo_mark_as_spam</pre></td>
+            <td><pre><a name="line15">15</a>   def mark_comment_as_spam</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line20">20</a>     submission = Submission.find params[:id]</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line16">16</a>     submission = Comment.find params[:id]</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line21">21</a>     submission.is_spam = false</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line17">17</a>     mark_resource_as_spam submission</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line22">22</a>     submission.save</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line18">18</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line23">23</a>     Antispam.new.switch_to_content submission</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line19">19</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line24">24</a>     render :text =&gt; &quot;{id: #{submission.id}, message: '#{I18n.t 'no_longer_marked_as_spam'}'}&quot;</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line20">20</a>   def mark_submission_as_spam</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line25">25</a>   end</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line21">21</a>     submission = Submission.find params[:id]</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line26">26</a> end</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line22">22</a>     mark_resource_as_spam submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line23">23</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line24">24</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line25">25</a>   def mark_resource_as_spam submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line26">26</a>     submission.mark_as_spam</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>     Antispam.new.switch_to_spam submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>     submission.save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line29">29</a>     render :text =&gt; &quot;{id: #{submission.id}, message: '#{I18n.t 'marked_as_spam'}'}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line30">30</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line31">31</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line32">32</a>   def undo_mark_comment_as_spam</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line33">33</a>     submission = Comment.find params[:id]</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line34">34</a>     undo_mark_resource_as_spam submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line35">35</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line36">36</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line37">37</a>   def undo_mark_submission_as_spam</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line38">38</a>     submission = Submission.find params[:id]</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line39">39</a>     undo_mark_resource_as_spam submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line40">40</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line41">41</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line42">42</a>   def undo_mark_resource_as_spam submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line43">43</a>     submission.is_spam = false</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line44">44</a>     submission.save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line45">45</a>     Antispam.new.switch_to_content submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>     render :text =&gt; &quot;{id: #{submission.id}, message: '#{I18n.t 'no_longer_marked_as_spam'}'}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line47">47</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line48">48</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 15:34:50 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sat Mar 12 20:29:52 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

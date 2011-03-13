@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "submissions/show.html.haml" do
   include ControllerMocking
 
-  describe "valid scenarios" do
+  describe "your own submission" do
     before(:each) do
       @current_user = ObjectMother.new_user
       @view.stub(:current_user) {@current_user}
@@ -22,7 +22,6 @@ describe "submissions/show.html.haml" do
     it "should render spam or deleted comments with the deletion seal" do
       deleted_user = ObjectMother.create_user :deleted => true
       comment = ObjectMother.create_comment :user => deleted_user, :submission => @submission
-
       @submission.comments.should include(comment)
 
       render
@@ -31,9 +30,28 @@ describe "submissions/show.html.haml" do
       rendered.should match(/-- deleted --/)
     end
 
+    it "should not render a link to mark as spam submission or comment" do
+      user = ObjectMother.create_user
+      comment = ObjectMother.create_comment :user => user, :submission => @submission
+      @submission.comments.should include(comment)
+
+      render
+
+      rendered.should_not match(/mark as spam/)
+    end
+
+    it "should render a link to mark submission and comment as spam for admins" do
+      user = ObjectMother.create_user
+      ObjectMother.create_comment :user => user, :submission => @submission
+      @current_user.update_attribute :admin, true
+
+      render
+
+      rendered.should match(/mark as spam/)
+    end
   end
 
-  describe "invalid scenarios" do
+  describe "submissions from another user" do
     before(:each) do
       @current_user = ObjectMother.new_user
       @view.stub(:current_user, @current_user)

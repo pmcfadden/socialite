@@ -7,7 +7,7 @@
     - else
       %div= comment.text
       .reply-link
-        = link_to 'reply', {}, :id => "reply-link-#{comment.id}", :href => "#"
+        = link_to 'reply', "", :id => "reply-link-#{comment.id}", :href => "#"
         :javascript
           $(document).ready(function(){
             $('#reply-link-#{comment.id}').bind('click', function(){
