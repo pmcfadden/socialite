@@ -1,4 +1,6 @@
-* {font-size:95%;}
+body { background-color: #fff; color: #333; font-size:80%;}
+body, p, ol, ul, td { font-family: verdana, arial, helvetica, sans-serif;}
+.center-pane {font-size: 90%;}
 td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10px;}
 .inner-center-pane {width:90%; text-align:left; margin:auto;}
 .center-pane {text-align:center;}
