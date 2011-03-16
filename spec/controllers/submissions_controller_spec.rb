@@ -10,6 +10,14 @@ describe SubmissionsController do
     Antispam.stub(:new){mock(Antispam, {:is_spam? => true}).as_null_object}
   end
 
+  describe "best of" do
+    it "assigns submissions by calling best of" do
+      Submission.stub(:page) { [@mock_submission] }
+      get :best_of
+      assigns(:submissions).should eq([@mock_submission])
+    end
+  end
+
   describe "GET index" do
     it "assigns first page of submissions as @submissions" do
       Submission.stub(:page) { [@mock_submission] }

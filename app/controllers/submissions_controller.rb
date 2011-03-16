@@ -1,5 +1,9 @@
 class SubmissionsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :best_of]
+
+  def best_of
+    @submissions = Submission.best_of.page params[:page]
+  end
 
   # POST /submissions/1/vote_up
   def vote_up

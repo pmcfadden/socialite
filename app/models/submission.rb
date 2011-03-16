@@ -30,6 +30,10 @@ class Submission < ActiveRecord::Base
     self.is_spam ||= false
   end
 
+  def self.best_of
+    Submission.unscoped.order("score DESC")
+  end
+
   def self.list
     # I could not find a way to default the value of :deleted to false so we fetch all users where :deleted is null or false
     Submission.joins(:user).where("is_spam = ? AND users.deleted IS NULL OR users.deleted = ?", false, false)

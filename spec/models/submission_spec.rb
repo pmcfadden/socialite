@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe Submission do
 
+  it "should pull out the best of sorted best first" do
+    best = ObjectMother.create_submission :score => 2
+    second_best = ObjectMother.create_submission :score => 1
+
+    best_of = Submission.best_of.all
+    best_of.should eq([best, second_best])
+  end
+
   it "should not pull the deleted or spam submissions" do
     legit_submission = ObjectMother.create_submission :is_spam => false
     spam_submission = ObjectMother.create_submission :is_spam => true
