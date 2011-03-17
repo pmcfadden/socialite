@@ -5,6 +5,10 @@ class SubmissionsController < ApplicationController
     @submissions = Submission.best_of.page params[:page]
   end
 
+  def most_recent
+    @submissions = Submission.most_recent.page params[:page]
+  end
+
   # POST /submissions/1/vote_up
   def vote_up
     @submission = Submission.find(params[:id])

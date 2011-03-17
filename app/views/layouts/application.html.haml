@@ -25,7 +25,9 @@
               = "socialite"
           %ul{:class => "cleared"}
             %li
-              = link_to "Submissions", :root
+              = link_to "Popular", :root
+            %li
+              = link_to 'New', new_path
             %li
               = link_to 'Submit a new story', new_submission_path
             %li

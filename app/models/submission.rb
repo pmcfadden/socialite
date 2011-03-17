@@ -30,6 +30,10 @@ class Submission < ActiveRecord::Base
     self.is_spam ||= false
   end
 
+  def self.most_recent
+    Submission.unscoped.order("created_at DESC")
+  end
+
   def self.best_of
     Submission.unscoped.order("score DESC")
   end

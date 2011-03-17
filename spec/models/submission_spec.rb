@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe Submission do
 
+  it "should pull out the most recent" do
+    recent = ObjectMother.create_submission :created_at => 1.minute.ago
+    old = ObjectMother.create_submission :created_at => 10.minutes.ago
+
+    most_recent = Submission.most_recent.all
+    most_recent.should eq([recent, old])
+  end
+
   it "should pull out the best of sorted best first" do
     best = ObjectMother.create_submission :score => 2
     second_best = ObjectMother.create_submission :score => 1
