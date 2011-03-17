@@ -1,5 +1,5 @@
-a { color: #000; }
-a:visited { color: #666; }
+a { color: #222; }
+a:visited { color: #444; }
 a:hover { color: #fff; background-color:#555; }
 
 textarea {height:100px;}
@@ -32,7 +32,7 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 .notice {color:#3b0; font-weight:bold;}
 .alert {color:red; font-weight:bold;}
 .karma-indicator, .rank, .admin-links, .deletion-seal {font-size:80%;}
-.voted, .voted a, .rank {color:#aaa;}
+.voted, .voted a, .rank {color:#bbb;}
 .marked-as-spam .admin-links {color:red;}
 
 #comments-list tr {background-color:#eee; margin:1em;}
@@ -41,3 +41,6 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 .reply-link, .comment-signature {font-size:80%; color:#999;}
 
 #post-comment-at-top {margin-bottom:1em;}
+
+.submission-link {font-weight:bold; font-size:110%; margin-right:0.5em;}
+.submission-link a {text-decoration:none;}

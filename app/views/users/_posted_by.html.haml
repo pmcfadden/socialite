@@ -1,4 +1,4 @@
 %span
   = "posted by "
   = render :partial => 'users/user', :locals => {:user => user}
-  = " - #{time_ago_in_words_including_ago(resource.created_at)}"
+  = " #{time_ago_in_words_including_ago(resource.created_at)}"

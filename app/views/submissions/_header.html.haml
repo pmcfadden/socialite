@@ -7,8 +7,11 @@
       = "#{rank}."
   %td{:class => 'vote-area'}
     = render :partial => "submissions/vote", :locals => {:submission => submission}
-  %td{:class => 'description'}
-    = render :partial => "submissions/title", :locals => {:submission => submission}
-    = render :partial => "users/posted_by", :locals => {:user => submission.user, :resource => submission}
-    %br
-    = submission.description
+  %td
+    %span{:class => 'submission-link'}= link_to submission.title, submission.url, {:rel => 'nofollow'}
+    = render :partial => "submissions/quick_links", :locals => {:submission => submission}
+    /
+      = "interestingness = #{submission.interestingness}"
+    .submission-info
+      = render :partial => "users/posted_by", :locals => {:user => submission.user, :resource => submission}
+      .submission-description= submission.description

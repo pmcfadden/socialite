@@ -31,11 +31,11 @@ class Submission < ActiveRecord::Base
   end
 
   def self.most_recent
-    Submission.unscoped.order("created_at DESC")
+    Submission.unscoped.where(:is_spam => false).order("created_at DESC")
   end
 
   def self.best_of
-    Submission.unscoped.order("score DESC")
+    Submission.unscoped.where(:is_spam => false).order("score DESC")
   end
 
   def self.list
