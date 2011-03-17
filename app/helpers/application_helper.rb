@@ -4,8 +4,12 @@ module ApplicationHelper
     "#{time_ago_in_words(time)} ago"
   end
 
-  def link_to_unless_current_action action_name, text, path
-    return text if action_name == controller.action_name
+  def link_to_unless_current_action text, path
+    options = Rails.application.routes.recognize_path(path, :method => :get)
+    if options[:controller] == controller.controller_name and options[:action] == controller.action_name 
+      return text
+    end
+
     link_to text, path
   end
 

@@ -25,13 +25,13 @@
               = "socialite"
           %ul{:class => "cleared"}
             %li
-              = link_to "Popular", :root
+              = link_to_unless_current_action "Popular", root_path
             %li
-              = link_to 'New', new_path
+              = link_to_unless_current_action 'New', new_path
             %li
-              = link_to 'Submit a new story', new_submission_path
+              = link_to_unless_current_action 'Submit a new story', new_submission_path
             %li
-              = link_to 'Best of', best_of_path
+              = link_to_unless_current_action 'Best of', best_of_path
             - if current_user.nil?
               %li
                 = link_to "Sign in", new_session_path(:user)
@@ -41,10 +41,10 @@
               %li
                 = link_to "Sign out", destroy_user_session_path
             %li
-              = link_to "About", 'about'
+              = link_to_unless_current_action "About", 'about'
             - if current_user.try :admin
               %li
-                = link_to "Admin", admin_path
+                = link_to_unless_current_action "Admin", admin_path
         %p{:class => "notice"}
           = notice
         %p{:class => "alert"}
