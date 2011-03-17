@@ -49,12 +49,14 @@
           = notice
         %p{:class => "alert"}
           = alert
-        = content_for?(:application) ? yield(:application) : yield
-        :javascript
-          $(document).ready(function(){
-            $(document.body).bind('ajax:error', function(status, xhr, err){
-              if(xhr.status == 401){
-                window.location = '/sign_in_then_redirect?current_url=' + escape(window.location)
-              }
+        .site-logo= image_tag('initial_logo.jpg')
+        .layout-content
+          = content_for?(:application) ? yield(:application) : yield
+          :javascript
+            $(document).ready(function(){
+              $(document.body).bind('ajax:error', function(status, xhr, err){
+                if(xhr.status == 401){
+                  window.location = '/sign_in_then_redirect?current_url=' + escape(window.location)
+                }
+              });
             });
-          });
