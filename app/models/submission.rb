@@ -1,3 +1,5 @@
+require 'uri'
+
 class Submission < ActiveRecord::Base
   @@voting_momentum = 12096
 
@@ -26,7 +28,7 @@ class Submission < ActiveRecord::Base
 
   def setup_default_values
     self.score ||= 0
-    self.url = "http://" + url if !self.url.nil? and self.url !~ /^http:\/\//
+    self.url = "http://" + url if !self.url.nil? and self.url !~ /^[a-zA-Z]*:\/\//
     self.is_spam ||= false
   end
 

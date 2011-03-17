@@ -68,6 +68,7 @@ describe Submission do
 
   it "should turn all urls into absolute urls" do
     Submission.new(:url => "example.com").url.should eq("http://example.com")
+    Submission.new(:url => "ftp://example.com").url.should eq("ftp://example.com")
     Submission.new(:url => "http://example.com").url.should eq("http://example.com")
   end
 
