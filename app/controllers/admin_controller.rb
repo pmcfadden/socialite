@@ -12,6 +12,20 @@ class AdminController < ApplicationController
     @submissions = Submission.unscoped.order("created_at DESC").page params[:page]
   end
 
+  def confirmation_email_settings
+  end
+
+  def save_confirmation_email_settings
+    begin
+      AppSettings.update_settings params[:app_settings]
+      redirect_to :confirmation_email_settings, :notice => 'Settings saved'
+
+    rescue ActiveRecord::RecordInvalid
+      flash[:alert] = $!.message
+      render :action => "confirmation_email_settings"
+    end
+  end
+
   def mark_comment_as_spam
     submission = Comment.find params[:id]
     mark_resource_as_spam submission

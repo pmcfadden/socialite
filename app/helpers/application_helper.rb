@@ -29,4 +29,8 @@ module ApplicationHelper
     classes << "marked-as-spam" if submission.is_spam?
     classes.join " "
   end
+
+  def is_boolean? obj
+    !!obj == obj
+  end
 end

@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
   def setup_default_values
     self[:karma] ||= 0
+    self[:confirmed_at] ||= Time.now if !AppSettings.confirm_email_on_registration
   end
 
   def voted_for submission

@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-helpers-application_helper_rb.html">app/helpers/application_helper.rb</a></td>
-            <td class='right_align'><tt>15</tt></td>
-            <td class='right_align'><tt>13</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>80.00%</tt></div>
+            <td class='right_align'><tt>32</tt></td>
+            <td class='right_align'><tt>27</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:80px"></div>
-            <div class="uncovered" style="width:20px"></div>
+            <div class="covered" style="width:75px"></div>
+            <div class="uncovered" style="width:25px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>76.92%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>70.37%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:77px"></div>
-            <div class="uncovered" style="width:23px"></div>
+            <div class="covered" style="width:70px"></div>
+            <div class="uncovered" style="width:30px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -93,61 +93,163 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line7">7</a>   def link_to_unless_current_action action_name, text, path</pre></td>
+            <td><pre><a name="line7">7</a>   def link_to_unless_current_action text, path</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line8">8</a>     return text if action_name == controller.action_name</pre></td>
+            <td><pre><a name="line8">8</a>     options = Rails.application.routes.recognize_path(path, :method =&gt; :get)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line9">9</a>     link_to text, path</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line10">10</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line11">11</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line12">12</a>   def current_user_is_admin?</pre></td>
+            <td><pre><a name="line9">9</a>     if options[:controller] == controller.controller_name and options[:action] == controller.action_name </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line13">13</a>     current_user.try :admin</pre></td>
+            <td><pre><a name="line10">10</a>       return text</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
+            <td><pre><a name="line11">11</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line12">12</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line13">13</a>     link_to text, path</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
             <td><pre><a name="line14">14</a>   end</pre></td>
           </tr>
         
           
           
+          <tr class="inferred">
+            <td><pre><a name="line15">15</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line16">16</a>   def current_user_is_admin?</pre></td>
+          </tr>
+        
+          
+          
           <tr class="uncovered">
-            <td><pre><a name="line15">15</a> end</pre></td>
+            <td><pre><a name="line17">17</a>     current_user.try :admin</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line18">18</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line19">19</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line20">20</a>   def resolve_class_for_coloring_comment comment</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line21">21</a>     classes = []</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line22">22</a>     classes &lt;&lt; &quot;marked-as-spam&quot; if comment.is_spam?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line23">23</a>     classes.join &quot; &quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line24">24</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line25">25</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line26">26</a>   def resolve_class_for_coloring_submission submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>     classes = []</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>     classes &lt;&lt; &quot;voted&quot; if !current_user.nil? &amp;&amp; current_user.voted_for(submission)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line29">29</a>     classes &lt;&lt; &quot;marked-as-spam&quot; if submission.is_spam?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line30">30</a>     classes.join &quot; &quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line31">31</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line32">32</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 21:33:07 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Wed Mar 16 23:50:36 -0500 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

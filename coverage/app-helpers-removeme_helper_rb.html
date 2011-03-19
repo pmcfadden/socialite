@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-    <title>spec/views/users/index.html.haml_spec.rb</title>
+    <title>app/helpers/removeme_helper.rb</title>
     <link href="screen.css" media="all" rel="stylesheet" type="text/css" />
     <link href="print.css" media="print" rel="stylesheet" type="text/css" />
     
@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1>Socialite C0 Coverage Information - RCov</h1>
-    <h2>spec/views/users/index.html.haml_spec.rb</h2>
+    <h2>app/helpers/removeme_helper.rb</h2>
 
     
 
@@ -27,9 +27,9 @@
         </thead>
         <tbody>
           <tr>
-            <td class="left_align"><a href="spec-views-users-index_html_haml_spec_rb.html">spec/views/users/index.html.haml_spec.rb</a></td>
-            <td class='right_align'><tt>12</tt></td>
-            <td class='right_align'><tt>11</tt></td>
+            <td class="left_align"><a href="app-helpers-removeme_helper_rb.html">app/helpers/removeme_helper.rb</a></td>
+            <td class='right_align'><tt>2</tt></td>
+            <td class='right_align'><tt>2</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -57,73 +57,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line1">1</a> require 'spec_helper'</pre></td>
+            <td><pre><a name="line1">1</a> module RemovemeHelper</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line2">2</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line3">3</a> describe &quot;users/index.html.haml&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line4">4</a>   it &quot;renders a list of users&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line5">5</a>     ObjectMother.create_user :username =&gt; &quot;michael&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line6">6</a>     ObjectMother.create_user :username =&gt; &quot;jones&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line7">7</a>     assign(:users, User.page)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line8">8</a>     render</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line9">9</a>     assert_select &quot;tr&gt;td&quot;, :text =&gt; /michael/, :count =&gt; 1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line10">10</a>     assert_select &quot;tr&gt;td&quot;, :text =&gt; /jones/, :count =&gt; 1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line11">11</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line12">12</a> end</pre></td>
+            <td><pre><a name="line2">2</a> end</pre></td>
           </tr>
         
       </tbody>

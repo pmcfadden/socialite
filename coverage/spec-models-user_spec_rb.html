@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-user_spec_rb.html">spec/models/user_spec.rb</a></td>
-            <td class='right_align'><tt>42</tt></td>
-            <td class='right_align'><tt>32</tt></td>
+            <td class='right_align'><tt>60</tt></td>
+            <td class='right_align'><tt>46</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -111,109 +111,109 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>     ObjectMother.create_vote user, submission</pre></td>
+            <td><pre><a name="line10">10</a>     user.can_vote_for(submission).should == true</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line11">11</a>     user.voted_for(submission).should == true</pre></td>
+            <td><pre><a name="line11">11</a>     ObjectMother.create_vote user, submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line12">12</a>     user.voted_for(submission).should == true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line13">13</a>     user.can_vote_for(submission).should == false</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line12">12</a>   end</pre></td>
+            <td><pre><a name="line14">14</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line13">13</a> </pre></td>
+            <td><pre><a name="line15">15</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line14">14</a>   it &quot;should increase karma as its submissions are voted up&quot; do</pre></td>
+            <td><pre><a name="line16">16</a>   it &quot;should not allow voting if author is current user&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line15">15</a>     david = User.new</pre></td>
+            <td><pre><a name="line17">17</a>     user = ObjectMother.create_user</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line16">16</a>     david.karma.should eq(0)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line17">17</a>     Submission.new(:user =&gt; david).vote_up User.new</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line18">18</a>     david.karma.should eq(1)</pre></td>
+            <td><pre><a name="line18">18</a>     submission = ObjectMother.create_submission :user =&gt; user</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line19">19</a>   end</pre></td>
+            <td><pre><a name="line19">19</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line20">20</a>     user.can_vote_for(submission).should == false</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line20">20</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line21">21</a>   it &quot;should list spammers&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line22">22</a>     spammer = ObjectMother.create_user :username =&gt; 'spammer'</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line23">23</a>     legit_user = ObjectMother.create_user :username =&gt; 'legit'</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line24">24</a>     spam_submission = ObjectMother.create_submission :user =&gt; spammer, :is_spam =&gt; true</pre></td>
+            <td><pre><a name="line21">21</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line25">25</a> </pre></td>
+            <td><pre><a name="line22">22</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line26">26</a>     User.find_spammers.all.should include(spammer)</pre></td>
+            <td><pre><a name="line23">23</a>   it &quot;should increase karma as its submissions are voted up&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a>     User.find_spammers.all.should_not include(legit_user)</pre></td>
+            <td><pre><a name="line24">24</a>     david = User.new</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line25">25</a>     david.karma.should eq(0)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line26">26</a>     Submission.new(:user =&gt; david).vote_up User.new</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>     david.karma.should eq(1)</pre></td>
           </tr>
         
           
@@ -231,25 +231,25 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>   it &quot;should mark a user as deleted and do the same for its submissions and comments&quot; do</pre></td>
+            <td><pre><a name="line30">30</a>   it &quot;should list spammers with a spam comment&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line31">31</a>     user = ObjectMother.new_user :username =&gt; 'short-lived'</pre></td>
+            <td><pre><a name="line31">31</a>     spammer = ObjectMother.create_user :username =&gt; 'spammer'</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line32">32</a>     submission = ObjectMother.new_submission :user =&gt; user</pre></td>
+            <td><pre><a name="line32">32</a>     legit_user = ObjectMother.create_user :username =&gt; 'legit'</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line33">33</a>     comment = ObjectMother.new_comment :user =&gt; user</pre></td>
+            <td><pre><a name="line33">33</a>     spam_comment = ObjectMother.create_comment :user =&gt; spammer, :is_spam =&gt; true</pre></td>
           </tr>
         
           
@@ -261,55 +261,163 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line35">35</a>     user.mark_as_deleted</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line36">36</a> </pre></td>
+            <td><pre><a name="line35">35</a>     User.find_spammers.all.should include(spammer)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line37">37</a>     user.deleted?.should be(true)</pre></td>
+            <td><pre><a name="line36">36</a>     User.find_spammers.all.should_not include(legit_user)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line37">37</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line38">38</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line38">38</a>     submission.deleted?.should be(true)</pre></td>
+            <td><pre><a name="line39">39</a>   it &quot;should list spammers with a spam submission&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line39">39</a>     comment.deleted?.should be(true)</pre></td>
+            <td><pre><a name="line40">40</a>     spammer = ObjectMother.create_user :username =&gt; 'spammer'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line41">41</a>     legit_user = ObjectMother.create_user :username =&gt; 'legit'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line42">42</a>     spam_submission = ObjectMother.create_submission :user =&gt; spammer, :is_spam =&gt; true</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line40">40</a>   end</pre></td>
+            <td><pre><a name="line43">43</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line44">44</a>     User.find_spammers.all.should include(spammer)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line45">45</a>     User.find_spammers.all.should_not include(legit_user)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line41">41</a> </pre></td>
+            <td><pre><a name="line46">46</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line42">42</a> end</pre></td>
+            <td><pre><a name="line47">47</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line48">48</a>   it &quot;should mark a user as deleted and do the same for its submissions and comments&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line49">49</a>     user = ObjectMother.new_user :username =&gt; 'short-lived'</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line50">50</a>     submission = ObjectMother.new_submission :user =&gt; user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a>     comment = ObjectMother.new_comment :user =&gt; user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line52">52</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line53">53</a>     user.mark_as_deleted</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line54">54</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line55">55</a>     user.deleted?.should be(true)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line56">56</a>     submission.deleted?.should be(true)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line57">57</a>     comment.deleted?.should be(true)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line59">59</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line60">60</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 21:33:07 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Wed Mar 16 23:50:37 -0500 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

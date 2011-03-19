@@ -1,0 +1,22 @@
+%h1 Confirmation email settings
+
+= form_for AppSettings, :url => {:controller => :admin, :action => :save_confirmation_email_settings}, :method => :post do |f|
+  - AppSettings.basic_settings.each do |setting|
+    .field
+      = f.label setting[0]
+      - if is_boolean? setting[1]
+        = f.check_box setting[0]
+      - else
+        = f.text_field setting[0]
+  %h3 Advanced
+  %p
+    - AppSettings.advanced_settings.each do |setting|
+      .field
+        = f.label setting[0]
+        - if is_boolean? setting[1]
+          = f.check_box setting[0]
+        - else
+          = f.text_field setting[0]
+  .actions
+    = f.submit 'Save settings'
+

@@ -12,6 +12,8 @@ Socialite::Application.routes.draw do
 
   match 'admin/moderate/submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
   match 'admin/moderate/comments', :to => "admin#moderate_comments", :via => "get", :as => 'moderate_comments'
+  match 'admin/confirmation_email_settings', :to => "admin#confirmation_email_settings", :via => "get", :as => 'confirmation_email_settings'
+  match 'admin/save_confirmation_email_settings', :to => "admin#save_confirmation_email_settings", :via => "post", :as => 'save_confirmation_email_settings'
 
   match 'admin/mark_submission_as_spam', :to => "admin#mark_submission_as_spam", :as => 'mark_submission_as_spam'
   match 'admin/undo_mark_submission_as_spam', :to => "admin#undo_mark_submission_as_spam", :as => 'undo_mark_submission_as_spam'

@@ -2,6 +2,15 @@ require 'spec_helper'
 
 describe User do
 
+  it "should auto confirm all users by default without confirmation email" do
+    ObjectMother.create_user.confirmed?.should be(true)
+  end
+
+  it "should let devise confirm users if settings say so" do
+    AppSettings.confirm_email_on_registration = true
+    ObjectMother.create_user.confirmed?.should be(false)
+  end
+
   it "should know if user already voted for a submission" do
     user = ObjectMother.create_user
     submission = ObjectMother.create_submission

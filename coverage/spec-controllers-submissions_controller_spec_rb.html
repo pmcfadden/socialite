@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-controllers-submissions_controller_spec_rb.html">spec/controllers/submissions_controller_spec.rb</a></td>
-            <td class='right_align'><tt>151</tt></td>
-            <td class='right_align'><tt>129</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.68%</tt></div>
+            <td class='right_align'><tt>167</tt></td>
+            <td class='right_align'><tt>143</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.80%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:99px"></div>
             <div class="uncovered" style="width:1px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.45%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.60%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:98px"></div>
-            <div class="uncovered" style="width:2px"></div>
+            <div class="covered" style="width:99px"></div>
+            <div class="uncovered" style="width:1px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -129,13 +129,13 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>   describe &quot;GET index&quot; do</pre></td>
+            <td><pre><a name="line13">13</a>   describe &quot;most recent&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line14">14</a>     it &quot;assigns first page of submissions as @submissions&quot; do</pre></td>
+            <td><pre><a name="line14">14</a>     it &quot;assigns submissions by calling most recent&quot; do</pre></td>
           </tr>
         
           
@@ -147,7 +147,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line16">16</a>       get :index</pre></td>
+            <td><pre><a name="line16">16</a>       get :most_recent</pre></td>
           </tr>
         
           
@@ -177,31 +177,31 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>   describe &quot;GET show&quot; do</pre></td>
+            <td><pre><a name="line21">21</a>   describe &quot;best of&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>     it &quot;assigns the requested submission as @submission&quot; do</pre></td>
+            <td><pre><a name="line22">22</a>     it &quot;assigns submissions by calling best of&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line23">23</a>       Submission.stub(:find).with(&quot;37&quot;) { @mock_submission }</pre></td>
+            <td><pre><a name="line23">23</a>       Submission.stub(:page) { [@mock_submission] }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line24">24</a>       get :show, :id =&gt; &quot;37&quot;</pre></td>
+            <td><pre><a name="line24">24</a>       get :best_of</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>       assigns(:submission).should be(@mock_submission)</pre></td>
+            <td><pre><a name="line25">25</a>       assigns(:submissions).should eq([@mock_submission])</pre></td>
           </tr>
         
           
@@ -225,31 +225,31 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line29">29</a>   describe &quot;GET new&quot; do</pre></td>
+            <td><pre><a name="line29">29</a>   describe &quot;GET index&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>     it &quot;assigns a new submission as @submission&quot; do</pre></td>
+            <td><pre><a name="line30">30</a>     it &quot;assigns first page of submissions as @submissions&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line31">31</a>       Submission.stub(:new) { @mock_submission }</pre></td>
+            <td><pre><a name="line31">31</a>       Submission.stub(:page) { [@mock_submission] }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line32">32</a>       get :new</pre></td>
+            <td><pre><a name="line32">32</a>       get :index</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line33">33</a>       assigns(:submission).should be(@mock_submission)</pre></td>
+            <td><pre><a name="line33">33</a>       assigns(:submissions).should eq([@mock_submission])</pre></td>
           </tr>
         
           
@@ -273,7 +273,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line37">37</a>   describe &quot;GET edit&quot; do</pre></td>
+            <td><pre><a name="line37">37</a>   describe &quot;GET show&quot; do</pre></td>
           </tr>
         
           
@@ -285,19 +285,19 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line39">39</a>       submission = ObjectMother.create_submission :user =&gt; @current_user</pre></td>
+            <td><pre><a name="line39">39</a>       Submission.stub(:find).with(&quot;37&quot;) { @mock_submission }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line40">40</a>       get :edit, :id =&gt; submission.id</pre></td>
+            <td><pre><a name="line40">40</a>       get :show, :id =&gt; &quot;37&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line41">41</a>       assigns(:submission).should == submission</pre></td>
+            <td><pre><a name="line41">41</a>       assigns(:submission).should be(@mock_submission)</pre></td>
           </tr>
         
           
@@ -309,157 +309,157 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line43">43</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line44">44</a>     it &quot;should not allow fellow user to edit submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line45">45</a>       submission = ObjectMother.create_submission :user =&gt; ObjectMother.create_user</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line46">46</a>       begin</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line47">47</a>         get :edit, :id =&gt; submission.id</pre></td>
+            <td><pre><a name="line43">43</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line48">48</a>       rescue RuntimeError</pre></td>
+            <td><pre><a name="line44">44</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line49">49</a>         next</pre></td>
+            <td><pre><a name="line45">45</a>   describe &quot;GET new&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>     it &quot;assigns a new submission as @submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line47">47</a>       Submission.stub(:new) { @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line48">48</a>       get :new</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line49">49</a>       assigns(:submission).should be(@mock_submission)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line50">50</a>       end</pre></td>
+            <td><pre><a name="line50">50</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line51">51</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line52">52</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line53">53</a>   describe &quot;GET edit&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line54">54</a>     it &quot;assigns the requested submission as @submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line55">55</a>       submission = ObjectMother.create_submission :user =&gt; @current_user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line56">56</a>       get :edit, :id =&gt; submission.id</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line57">57</a>       assigns(:submission).should == submission</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line59">59</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line60">60</a>     it &quot;should not allow fellow user to edit submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line61">61</a>       submission = ObjectMother.create_submission :user =&gt; ObjectMother.create_user</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line62">62</a>       begin</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line63">63</a>         get :edit, :id =&gt; submission.id</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line64">64</a>       rescue RuntimeError</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line65">65</a>         next</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line66">66</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line51">51</a>       raise &quot;Should have thrown a runtime error&quot;</pre></td>
+            <td><pre><a name="line67">67</a>       raise &quot;Should have thrown a runtime error&quot;</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line52">52</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line53">53</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line54">54</a>     it &quot;should always allow admin to edit submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line55">55</a>       @current_user.update_attribute :admin, true</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line56">56</a>       submission = ObjectMother.create_submission :user =&gt; ObjectMother.create_user</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line57">57</a>       get :edit, :id =&gt; submission.id</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line58">58</a>       assigns(:submission).should == submission</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line59">59</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line60">60</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line61">61</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line62">62</a>   describe &quot;POST create&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line63">63</a>     describe &quot;with valid params&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line64">64</a>       it &quot;assigns a newly created submission as @submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line65">65</a>         Submission.stub(:new).with({'these' =&gt; 'params', &quot;user&quot; =&gt; @current_user}) { @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line66">66</a>         post :create, :submission =&gt; {'these' =&gt; 'params'}</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line67">67</a>         assigns(:submission).should be(@mock_submission)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line68">68</a>       end</pre></td>
+            <td><pre><a name="line68">68</a>     end</pre></td>
           </tr>
         
           
@@ -471,31 +471,31 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line70">70</a>       it &quot;redirects to the created submission&quot; do</pre></td>
+            <td><pre><a name="line70">70</a>     it &quot;should always allow admin to edit submission&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line71">71</a>         Submission.stub(:new) { @mock_submission.stub(:save =&gt; true); @mock_submission }</pre></td>
+            <td><pre><a name="line71">71</a>       @current_user.update_attribute :admin, true</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line72">72</a>         post :create, :submission =&gt; {}</pre></td>
+            <td><pre><a name="line72">72</a>       submission = ObjectMother.create_submission :user =&gt; ObjectMother.create_user</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line73">73</a>         response.should redirect_to(submission_url(@mock_submission))</pre></td>
+            <td><pre><a name="line73">73</a>       get :edit, :id =&gt; submission.id</pre></td>
           </tr>
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line74">74</a>       end</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line74">74</a>       assigns(:submission).should == submission</pre></td>
           </tr>
         
           
@@ -507,229 +507,229 @@
           
           
           <tr class="inferred">
-            <td><pre><a name="line76">76</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line77">77</a>     describe &quot;with invalid params&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line78">78</a>       it &quot;assigns a newly created but unsaved submission as @submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line79">79</a>         Submission.stub(:new).with({'these' =&gt; 'params', &quot;user&quot; =&gt; @current_user}) { @mock_submission.stub(:save =&gt; false); @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line80">80</a>         post :create, :submission =&gt; {'these' =&gt; 'params'}</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line81">81</a>         assigns(:submission).should be(@mock_submission)</pre></td>
+            <td><pre><a name="line76">76</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line82">82</a>       end</pre></td>
+            <td><pre><a name="line77">77</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line78">78</a>   describe &quot;POST create&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line79">79</a>     describe &quot;with valid params&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line80">80</a>       it &quot;assigns a newly created submission as @submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line81">81</a>         Submission.stub(:new).with({'these' =&gt; 'params', &quot;user&quot; =&gt; @current_user}) { @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line82">82</a>         post :create, :submission =&gt; {'these' =&gt; 'params'}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line83">83</a>         assigns(:submission).should be(@mock_submission)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line83">83</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line84">84</a>       it &quot;re-renders the 'new' template&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line85">85</a>         Submission.stub(:new) { @mock_submission.stub(:save =&gt; false); @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line86">86</a>         post :create, :submission =&gt; {}</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line87">87</a>         response.should render_template(&quot;new&quot;)</pre></td>
+            <td><pre><a name="line84">84</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line88">88</a>       end</pre></td>
+            <td><pre><a name="line85">85</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line86">86</a>       it &quot;redirects to the created submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line87">87</a>         Submission.stub(:new) { @mock_submission.stub(:save =&gt; true); @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line88">88</a>         post :create, :submission =&gt; {}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line89">89</a>         response.should redirect_to(submission_url(@mock_submission))</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line89">89</a>     end</pre></td>
+            <td><pre><a name="line90">90</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line90">90</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line91">91</a>     describe &quot;creating a spam submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line92">92</a>       it &quot;should mark a spam submission as such&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line93">93</a>         Submission.stub(:new).with({&quot;user&quot; =&gt; @current_user}) {@mock_submission}</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line94">94</a>         @mock_submission.should_receive :mark_as_spam</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line95">95</a>         post :create, :submission =&gt; {}</pre></td>
+            <td><pre><a name="line91">91</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line96">96</a>       end</pre></td>
+            <td><pre><a name="line92">92</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line93">93</a>     describe &quot;with invalid params&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line94">94</a>       it &quot;assigns a newly created but unsaved submission as @submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line95">95</a>         Submission.stub(:new).with({'these' =&gt; 'params', &quot;user&quot; =&gt; @current_user}) { @mock_submission.stub(:save =&gt; false); @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line96">96</a>         post :create, :submission =&gt; {'these' =&gt; 'params'}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line97">97</a>         assigns(:submission).should be(@mock_submission)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line97">97</a>     end</pre></td>
+            <td><pre><a name="line98">98</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line98">98</a> </pre></td>
+            <td><pre><a name="line99">99</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line100">100</a>       it &quot;re-renders the 'new' template&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line101">101</a>         Submission.stub(:new) { @mock_submission.stub(:save =&gt; false); @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line102">102</a>         post :create, :submission =&gt; {}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line103">103</a>         response.should render_template(&quot;new&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line99">99</a>   end</pre></td>
+            <td><pre><a name="line104">104</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line100">100</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line101">101</a>   describe &quot;PUT update&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line102">102</a>     describe &quot;with valid params&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line103">103</a>       it &quot;updates the requested submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line104">104</a>         Submission.stub(:find).with(&quot;37&quot;) { @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line105">105</a>         @mock_submission.should_receive(:update_attributes).with({'these' =&gt; 'params'})</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line106">106</a>         put :update, :id =&gt; &quot;37&quot;, :submission =&gt; {'these' =&gt; 'params'}</pre></td>
+            <td><pre><a name="line105">105</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line107">107</a>       end</pre></td>
+            <td><pre><a name="line106">106</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line107">107</a>     describe &quot;creating a spam submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line108">108</a>       it &quot;should mark a spam submission as such&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line109">109</a>         Submission.stub(:new).with({&quot;user&quot; =&gt; @current_user}) {@mock_submission}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line110">110</a>         @mock_submission.should_receive :mark_as_spam</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line111">111</a>         post :create, :submission =&gt; {}</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line108">108</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line109">109</a>       it &quot;assigns the requested submission as @submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line110">110</a>         Submission.stub(:find) { @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line111">111</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line112">112</a>         assigns(:submission).should be(@mock_submission)</pre></td>
+            <td><pre><a name="line112">112</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line113">113</a>       end</pre></td>
+            <td><pre><a name="line113">113</a>     end</pre></td>
           </tr>
         
           
@@ -740,230 +740,326 @@
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line115">115</a>       it &quot;redirects to the submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line116">116</a>         Submission.stub(:find) { @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line117">117</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line118">118</a>         response.should redirect_to(submission_url(@mock_submission))</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line115">115</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line119">119</a>       end</pre></td>
+            <td><pre><a name="line116">116</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line117">117</a>   describe &quot;PUT update&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line118">118</a>     describe &quot;with valid params&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line119">119</a>       it &quot;updates the requested submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line120">120</a>         Submission.stub(:find).with(&quot;37&quot;) { @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line121">121</a>         @mock_submission.should_receive(:update_attributes).with({'these' =&gt; 'params'})</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line122">122</a>         put :update, :id =&gt; &quot;37&quot;, :submission =&gt; {'these' =&gt; 'params'}</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line120">120</a>     end</pre></td>
+            <td><pre><a name="line123">123</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line121">121</a> </pre></td>
+            <td><pre><a name="line124">124</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line122">122</a>     describe &quot;with invalid params&quot; do</pre></td>
+            <td><pre><a name="line125">125</a>       it &quot;assigns the requested submission as @submission&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line123">123</a>       it &quot;assigns the submission as @submission&quot; do</pre></td>
+            <td><pre><a name="line126">126</a>         Submission.stub(:find) { @mock_submission }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line124">124</a>         Submission.stub(:find) { @mock_submission.stub(:update_attributes =&gt; false); @mock_submission }</pre></td>
+            <td><pre><a name="line127">127</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line125">125</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line126">126</a>         assigns(:submission).should be(@mock_submission)</pre></td>
+            <td><pre><a name="line128">128</a>         assigns(:submission).should be(@mock_submission)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line127">127</a>       end</pre></td>
+            <td><pre><a name="line129">129</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line128">128</a> </pre></td>
+            <td><pre><a name="line130">130</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line129">129</a>       it &quot;re-renders the 'edit' template&quot; do</pre></td>
+            <td><pre><a name="line131">131</a>       it &quot;redirects to the submission&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line130">130</a>         Submission.stub(:find) { @mock_submission.stub(:update_attributes =&gt; false); @mock_submission }</pre></td>
+            <td><pre><a name="line132">132</a>         Submission.stub(:find) { @mock_submission }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line131">131</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
+            <td><pre><a name="line133">133</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line132">132</a>         response.should render_template(&quot;edit&quot;)</pre></td>
+            <td><pre><a name="line134">134</a>         response.should redirect_to(submission_url(@mock_submission))</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line133">133</a>       end</pre></td>
+            <td><pre><a name="line135">135</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line134">134</a>     end</pre></td>
+            <td><pre><a name="line136">136</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line135">135</a>   end</pre></td>
+            <td><pre><a name="line137">137</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line138">138</a>     describe &quot;with invalid params&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line139">139</a>       it &quot;assigns the submission as @submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line140">140</a>         Submission.stub(:find) { @mock_submission.stub(:update_attributes =&gt; false); @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line141">141</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line142">142</a>         assigns(:submission).should be(@mock_submission)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line136">136</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line137">137</a>   describe &quot;DELETE destroy&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line138">138</a>     it &quot;destroys the requested submission&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line139">139</a>       Submission.stub(:find).with(&quot;37&quot;) { @mock_submission }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line140">140</a>       @mock_submission.should_receive(:destroy)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line141">141</a>       delete :destroy, :id =&gt; &quot;37&quot;</pre></td>
+            <td><pre><a name="line143">143</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line142">142</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line143">143</a> </pre></td>
+            <td><pre><a name="line144">144</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line144">144</a>     it &quot;redirects to the submissions list&quot; do</pre></td>
+            <td><pre><a name="line145">145</a>       it &quot;re-renders the 'edit' template&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line145">145</a>       Submission.stub(:find) { @mock_submission }</pre></td>
+            <td><pre><a name="line146">146</a>         Submission.stub(:find) { @mock_submission.stub(:update_attributes =&gt; false); @mock_submission }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line146">146</a>       delete :destroy, :id =&gt; &quot;1&quot;</pre></td>
+            <td><pre><a name="line147">147</a>         put :update, :id =&gt; &quot;1&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line147">147</a>       response.should redirect_to(submissions_url)</pre></td>
+            <td><pre><a name="line148">148</a>         response.should render_template(&quot;edit&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line148">148</a>     end</pre></td>
+            <td><pre><a name="line149">149</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line149">149</a>   end</pre></td>
+            <td><pre><a name="line150">150</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line150">150</a> </pre></td>
+            <td><pre><a name="line151">151</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line151">151</a> end</pre></td>
+            <td><pre><a name="line152">152</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line153">153</a>   describe &quot;DELETE destroy&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line154">154</a>     it &quot;destroys the requested submission&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line155">155</a>       Submission.stub(:find).with(&quot;37&quot;) { @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line156">156</a>       @mock_submission.should_receive(:destroy)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line157">157</a>       delete :destroy, :id =&gt; &quot;37&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line158">158</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line159">159</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line160">160</a>     it &quot;redirects to the submissions list&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line161">161</a>       Submission.stub(:find) { @mock_submission }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line162">162</a>       delete :destroy, :id =&gt; &quot;1&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line163">163</a>       response.should redirect_to(submissions_url)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line164">164</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line165">165</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line166">166</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line167">167</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 21:33:07 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Wed Mar 16 23:50:37 -0500 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

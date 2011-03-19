@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-submission_rb.html">app/models/submission.rb</a></td>
-            <td class='right_align'><tt>69</tt></td>
-            <td class='right_align'><tt>50</tt></td>
+            <td class='right_align'><tt>79</tt></td>
+            <td class='right_align'><tt>57</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -57,79 +57,79 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line1">1</a> class Submission &lt; ActiveRecord::Base</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line2">2</a>   @@voting_momentum = 12096</pre></td>
+            <td><pre><a name="line1">1</a> require 'uri'</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line3">3</a> </pre></td>
+            <td><pre><a name="line2">2</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line4">4</a>   belongs_to :user</pre></td>
+            <td><pre><a name="line3">3</a> class Submission &lt; ActiveRecord::Base</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line5">5</a>   has_many :comments</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line6">6</a>   has_many :votes</pre></td>
+            <td><pre><a name="line4">4</a>   @@voting_momentum = 12096</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line7">7</a> </pre></td>
+            <td><pre><a name="line5">5</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line8">8</a>   validates :user, :presence =&gt; true</pre></td>
+            <td><pre><a name="line6">6</a>   belongs_to :user</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line9">9</a>   validates :url, :presence =&gt; true</pre></td>
+            <td><pre><a name="line7">7</a>   has_many :comments</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>   validates :title, :presence =&gt; true</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line11">11</a>   validates :description, :presence =&gt; true</pre></td>
+            <td><pre><a name="line8">8</a>   has_many :votes</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line12">12</a> </pre></td>
+            <td><pre><a name="line9">9</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>   after_initialize :setup_default_values</pre></td>
+            <td><pre><a name="line10">10</a>   validates :user, :presence =&gt; true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line11">11</a>   validates :url, :presence =&gt; true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line12">12</a>   validates :title, :presence =&gt; true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line13">13</a>   validates :description, :presence =&gt; true</pre></td>
           </tr>
         
           
@@ -141,7 +141,7 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line15">15</a>   paginates_per 20</pre></td>
+            <td><pre><a name="line15">15</a>   after_initialize :setup_default_values</pre></td>
           </tr>
         
           
@@ -152,326 +152,386 @@
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line17">17</a>   # Here we order by interestingness.</pre></td>
-          </tr>
-        
-          
-          
           <tr class="marked">
-            <td><pre><a name="line18">18</a>   default_scope :order =&gt; &quot;submissions.score * #{@@voting_momentum} - strftime('%s','now') + strftime('%s',submissions.created_at) DESC&quot;</pre></td>
+            <td><pre><a name="line17">17</a>   paginates_per 20</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line19">19</a> </pre></td>
+            <td><pre><a name="line18">18</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line20">20</a>   # Interestingness is calculated by multiplying the number of votes by a coefficient.</pre></td>
+            <td><pre><a name="line19">19</a>   # Here we order by interestingness.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line20">20</a>   default_scope :order =&gt; &quot;submissions.score * #{@@voting_momentum} - strftime('%s','now') + strftime('%s',submissions.created_at) DESC&quot;</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line21">21</a>   # The amount of time passed since creation is taken as a penalty.</pre></td>
+            <td><pre><a name="line21">21</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line22">22</a>   # Equivalent ruby code would go like this:</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line23">23</a>   def interestingness</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line24">24</a>     self.score * @@voting_momentum - Time.now.to_i + created_at.to_i</pre></td>
+            <td><pre><a name="line22">22</a>   # Interestingness is calculated by multiplying the number of votes by a coefficient.</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line25">25</a>   end</pre></td>
+            <td><pre><a name="line23">23</a>   # The amount of time passed since creation is taken as a penalty.</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line26">26</a> </pre></td>
+            <td><pre><a name="line24">24</a>   # Equivalent ruby code would go like this:</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a>   def setup_default_values</pre></td>
+            <td><pre><a name="line25">25</a>   def interestingness</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line28">28</a>     self.score ||= 0</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line29">29</a>     self.url = &quot;http://&quot; + url if !self.url.nil? and self.url !~ /^http:\/\//</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line30">30</a>     self.is_spam ||= false</pre></td>
+            <td><pre><a name="line26">26</a>     self.score * @@voting_momentum - Time.now.to_i + created_at.to_i</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line31">31</a>   end</pre></td>
+            <td><pre><a name="line27">27</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line32">32</a> </pre></td>
+            <td><pre><a name="line28">28</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line33">33</a>   def self.list</pre></td>
+            <td><pre><a name="line29">29</a>   def setup_default_values</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line30">30</a>     self.score ||= 0</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line31">31</a>     self.url = &quot;http://&quot; + url if !self.url.nil? and self.url !~ /^[a-zA-Z]*:\/\//</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line32">32</a>     self.is_spam ||= false</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line34">34</a>     # I could not find a way to default the value of :deleted to false so we fetch all users where :deleted is null or false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line35">35</a>     Submission.joins(:user).where(&quot;is_spam = ? AND users.deleted IS NULL OR users.deleted = ?&quot;, false, false)</pre></td>
+            <td><pre><a name="line33">33</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line36">36</a>   end</pre></td>
+            <td><pre><a name="line34">34</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line35">35</a>   def self.most_recent</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line36">36</a>     Submission.unscoped.where(:is_spam =&gt; false).order(&quot;created_at DESC&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line37">37</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line38">38</a>   def vote_up user_who_voted</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line39">39</a>     if not Vote.where(:submission_id =&gt; self.id, :user_id =&gt; user_who_voted.id).empty?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line40">40</a>       logger.warn &quot;User #{user_who_voted} tried to vote twice for submission ##{self.id}&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line41">41</a>     elsif user_who_voted == self.user</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line42">42</a>       logger.warn &quot;User #{user_who_voted} tried to vote for their own submission ##{self.id}&quot;</pre></td>
+            <td><pre><a name="line37">37</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line43">43</a>     else</pre></td>
+            <td><pre><a name="line38">38</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>       self.score += 1</pre></td>
+            <td><pre><a name="line39">39</a>   def self.best_of</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line45">45</a>       self.user.increment_karma</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line46">46</a>       Vote.new(:user =&gt; user_who_voted, :submission =&gt; self).save</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line47">47</a>       self.save</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line48">48</a>       self.user.save</pre></td>
+            <td><pre><a name="line40">40</a>     Submission.unscoped.where(:is_spam =&gt; false).order(&quot;score DESC&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line49">49</a>     end</pre></td>
+            <td><pre><a name="line41">41</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line42">42</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line50">50</a>     self</pre></td>
+            <td><pre><a name="line43">43</a>   def self.list</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line51">51</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line52">52</a> </pre></td>
+            <td><pre><a name="line44">44</a>     # I could not find a way to default the value of :deleted to false so we fetch all users where :deleted is null or false</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line53">53</a>   def top_level_comments</pre></td>
+            <td><pre><a name="line45">45</a>     Submission.joins(:user).where(&quot;is_spam = ? AND users.deleted IS NULL OR users.deleted = ?&quot;, false, false)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line46">46</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line47">47</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line54">54</a>     self.comments.reject {|comment| comment.has_parent}</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line55">55</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line56">56</a> </pre></td>
+            <td><pre><a name="line48">48</a>   def vote_up user_who_voted</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line57">57</a>   def mark_as_spam</pre></td>
+            <td><pre><a name="line49">49</a>     if not Vote.where(:submission_id =&gt; self.id, :user_id =&gt; user_who_voted.id).empty?</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line58">58</a>     self.is_spam = true</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line59">59</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line60">60</a> </pre></td>
+            <td><pre><a name="line50">50</a>       logger.warn &quot;User #{user_who_voted} tried to vote twice for submission ##{self.id}&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line61">61</a>   def to_s</pre></td>
+            <td><pre><a name="line51">51</a>     elsif user_who_voted == self.user</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line62">62</a>     &quot;#{self.title} #{self.description}&quot;</pre></td>
+            <td><pre><a name="line52">52</a>       logger.warn &quot;User #{user_who_voted} tried to vote for their own submission ##{self.id}&quot;</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line63">63</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line64">64</a> </pre></td>
+            <td><pre><a name="line53">53</a>     else</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line65">65</a>   def deleted?</pre></td>
+            <td><pre><a name="line54">54</a>       self.score += 1</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line66">66</a>     self.user.deleted?</pre></td>
+            <td><pre><a name="line55">55</a>       self.user.increment_karma</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line56">56</a>       Vote.new(:user =&gt; user_who_voted, :submission =&gt; self).save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line57">57</a>       self.save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line58">58</a>       self.user.save</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line67">67</a>   end</pre></td>
+            <td><pre><a name="line59">59</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line60">60</a>     self</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line68">68</a> </pre></td>
+            <td><pre><a name="line61">61</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line69">69</a> end</pre></td>
+            <td><pre><a name="line62">62</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line63">63</a>   def top_level_comments</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line64">64</a>     self.comments.reject {|comment| comment.has_parent}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line65">65</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line66">66</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line67">67</a>   def mark_as_spam</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line68">68</a>     self.is_spam = true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line69">69</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line70">70</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line71">71</a>   def to_s</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line72">72</a>     &quot;#{self.title} #{self.description}&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line73">73</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line74">74</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line75">75</a>   def deleted?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line76">76</a>     self.user.deleted?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line77">77</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line78">78</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line79">79</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat Mar 12 21:33:07 -0600 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Wed Mar 16 23:50:37 -0500 2011 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>
