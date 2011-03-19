@@ -10,20 +10,6 @@ class AppSettings < RailsSettings::Settings
     # self.errors.add(var, "nuh uh")
   end
 
-  def self.basic_settings
-    self.all_including_defaults.select do |s|
-      ['smtp_authentication_username', 'smtp_authentication_password', 'confirm_email_on_registration'].include? s[0] 
-    end
-  end
-
-  def self.advanced_settings
-    advanced = self.all_including_defaults
-    self.basic_settings.each do |s|
-      advanced.delete(s[0])
-    end
-    advanced
-  end
-
   def self.update_settings hash
     hash.each {|k,v| self[k] = v }
   end
