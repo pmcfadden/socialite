@@ -34,4 +34,8 @@ module ApplicationHelper
     classes.join " "
   end
 
+  def resolve_submission_url submission
+    submission.url.blank? ? submission_path(submission) : submission.url
+  end
+
 end

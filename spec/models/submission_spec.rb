@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe Submission do
 
+  it "should allow blank urls" do
+    submission = ObjectMother.create_submission :url => ""
+    submission.url.should == ""
+  end
+
   it "should pull out the most recent" do
     recent = ObjectMother.create_submission :created_at => 1.minute.ago
     old = ObjectMother.create_submission :created_at => 10.minutes.ago

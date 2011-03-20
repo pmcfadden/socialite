@@ -8,7 +8,7 @@
   %td{:class => 'vote-area'}
     = render :partial => "submissions/vote", :locals => {:submission => submission}
   %td
-    %span{:class => 'submission-link'}= link_to submission.title, submission.url, {:rel => 'nofollow'}
+    %span{:class => 'submission-link'}= link_to submission.title, resolve_submission_url(submission), {:rel => 'nofollow'}
     = render :partial => "submissions/quick_links", :locals => {:submission => submission}
     /
       = "interestingness = #{submission.interestingness}"

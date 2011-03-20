@@ -2,6 +2,16 @@ require 'spec_helper'
 
 describe ApplicationHelper do
 
+  describe "resolve submission url" do
+    it "should replace blank with a link to the comments" do
+      submission = ObjectMother.create_submission :url => "http://google.com"
+      helper.resolve_submission_url(submission).should == "http://google.com"
+
+      submission = ObjectMother.create_submission :url => ""
+      helper.resolve_submission_url(submission).should == submission_path(submission)
+    end
+  end
+
   describe "app name" do
     it "should return the name of the app" do
       AppSettings.app_name = 'test-name'

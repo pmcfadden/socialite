@@ -1,6 +1,8 @@
 require 'uri'
 
 class Submission < ActiveRecord::Base
+  include ActionController::UrlWriter
+
   @@voting_momentum = 12096
 
   belongs_to :user
@@ -8,7 +10,6 @@ class Submission < ActiveRecord::Base
   has_many :votes
 
   validates :user, :presence => true
-  validates :url, :presence => true
   validates :title, :presence => true
   validates :description, :presence => true
 
@@ -28,7 +29,9 @@ class Submission < ActiveRecord::Base
 
   def setup_default_values
     self.score ||= 0
-    self.url = "http://" + url if !self.url.nil? and self.url !~ /^[a-zA-Z]*:\/\//
+    if !self.url.blank?
+      self.url = "http://" + url if !self.url.nil? and self.url !~ /^[a-zA-Z]*:\/\//
+    end
     self.is_spam ||= false
   end
 
