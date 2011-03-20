@@ -5,5 +5,5 @@ log/*.log
 tmp/
 *~
 *.swp
-test-antispam-memory/
-coverage/
+test-antispam-memory
+coverage
