@@ -1,4 +1,5 @@
 Socialite::Application.routes.draw do
+
   devise_for :users
 
   match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}, :as => 'vote_up'
@@ -12,11 +13,15 @@ Socialite::Application.routes.draw do
 
   match 'admin/moderate/submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
   match 'admin/moderate/comments', :to => "admin#moderate_comments", :via => "get", :as => 'moderate_comments'
+
   match 'admin/confirmation_email_settings', :to => "admin#confirmation_email_settings", :via => "get", :as => 'confirmation_email_settings'
   match 'admin/save_confirmation_email_settings', :to => "admin#save_confirmation_email_settings", :via => "post", :as => 'save_confirmation_email_settings'
+
   match 'admin/send_test_email', :to => "admin#send_test_email", :via => "post", :as => 'send_test_email'
+
   match 'admin/change_name', :to => "admin#change_name", :via => "get", :as => 'change_name'
   match 'admin/save_app_name', :to => "admin#save_app_name", :via => "post", :as => 'save_app_name'
+
   match 'admin/modify_about_page', :to => "admin#modify_about_page", :via => "get", :as => 'modify_about_page'
   match 'admin/save_about_page', :to => "admin#save_about_page", :via => "post", :as => 'save_about_page'
 
@@ -28,10 +33,12 @@ Socialite::Application.routes.draw do
 
   scope "/admin" do
     match 'spammers', :controller => 'users', :action => 'spammers', :via => "get", :as => 'spammers'
+    resource :logo, :only => [:new, :create]
   end
 
   resources :users
   match 'users/:id/comments', :controller => 'users', :action => 'show_comments', :via => "get", :as => 'user_comments'
+
   resources :submissions
   resources :comments
 

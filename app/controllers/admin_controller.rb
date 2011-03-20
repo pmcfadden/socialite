@@ -14,12 +14,12 @@ class AdminController < ApplicationController
 
   def save_about_page
       AppSettings.update_settings params[:app_settings]
-      redirect_to :modify_about_page, :notice => 'The new about page was saved'
+      redirect_to :modify_about_page, :notice => 'The new about page was saved.'
   end
 
   def save_app_name
       AppSettings.update_settings params[:app_settings]
-      redirect_to :change_name, :notice => 'The new name was saved'
+      redirect_to :change_name, :notice => 'The new name was saved.'
   end
 
   def send_test_email
@@ -43,7 +43,7 @@ class AdminController < ApplicationController
       # set this now so all mailers can use it
       ActionMailer::Base.default_url_options[:host] = AppSettings.smtp_default_url_host
 
-      redirect_to :confirmation_email_settings, :notice => 'Settings saved'
+      redirect_to :confirmation_email_settings, :notice => 'Settings saved.'
 
     rescue ActiveRecord::RecordInvalid
       flash[:alert] = $!.message
