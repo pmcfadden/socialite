@@ -17,6 +17,8 @@ Socialite::Application.routes.draw do
   match 'admin/send_test_email', :to => "admin#send_test_email", :via => "post", :as => 'send_test_email'
   match 'admin/change_name', :to => "admin#change_name", :via => "get", :as => 'change_name'
   match 'admin/save_app_name', :to => "admin#save_app_name", :via => "post", :as => 'save_app_name'
+  match 'admin/modify_about_page', :to => "admin#modify_about_page", :via => "get", :as => 'modify_about_page'
+  match 'admin/save_about_page', :to => "admin#save_about_page", :via => "post", :as => 'save_about_page'
 
   match 'admin/mark_submission_as_spam', :to => "admin#mark_submission_as_spam", :as => 'mark_submission_as_spam'
   match 'admin/undo_mark_submission_as_spam', :to => "admin#undo_mark_submission_as_spam", :as => 'undo_mark_submission_as_spam'

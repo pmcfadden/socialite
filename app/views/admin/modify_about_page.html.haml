@@ -1,0 +1,9 @@
+%h1 Modify the about page
+
+= form_for AppSettings, :url => {:controller => 'admin', :action => 'save_about_page'}, :method => 'post' do |f|
+  .field
+    .explanation= "Here is your about page (you can use html)"
+    = f.text_area :about_page, :class => 'edit_html'
+
+  = f.submit "Save changes"
+

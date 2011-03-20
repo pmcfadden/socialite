@@ -12,6 +12,11 @@ class AdminController < ApplicationController
     @submissions = Submission.unscoped.order("created_at DESC").page params[:page]
   end
 
+  def save_about_page
+      AppSettings.update_settings params[:app_settings]
+      redirect_to :modify_about_page, :notice => 'The new about page was saved'
+  end
+
   def save_app_name
       AppSettings.update_settings params[:app_settings]
       redirect_to :change_name, :notice => 'Settings saved'

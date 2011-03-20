@@ -1,4 +1,5 @@
 AppSettings.defaults['app_name'] = 'Socialite'
+AppSettings.defaults['about_page'] = 'Modify what is displayed here from the admin section.'
 AppSettings.defaults['confirm_email_on_registration'] = false
 AppSettings.defaults['smtp_address'] = 'smtp.gmail.com'
 AppSettings.defaults['smtp_port'] = 587
