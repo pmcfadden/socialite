@@ -8,27 +8,53 @@
   .field
     = f.label :confirm_email_on_registration
     = f.check_box :confirm_email_on_registration
+  %p 
+    To send the confirmation emails, this application will use Gmail by default.
+    %br
+    All you have to do is create a 
+    %a{:href => 'http://www.gmail.com'} gmail account 
+    and put in your username and password in the following boxes.
+
   .field
-    = f.label :smtp_authentication_username
+    = f.label :smtp_authentication_username, "SMTP authentication username"
     = f.text_field :smtp_authentication_username
+    .example e.g. username@gmail.com
   .field
-    = f.label :smtp_authentication_password
-    = f.text_field :smtp_authentication_password
+    = f.label :smtp_authentication_password, "SMTP authentication password"
+    = f.password_field :smtp_authentication_password
 
   .collapsible
     %a{:class => 'collapsible-title'} Advanced settings
     .collapsible-content
       .field
-        = f.label :smtp_server
+        = f.label :smtp_server, "SMTP server"
         = f.text_field :smtp_server
       .field
-        = f.label :smtp_authentication
+        = f.label :smtp_port, "SMTP port"
+        = f.text_field :smtp_port
+      .field
+        = f.label :smtp_domain, "local SMTP domain"
+        = f.text_field :smtp_domain
+      .field
+        = f.label :smtp_authentication, "SMTP Authentication"
         = f.text_field :smtp_authentication
       .field
-        = f.label :smtp_domain
-        = f.text_field :smtp_domain
+        = f.label :smtp_tls, "Use TLS for SMTP"
+        = f.check_box :smtp_tls
+      .field
+        = f.label :smtp_enable_starttls_auto
+        = f.check_box :smtp_enable_starttls_auto
 
   %br
   .actions
     = f.submit 'Save settings'
+
+%br
+%h1 Send a test email
+= form_for :test_email, :url => {:controller => 'admin', :action => 'send_test_email'} do |f|
+  %p 
+    You should send a test email to your own email address to verify that everything works correctly:
+  = f.text_field :email
+  = f.submit 'Send test email'
+
 

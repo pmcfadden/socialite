@@ -13,6 +13,18 @@ describe AdminController do
 
   end
 
+  describe "confirmation email settings" do
+    it "should consider a setting of '1' to be true" do 
+      post :save_confirmation_email_settings, :app_settings => {:smtp_tls => "1"}
+      AppSettings.smtp_tls.should == true
+    end
+
+    it "should consider a string like '123' for the port to be a number" do
+      post :save_confirmation_email_settings, :app_settings => {:smtp_port => "123"}
+      AppSettings.smtp_port.should == 123
+    end
+  end
+
   describe "marking comment as spam" do
     it "should mark comment as spam and train the antispam filter" do
       comment = ObjectMother.create_comment :text => 'commenting'

@@ -2,6 +2,8 @@ a { color: #222; }
 a:visited { color: #444; }
 a:hover { color: #fff; background-color:#555; }
 
+hr {margin-top:2em; background-color:#ddd; border-style:none;}
+
 h1 {font-size:120%;}
 
 textarea {height:100px;}
@@ -49,3 +51,5 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 .site-logo {float:right;}
 
 form .field label {width:200px; display:inline-block;}
+
+form .example {font-style:italic; font-size:90%;}

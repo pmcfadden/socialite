@@ -12,12 +12,23 @@ class AdminController < ApplicationController
     @submissions = Submission.unscoped.order("created_at DESC").page params[:page]
   end
 
-  def confirmation_email_settings
+  def send_test_email
+    address = params[:test_email][:email]
+    begin
+      TestEmailMailer.send_test_email(address).deliver
+      flash[:notice] = "Test email sent. You should soon receive an email at #{address}."
+    #rescue 
+      #flash[:alert] = "Could not send test email: #{$!}"
+    end
+    redirect_to :confirmation_email_settings
   end
 
   def save_confirmation_email_settings
     begin
-      AppSettings.update_settings params[:app_settings]
+      new_settings = turn_ones_into_true_for_checkboxes params[:app_settings]
+      new_settings[:smtp_port] = new_settings[:smtp_port].to_i if new_settings[:smtp_port]
+
+      AppSettings.update_settings new_settings
       redirect_to :confirmation_email_settings, :notice => 'Settings saved'
 
     rescue ActiveRecord::RecordInvalid
@@ -58,5 +69,14 @@ class AdminController < ApplicationController
     submission.save
     Antispam.new.switch_to_content submission
     render :text => "{id: #{submission.id}, message: '#{I18n.t 'no_longer_marked_as_spam'}'}"
+  end
+
+  private
+  def turn_ones_into_true_for_checkboxes parameters
+      parameters.each do |k,v|
+        value = v == "1" ? true : v
+        parameters[k] = value
+      end
+      parameters
   end
 end
