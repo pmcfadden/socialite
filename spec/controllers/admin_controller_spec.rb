@@ -13,6 +13,18 @@ describe AdminController do
 
   end
 
+  describe "send test email" do
+    it "should send a test email through the test email mailer" do
+      class FakeEmail; def deliver; end; end
+      TestEmailMailer.stub(:send_test_email){FakeEmail.new}
+
+      post :send_test_email, :test_email => {:email => "user@example.com"}
+
+      flash[:notice].blank?.should_not be(true)
+      response.should redirect_to(:confirmation_email_settings)
+    end
+  end
+
   describe "confirmation email settings" do
     it "should consider a setting of '1' to be true" do 
       post :save_confirmation_email_settings, :app_settings => {:smtp_tls => "1"}

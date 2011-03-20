@@ -5,6 +5,10 @@ module ControllerMocking
   include Devise::TestHelpers
   include RSpec::Rails::Mocks
 
+  def mock_comment
+    mock_model(Comment).as_null_object
+  end
+
   def mock_submission
     mock_model(Submission).as_null_object
   end

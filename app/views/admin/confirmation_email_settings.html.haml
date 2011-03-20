@@ -63,7 +63,7 @@
 %h1 Send a test email
 = form_for :test_email, :url => {:controller => 'admin', :action => 'send_test_email'} do |f|
   %p 
-    You should send a test email to your own email address to verify that everything works correctly:
+    After saving the settings, you should send a test email to your own email address to verify that everything works correctly:
   = f.text_field :email
   = f.submit 'Send test email'
 
