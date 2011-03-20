@@ -48,10 +48,12 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 .submission-link {font-weight:bold; font-size:110%; margin-right:0.5em;}
 .submission-link a {text-decoration:none;}
 
-.site-logo {float:right;}
+.site-logo {width:150px; float:right; margin-left:-150px; text-align:right;}
+.layout-content {margin-right:150px;}
+.floating-wrapper {float:left; width:100%;}
 
 form .field label {width:200px; display:inline-block;}
 form .example {font-style:italic; font-size:90%;}
 .explanation {margin-top:2em; color:#777; font-size:90%;}
 
-.edit_html {width:80%; height:320px;}
+.edit_html {width:100%; height:320px;}
