@@ -3,7 +3,7 @@
   %head
     %link{:rel => "icon", :href => "/favicon.ico", :type => "image/x-icon"}
     %title
-      Socialite
+      = app_name
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
     = csrf_meta_tag
@@ -22,7 +22,7 @@
               - if !current_user.nil?
                 = render :partial => 'users/user', :locals => {:user => current_user}
                 = " | "
-              = "socialite"
+              = app_name
           %ul{:class => "cleared"}
             %li
               = link_to_unless_current_action "Popular", root_path

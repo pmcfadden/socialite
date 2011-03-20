@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def app_name
+    AppSettings.app_name
+  end
+
   def time_ago_in_words_including_ago time
     return nil if time.nil?
     "#{time_ago_in_words(time)} ago"
@@ -30,7 +34,4 @@ module ApplicationHelper
     classes.join " "
   end
 
-  def is_boolean? obj
-    !!obj == obj
-  end
 end

@@ -12,6 +12,11 @@ class AdminController < ApplicationController
     @submissions = Submission.unscoped.order("created_at DESC").page params[:page]
   end
 
+  def save_app_name
+      AppSettings.update_settings params[:app_settings]
+      redirect_to :change_name, :notice => 'Settings saved'
+  end
+
   def send_test_email
     address = params[:test_email][:email]
     begin
