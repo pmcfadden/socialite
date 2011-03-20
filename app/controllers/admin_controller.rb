@@ -17,8 +17,8 @@ class AdminController < ApplicationController
     begin
       TestEmailMailer.send_test_email(address).deliver
       flash[:notice] = "Test email sent. You should soon receive an email at #{address}."
-    #rescue 
-      #flash[:alert] = "Could not send test email: #{$!}"
+    rescue 
+      flash[:alert] = "Could not send test email: #{$!}"
     end
     redirect_to :confirmation_email_settings
   end
@@ -29,6 +29,10 @@ class AdminController < ApplicationController
       new_settings[:smtp_port] = new_settings[:smtp_port].to_i if new_settings[:smtp_port]
 
       AppSettings.update_settings new_settings
+      
+      # set this now so all mailers can use it
+      ActionMailer::Base.default_url_options[:host] = AppSettings.smtp_default_url_host
+
       redirect_to :confirmation_email_settings, :notice => 'Settings saved'
 
     rescue ActiveRecord::RecordInvalid

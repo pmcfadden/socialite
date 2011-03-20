@@ -9,7 +9,7 @@ class TestEmailMailer < ActionMailer::Base
                         :user_name => AppSettings.smtp_authentication_username,
                         :password => AppSettings.smtp_authentication_password,
                         :tls => AppSettings.smtp_tls,
-                        :enable_starttls_auto => AppSettings.smtp_enable_starttls_auto
+                        :enable_starttls_auto => AppSettings.smtp_enable_starttls_auto,
                         }
 
     logger.info("Sending email using these settings:")

@@ -1,14 +1,16 @@
 %h1 Confirmation email settings
 %p
   You can help fight spam by automatically sending an email to new users asking them to click a link to confirm their account. 
-  %br
-  Enable confirmation emails by checking the following box:
 
 = form_for AppSettings, :url => {:controller => 'admin', :action => 'save_confirmation_email_settings'}, :method => :post do |f|
+  %p{:class => 'explanation'}
+    Enable confirmation emails by checking the following box:
+
   .field
     = f.label :confirm_email_on_registration
     = f.check_box :confirm_email_on_registration
-  %p 
+
+  %p{:class => 'explanation'}
     To send the confirmation emails, this application will use Gmail by default.
     %br
     All you have to do is create a 
@@ -23,12 +25,20 @@
     = f.label :smtp_authentication_password, "SMTP authentication password"
     = f.password_field :smtp_authentication_password
 
+  %p{:class => 'explanation'}
+    You also need to specify the host where you are deploying Socialite (the first bit of the URL)
+
+  .field
+    = f.label :smtp_default_url_host, "Hostname"
+    = f.text_field :smtp_default_url_host
+    .example e.g. mysocialite.com
+
   .collapsible
     %a{:class => 'collapsible-title'} Advanced settings
     .collapsible-content
       .field
-        = f.label :smtp_server, "SMTP server"
-        = f.text_field :smtp_server
+        = f.label :smtp_address, "SMTP server"
+        = f.text_field :smtp_address
       .field
         = f.label :smtp_port, "SMTP port"
         = f.text_field :smtp_port
