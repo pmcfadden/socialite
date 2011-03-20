@@ -1,8 +1,6 @@
 require 'uri'
 
 class Submission < ActiveRecord::Base
-  include ActionController::UrlWriter
-
   @@voting_momentum = 12096
 
   belongs_to :user
