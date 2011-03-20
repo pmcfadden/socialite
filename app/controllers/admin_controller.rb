@@ -19,7 +19,7 @@ class AdminController < ApplicationController
 
   def save_app_name
       AppSettings.update_settings params[:app_settings]
-      redirect_to :change_name, :notice => 'Settings saved'
+      redirect_to :change_name, :notice => 'The new name was saved'
   end
 
   def send_test_email
