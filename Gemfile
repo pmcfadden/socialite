@@ -14,8 +14,8 @@ gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development
 gem 'haml'
 gem "rails-settings", :git => "git://github.com/100hz/rails-settings.git"
-gem 'mongrel'
 gem 'kaminari' #pagination
+gem 'thin'
 
 # spam filtering
 # this gem makes rake db:seed fail so we froze it and edited the vector.rb file in it

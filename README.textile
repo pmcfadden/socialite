@@ -11,16 +11,10 @@ Here is a list of features we will be building soon:
   * admin section to change the style (choose among all JQuery themes?)
   * streamline the deployment of a new instance of socialite (aka one-liner install)
   * make sure the index page still displays nicely even if the title or the description of the submission is very large
-  * user can submit a submission just to start conversation - no need for external link
   * index page shows thumbnails of urls or videos or images (toggled on or off in the admin section?)
   * the index page could be split into components where admins can inject custom html
-  * modify the content of the about page from the admin section
   * a bookmarklet to submit posts from the bookmark toolbar
-  * admin section to change the title + logo
-  * admin section to change the favicon
   * show stats like users with highest karma and stuff
-  * have a new page for most recent submissions
-  * have the user click a link in their email before they can submit stuff
 
 
 h1. Deploying Socialite
