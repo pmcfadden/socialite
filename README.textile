@@ -10,17 +10,17 @@ The goal is to build a web application that will act as a social news website (t
 
 h2. To deploy your own instance of Socialite
 
-  * Clone this git repo
-
-  * Run the following rake command and give it a username and a password for the initial administrator:
-
+  # Clone this git repo
+  # Install ruby and rubygems
+  # Install the rails gem:
+      @gem install rails@
+  # Install the bundler gem:
+      @gem install bundler@
+  # Run the following rake command and give it a username and a password for the initial administrator:
       @rake production:initialize[username,password]@
-
-  * Start the webserver
-
+  # Start the webserver
       @thin start -e production@
-
-  * Point your browser to "http://localhost:3000":http://localhost:3000 and set up your app through the admin section
+  # Point your browser to "http://localhost:3000":http://localhost:3000 and set up your app through the admin section
 
 
 h2. Upcoming Features
