@@ -5,22 +5,33 @@ We want to make it ridiculously easy to spin off a new social news website.
 
 The goal is to build a web application that will act as a social news website (think digg, reddit, or hacker news). But Socialite is meant to be more like a CMS, similar in functionality to Pligg. It will be possible to customize the web application to change its look, its managed content, and its general behavior.
 
+!https://github.com/pmcfadden/socialite/blob/master/screenshot.png?raw=true!
+
+
+h2. To deploy your own instance of Socialite
+
+  * Clone this git repo
+
+  * Run the following rake command and give it a username and a password for the initial administrator:
+
+      @rake production:initialize[username,password]@
+
+  * Start the webserver
+
+      @thin start -e production@
+
+  * Point your browser to "http://localhost:3000":http://localhost:3000 and set up your app through the admin section
+
+
+h2. Upcoming Features
+
 Here is a list of features we will be building soon:
 
   * add nice styling to all pages + images (JQueryUI theme roller?)
   * admin section to change the style (choose among all JQuery themes?)
-  * streamline the deployment of a new instance of socialite (aka one-liner install)
   * make sure the index page still displays nicely even if the title or the description of the submission is very large
   * index page shows thumbnails of urls or videos or images (toggled on or off in the admin section?)
   * the index page could be split into components where admins can inject custom html
   * a bookmarklet to submit posts from the bookmark toolbar
   * show stats like users with highest karma and stuff
 
-
-h1. Deploying Socialite
-
-We're not ready for prime time yet but if you want to check out the app, you can pull the code with git and run "rails server". Then point your browser to http://localhost:3000.
-
-You can also check out the "screenshot":https://github.com/pmcfadden/socialite/blob/master/screenshot.png in the top-level directory:
-
-!https://github.com/pmcfadden/socialite/blob/master/screenshot.png?raw=true!

@@ -1,1 +1,9 @@
-= render :partial => "list", :locals => {:submissions => @submissions}
+- if !@submissions.empty?
+  = render :partial => "list", :locals => {:submissions => @submissions}
+- else
+  %h1 Welcome
+  %p You do not have any submissions to show just yet.
+  %p 
+    To submit a new story, click on the link at the top that says 
+    = link_to 'submit a new story', new_submission_path
+    = "."
