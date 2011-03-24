@@ -1,3 +1,5 @@
+- whole_text ||= false
+
 %tr{:class => resolve_class_for_coloring_submission(submission)}
   - if index
     %td{:class => 'rank'}
@@ -8,10 +10,12 @@
   %td{:class => 'vote-area'}
     = render :partial => "submissions/vote", :locals => {:submission => submission}
   %td
-    %span{:class => 'submission-link'}= link_to submission.title, resolve_submission_url(submission), {:rel => 'nofollow'}
+    - title = whole_text ? submission.title : truncate(submission.title, :length => 100)
+    %span{:class => 'submission-link'}= link_to title, resolve_submission_url(submission), {:rel => 'nofollow'}
     = render :partial => "submissions/quick_links", :locals => {:submission => submission}
     /
       = "interestingness = #{submission.interestingness}"
     .submission-info
       = render :partial => "users/posted_by", :locals => {:user => submission.user, :resource => submission}
-      .submission-description= submission.description
+      - description = whole_text ? submission.description : truncate(submission.description, :length => 100)
+      .submission-description= description

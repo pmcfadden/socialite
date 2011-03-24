@@ -1,5 +1,5 @@
 %table
-  = render :partial => 'submissions/header', :locals => {:submission => @submission, :index => nil}
+  = render :partial => 'submissions/header', :locals => {:submission => @submission, :index => nil, :whole_text => true}
 
 - if @submission.user == current_user
   = link_to 'Edit your submission', edit_submission_path(@submission)
