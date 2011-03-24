@@ -15,6 +15,11 @@
   = f.submit "reply"
   :javascript
     $(document).ready(function(){
+
+      $('#post-comment-at-top').bind('ajax:beforeSend', function(xhr, settings){
+        return $(this).find("textarea").text() !== "";
+      });
+
       $('#post-comment-at-top').bind('ajax:success', function(obj, data){
         $("#comments-list tbody").prepend(data);
         $(this).remove();

@@ -1,6 +1,6 @@
 class TestLogger
   def self.log message
-    puts "TEST LOG: #{message}"
+    #puts "TEST LOG: #{message}"
   end
 end
 

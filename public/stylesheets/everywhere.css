@@ -6,7 +6,7 @@ hr {margin-top:2em; background-color:#ddd; border-style:none;}
 
 h1 {font-size:120%;}
 
-textarea {height:100px;}
+textarea {height:100px; vertical-align:bottom; width:400px;}
 
 body { background-color: #fff; color: #111; font-size:80%;}
 body, p, ol, ul, td { font-family: verdana, arial, helvetica, sans-serif;}

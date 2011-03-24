@@ -4,6 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :submission
   belongs_to :user
   validates :user, :presence => true
+  validates :text, :presence => true
   default_scope :order => "created_at DESC"
 
   def has_parent

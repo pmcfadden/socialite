@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Comment do
+  it "should not validate if text is empty" do
+    comment = ObjectMother.new_comment :text => ""
+    comment.save.should == false
+  end
+
   it "should default to not spam" do
     comment = Comment.new
     comment.is_spam?.should be(false)
