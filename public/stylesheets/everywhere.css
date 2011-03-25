@@ -40,6 +40,7 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 
 #comments-list tr {background-color:#eee; margin:1em;}
 #comments-list tr td {padding:0.2em 1em;}
+#comments-list {width:100%;}
 
 .reply-link, .comment-signature {font-size:80%; color:#999;}
 

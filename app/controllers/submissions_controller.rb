@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show, :best_of]
+  before_filter :authenticate_user!, :except => [:index, :show, :best_of, :vote_up]
+  before_filter :save_post_before_authenticating, :only => [:vote_up]
 
   def best_of
     @submissions = Submission.best_of.page params[:page]
@@ -13,6 +14,7 @@ class SubmissionsController < ApplicationController
   def vote_up
     @submission = Submission.find(params[:id])
     @submission.vote_up current_user
+    flash[:pre_sign_in_notice] = "Thanks, your vote was acknowledged."
   end
     
   # GET /submissions

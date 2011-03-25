@@ -1,15 +1,10 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :save_post_before_authenticating, :only => [:create]
 
   def create
     values = params[:comment].merge({:user => current_user})
     @comment = Comment.new values
-    if @comment.save
-      respond_to do |format|
-        format.html { render :partial => 'comments/comment', :locals => {:comment => @comment} }
-      end
-    else
-       head :bad_request 
-    end
+    @comment.save
+    flash[:pre_sign_in_notice] = "Thanks, your comment was received."
   end
 end
