@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       return super
     end
 
+    # if a post request was saved in the session then we execute it -- see #save_post_before_authenticating
     execute_saved_post_request if session[:pre_sign_in_post]
 
     last_get_url
@@ -47,8 +48,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # this before filter will save an attempted post request for later execution after the user is authenticated
   def save_post_before_authenticating
-    if request.post?
+    if request.post? and current_user.nil?
       session[:pre_sign_in_post] = {:controller => controller_name, :action => action_name, :params => params.dup}
     end
     
