@@ -1,6 +1,5 @@
-- if action_name != "show"
-  %span<
-    = link_to pluralize(submission.comments.size, "comment"), submission_path(submission)
+%span<
+  = link_to pluralize(submission.comments.size, "comment"), submission_path(submission)
 - if current_user.try :admin
   %span{:class => "admin-links"}
     = "["

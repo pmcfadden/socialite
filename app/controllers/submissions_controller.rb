@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show, :best_of, :vote_up]
+  before_filter :authenticate_user!, :except => [:index, :show, :best_of, :vote_up, :most_recent]
   before_filter :save_post_before_authenticating, :only => [:vote_up]
 
   def best_of
