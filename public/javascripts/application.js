@@ -14,4 +14,9 @@ $(document).ready(function(){
 
     var buttons = $('input[type="button"]').add('input[type="submit"]').add('button');
     buttons.addClass('ui-button ui-widget ui-state-default ui-corner-all');
+
+    var toggleHoverClasses = function(){$(this).toggleClass('ui-state-default'); $(this).toggleClass('ui-state-hover');}
+    buttons.bind('mouseover', toggleHoverClasses);
+    buttons.bind('mouseout', toggleHoverClasses);
+
 });
