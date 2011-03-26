@@ -1,16 +1,18 @@
 - if current_user.nil? or current_user.can_vote_for(submission)
-  = link_to '^', vote_up_path(:id => submission.id), :method => :post, :remote => true, :class => "vote-up", :id => "voting-booth-#{submission.id}", :title => 'vote up'
-  :javascript
-    $(document).ready(function(){
-      $('#voting-booth-#{submission.id}').bind('ajax:success', function(obj, data){
-        data = eval("(" + data + ")");
-        $('#scoreForSubmission' + data['id']).text(data['score']);
-        $('#voting-booth-' + data['id']).addClass('invisible');
-      });
-    });
+  = link_to vote_up_path(:id => submission.id), :method => :post, :remote => true, :class => "vote-up", :id => "voting-booth-#{submission.id}", :title => 'vote up' do
+    != icon 'circle-arrow-n'
+
 %span
   = "("
   %span{:id => "scoreForSubmission#{submission.id}"}>= submission.score.to_i
   = ")"
 
+:javascript
+  $(document).ready(function(){
+    $('#voting-booth-#{submission.id}').bind('ajax:success', function(obj, data){
+      data = eval("(" + data + ")");
+      $('#scoreForSubmission' + data['id']).text(data['score']);
+      $('#voting-booth-' + data['id']).addClass('invisible');
+    });
+  });
 

@@ -11,4 +11,7 @@ $(document).ready(function(){
 
 
     $('.auto-focused').focus();
+
+    var buttons = $('input[type="button"]').add('input[type="submit"]').add('button');
+    buttons.addClass('ui-button ui-widget ui-state-default ui-corner-all');
 });

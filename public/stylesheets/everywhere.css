@@ -30,6 +30,7 @@ table.list {width:auto;}
 
 .center-pane {font-size: 90%;}
 td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10px;}
+.vote-up {float:left;}
 .inner-center-pane {width:90%; text-align:left; margin:auto;}
 .center-pane {text-align:center;}
 .notice {color:#3b0; font-weight:bold;}
