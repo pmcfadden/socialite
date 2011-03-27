@@ -50,8 +50,8 @@ class ApplicationController < ActionController::Base
 
   # this before filter will save an attempted post request for later execution after the user is authenticated
   def save_post_before_authenticating
-    logger.info "Will save the POST request for later execution if the user is unauthenticated and request is POST"
     if request.env['warden'].unauthenticated? and request.post?
+      logger.info "Will save the POST request for later execution"
       session[:pre_sign_in_post] = {:controller => controller_name, :action => action_name, :params => params.dup}
     end
     

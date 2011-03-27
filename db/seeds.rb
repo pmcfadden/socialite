@@ -7,12 +7,16 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 # random text taken from wikipedia
-@@text = %{The IMF's influence in the global economy steadily increased as it accumulated more members. The number of IMF member countries has more than quadrupled from the 44 states involved in its establishment, reflecting in particular the attainment of political independence by many developing countries and more recently the collapse of the Soviet bloc. The expansion of the IMF's membership, together with the changes in the world economy, have required the IMF to adapt in a variety of ways to continue serving its purposes effectively.}
+@@text = %{The International Monetary Fund was conceived in July 1944 during the United Nations Monetary and Financial Conference. The representatives of 45 governments met in the Mount Washington Hotel in the area of Bretton Woods, New Hampshire, United States, with the delegates to the conference agreeing on a framework for international economic cooperation.[14] The IMF was formally organized on December 27, 1945, when the first 29 countries signed its Articles of Agreement. The statutory purposes of the IMF today are the same as when they were formulated in 1943 (see #Assistance and reforms).
+
+The IMF's influence in the global economy steadily increased as it accumulated more members. The number of IMF member countries has more than quadrupled from the 44 states involved in its establishment, reflecting in particular the attainment of political independence by many developing countries and more recently the collapse of the Soviet bloc. The expansion of the IMF's membership, together with the changes in the world economy, have required the IMF to adapt in a variety of ways to continue serving its purposes effectively.
+
+In 2008, faced with a shortfall in revenue, the International Monetary Fund's executive board agreed to sell part of the IMF's gold reserves. On April 27, 2008, IMF Managing Director Dominique Strauss-Kahn welcomed the board's decision of April 7, 2008 to propose a new framework for the fund, designed to close a projected $400 million budget deficit over the next few years. The budget proposal includes sharp spending cuts of $100 million until 2011 that will include up to 380 staff dismissals.}
 
 def random_text
   words = @@text.split
-  first = rand(words.size - 16)
-  length = rand(15) + 1
+  first = rand(words.size - 56)
+  length = rand(55) + 1
   words[first, length].join " "
 end
 

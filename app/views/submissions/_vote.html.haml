@@ -3,15 +3,15 @@
     != icon 'circle-arrow-n'
 
 %span
-  = "["
-  %span{:id => "scoreForSubmission#{submission.id}"}>= submission.score.to_i
-  = "]"
+  %span{:class => 'score-bracket'}= "["
+  %span{:class => 'score', :id => "score-for-submission-#{submission.id}"}>= submission.score.to_i
+  %span{:class => 'score-bracket'}= "]"
 
 :javascript
   $(document).ready(function(){
     $('#voting-booth-#{submission.id}').bind('ajax:success', function(obj, data){
       data = eval("(" + data + ")");
-      $('#scoreForSubmission' + data['id']).text(data['score']);
+      $('#score-for-submission-' + data['id']).text(data['score']);
       $('#voting-booth-' + data['id']).addClass('invisible');
     });
   });

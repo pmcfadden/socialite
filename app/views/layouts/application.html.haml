@@ -22,10 +22,10 @@
       .inner-center-pane
         %div{:class => "top-nav-bar"}
           .site-title
-            %h1 
+            %span{:class => 'session-info'}
               - if !current_user.nil?
                 = render :partial => 'users/user', :locals => {:user => current_user}
-                = " | "
+            %h1 
               = app_name
           %ul{:class => "cleared"}
             %li

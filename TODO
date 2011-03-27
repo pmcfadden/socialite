@@ -1,7 +1,3 @@
-save POST hack:
-  current_user.nil? is not enough -- what if the session timed out
-  find a way to test it
-
 OPTIMIZATION
 The home page generates multiple calls to the database: one for each submissions one for its votess one for its comment count. We should not make that many database calls.
 

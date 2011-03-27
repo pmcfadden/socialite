@@ -2,13 +2,23 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function(){
+    $('.collapsible a').each(function(idx, elem){
+      $(elem).prepend('<span class="ui-icon ui-icon-triangle-1-e float-left prefixed-icon"></span>');
+    });
+
     $('.collapsible .collapsible-content').hide();
     $('.collapsible a.collapsible-title').each(function(idx, elem){elem.href ="#";});
     $('.collapsible a.collapsible-title').click(function(){
-      $('.collapsible .collapsible-content').toggle();
+      var collapsible = $(this).parents('.collapsible');
+
+      collapsible.find('.collapsible-content').toggle();
+
+      var prefixed_icon = collapsible.find('a .prefixed-icon');
+      prefixed_icon.toggleClass('ui-icon-triangle-1-e');
+      prefixed_icon.toggleClass('ui-icon-triangle-1-s');
+
       return false;
     });
-
 
     $('.auto-focused').focus();
 
@@ -18,5 +28,15 @@ $(document).ready(function(){
     var toggleHoverClasses = function(){$(this).toggleClass('ui-state-default'); $(this).toggleClass('ui-state-hover');}
     buttons.bind('mouseover', toggleHoverClasses);
     buttons.bind('mouseout', toggleHoverClasses);
+
+    $('ul.bulleted li').each(function(idx, elem){
+      $(elem).prepend('<span class="ui-icon ui-icon-stop float-left bullet"></span>');
+    });
+
+    $('h1').add('h2').each(function(idx, elem){
+      $(elem).prepend('<span class="ui-icon ui-icon-grip-diagonal-se float-left prefixed-icon"></span>');
+    });
+
+    $('body').append('<div class="cleared"></div><br>');
 
 });
