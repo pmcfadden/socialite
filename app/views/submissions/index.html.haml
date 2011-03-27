@@ -1,4 +1,4 @@
-- if !@submissions.empty?
+- if @submissions.length > 0
   = render :partial => "list", :locals => {:submissions => @submissions}
 - else
   %h1 Welcome
