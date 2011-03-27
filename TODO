@@ -1,21 +1,10 @@
-OPTIMIZATION
-The home page generates multiple calls to the database: one for each submissions one for its votess one for its comment count. We should not make that many database calls.
-
-STYLE 2
-admin section to change the style (choose among all JQuery themes?) 
-
+STYLE 2 admin section to change the style (choose among all JQuery themes?) 
 RSS FEEDS offer rss feeds of the submissions 
-
 THUMBNAIL index page shows thumbnails of urls or videos or images (toggled on or off in the admin section?)
-
 TEST ADMIN write a test to make sure admin role is necessary to access all actions from admin section 
-
-CUSTOM HTML the index page could be split into components where admins can inject custom html 
-
 BOOKMARKLET a bookmarklet to submit posts from the bookmark toolbar 
-
+CUSTOM HTML the index page could be split into components where admins can inject custom html 
 STATISTICS show stats like users with highest karma and stuff 
-
 BLOG POSTS:
   default values in models: how we did it - how it does not work for booleans
   devise confirmation how to turn on and off confirmable

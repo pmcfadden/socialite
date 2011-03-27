@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def voted_for submission
-    ! Vote.where(:user_id => self.id, :submission_id => submission.id).all.empty?
+    Vote.where(:user_id => self.id, :submission_id => submission.id).count > 0
   end
 
   def can_vote_for submission
