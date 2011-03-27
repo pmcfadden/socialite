@@ -33,7 +33,7 @@ module ApplicationHelper
 
   def resolve_class_for_coloring_submission submission
     classes = []
-    classes << "voted" if !current_user.nil? && current_user.voted_for(submission)
+    classes << "dim" if !current_user.nil? && current_user.voted_for(submission)
     classes << "marked-as-spam" if submission.is_spam?
     classes.join " "
   end
