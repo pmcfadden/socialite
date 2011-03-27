@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :verify_user_is_not_deleted
 
-  def about
+  def verify_user_is_not_deleted
+    raise "The account '#{current_user}' was deleted" if user_signed_in? and current_user.deleted?
   end
 
   def sign_in_then_redirect
@@ -28,20 +30,18 @@ class ApplicationController < ActionController::Base
     begin 
       class_name = session[:pre_sign_in_post][:controller].capitalize + "Controller"
       controller_instance = class_name.constantize.new
-      saved_params = session[:pre_sign_in_post][:params]
-      current_request = request
 
-      (class << controller_instance; self; end).send(:define_method, :request) do
-          return current_request
-      end
-      (class << controller_instance; self; end).send(:define_method, :params) do
-          return saved_params
-      end
+      current_request = request
+      saved_params = session[:pre_sign_in_post][:params]
+      metaclass = (class << controller_instance; self; end)
+
+      metaclass.send(:define_method, :request) { return current_request }
+      metaclass.send(:define_method, :params) { return saved_params }
 
       controller_instance.send(session[:pre_sign_in_post][:action])
       flash[:notice] = flash[:pre_sign_in_notice] if flash[:pre_sign_in_notice]
     rescue
-      logger.error "error occurred executed the saved POST request: #{$!}"
+      logger.error "An error occurred trying to execute the saved POST request: #{$!}"
       flash[:alert] = $!.message
     ensure
       session[:pre_sign_in_post] = nil
@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
 
   # this before filter will save an attempted post request for later execution after the user is authenticated
   def save_post_before_authenticating
+    logger.info "Will save the POST request for later execution if the user is unauthenticated and request is POST"
     if request.env['warden'].unauthenticated? and request.post?
       session[:pre_sign_in_post] = {:controller => controller_name, :action => action_name, :params => params.dup}
     end
@@ -61,4 +62,5 @@ class ApplicationController < ActionController::Base
   def require_admin!
     raise "admins only" if !current_user.try :admin
   end
+
 end

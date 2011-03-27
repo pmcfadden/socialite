@@ -2,14 +2,8 @@ save POST hack:
   current_user.nil? is not enough -- what if the session timed out
   find a way to test it
 
-DELETED USERS
-prevent deleted users from signing in and delete their sessions
-
 OPTIMIZATION
 The home page generates multiple calls to the database: one for each submissions one for its votess one for its comment count. We should not make that many database calls.
-
-STYLE
-add nice styling to all pagess images (JQueryUI theme roller?) 
 
 STYLE 2
 admin section to change the style (choose among all JQuery themes?) 
