@@ -37,4 +37,5 @@ describe ApplicationHelper do
       helper.resolve_class_for_coloring_comment(comment).should == "marked-as-spam"
     end
   end
+
 end

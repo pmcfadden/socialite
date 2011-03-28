@@ -48,6 +48,12 @@ describe SubmissionsController do
       get :new
       assigns(:submission).should be(@mock_submission)
     end
+
+    it "assigns values from params" do
+      submission = Submission.new :url => 'test-url'
+      get :new, :submission => {:url => 'test-url'}
+      assigns(:submission).url.should  == submission.url
+    end
   end
 
   describe "GET edit" do

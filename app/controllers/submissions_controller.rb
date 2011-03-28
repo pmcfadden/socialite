@@ -42,7 +42,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   # GET /submissions/new.xml
   def new
-    @submission = Submission.new
+    @submission = Submission.new params[:submission]
 
     respond_to do |format|
       format.html # new.html.erb

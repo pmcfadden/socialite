@@ -8,15 +8,16 @@
 
   .field
     = f.label :title
+    %br
     = f.text_field :title
   .field
-    .explanation
-      %label
-      Leave this blank if you just want to start a conversation.
     = f.label :url
+    .explanation
+      Leave this blank if you just want to start a conversation.
     = f.text_field :url
   .field
     = f.label :description
+    %br
     = f.text_area :description
   .actions
-    = f.submit 'Save'
+    = f.submit 'Submit story'
