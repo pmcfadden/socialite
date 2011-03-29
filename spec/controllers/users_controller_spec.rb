@@ -7,6 +7,23 @@ describe UsersController do
     @mock_user = mock_user :admin => true
   end
 
+  describe "spammers" do
+    it "assigns the spammers to @users" do
+      spammer = ObjectMother.create_user
+      ObjectMother.create_submission :user => spammer, :is_spam => true
+
+      get :spammers
+      assigns(:users).should == [spammer]
+    end
+  end
+
+  describe "best of" do
+    it "assigns the best users of all time to @users" do
+      get :best_of
+      assigns(:users).should == [@mock_user]
+    end
+  end
+
   describe "GET index" do
     it "assigns all users as @users" do
       User.stub(:page) { [@mock_user] }
@@ -36,6 +53,36 @@ describe UsersController do
       User.stub(:find).with("37") { @mock_user }
       get :edit, :id => "37"
       assigns(:user).should be(@mock_user)
+    end
+  end
+
+  describe "POST create" do
+    describe "with valid params" do
+      it "assigns a newly created user as @user" do
+        User.stub(:new).with({'these' => 'params'}) { @mock_user }
+        post :create, :user => {'these' => 'params'}
+        assigns(:user).should be(@mock_user)
+      end
+
+      it "redirects to the created user" do
+        User.stub(:new) { @mock_user.stub(:save => true); @mock_user }
+        post :create, :user => {}
+        response.should redirect_to(user_url(@mock_user))
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved user as @user" do
+        User.stub(:new).with({'these' => 'params'}) { @mock_user.stub(:save => false); @mock_user }
+        post :create, :user => {'these' => 'params'}
+        assigns(:user).should be(@mock_user)
+      end
+
+      it "re-renders the 'new' template" do
+        User.stub(:new) { @mock_user.stub(:save => false); @mock_user }
+        post :create, :user => {}
+        response.should render_template("new")
+      end
     end
   end
 

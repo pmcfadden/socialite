@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe SubmissionsController do
-  include Devise::TestHelpers
   include ControllerMocking
 
   before(:each) do

@@ -13,6 +13,39 @@ describe AdminController do
 
   end
 
+  describe "moderate submissions" do
+    it "should list submissions to moderate including spam ones" do
+      spammer = ObjectMother.create_user
+      submission = ObjectMother.create_submission :user => spammer, :is_spam => true
+      get :moderate_submissions
+      assigns(:submissions).should == [submission]
+    end
+  end
+
+  describe "moderate comments" do
+    it "should list comments to moderate" do
+      comment = ObjectMother.create_comment
+      get :moderate_comments
+      assigns(:comments).should == [comment]
+    end
+  end
+
+  describe "save about page" do
+    it "should save the new about page to settings" do
+      post :save_about_page, :app_settings => {:about_page => 'new-test-page'}
+      flash[:notice].blank?.should == false
+      AppSettings.about_page.should == 'new-test-page'
+    end
+  end
+
+  describe "save app name" do
+    it "should save the new app name to settings" do
+      post :save_app_name, :app_settings => {:app_name => 'new-test-name'}
+      flash[:notice].blank?.should == false
+      AppSettings.app_name.should == 'new-test-name'
+    end
+  end
+
   describe "send test email" do
     it "should send a test email through the test email mailer" do
       class FakeEmail; def deliver; end; end

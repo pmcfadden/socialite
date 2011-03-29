@@ -8,10 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
   end
-
-  def show_comments
-    show
-  end
+  alias :show_comments :show
 
   def spammers
     @users = User.find_spammers.page params[:page]
