@@ -1,0 +1,13 @@
+%h1 Statistics
+.field
+  %label Total number of stories
+  %span= @statistics[:number_of_submissions]
+.field
+  %label Total number of users
+  %span= @statistics[:number_of_users]
+.field
+  %label Number of submissions this week
+  %span= @statistics[:number_of_submissions_this_week]
+.field
+  %label Last registration
+  %span= time_ago_in_words_including_ago @statistics[:time_of_last_registration]

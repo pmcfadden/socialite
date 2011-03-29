@@ -1,0 +1,4 @@
+%h1 Best of
+= render :partial => 'submissions/best_of_filters'
+%p Here are the users with the highest karma.
+= render :partial => 'users/list', :locals => {:users => @users}

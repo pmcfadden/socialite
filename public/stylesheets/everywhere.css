@@ -37,7 +37,7 @@ ul.bulleted {list-style-type:none;}
 .collapsible {margin-top:2em;}
 .collapsible-content {margin-top:1em;}
 
-.top-nav-bar ul, .filters-menu ul {list-style-type: none; background-color: #eee; margin: 0;}
+.top-nav-bar ul, .filters-menu ul {list-style-type: none; background-color: #eee; margin: 0 0 1em 0;}
 .top-nav-bar li, .filters-menu li {display:inline; float:left; margin: 0 2em 0 0; padding:0;}
 .top-nav-bar ul {padding: 0.2em 0.4em;}
 
@@ -78,7 +78,7 @@ td.vote-area {white-space:nowrap; width:50px; text-align:right; padding-right:10
 .layout-content {margin-right:150px;}
 .floating-wrapper {float:left; width:100%;}
 
-form .field label {width:200px; display:inline-block; vertical-align:top;}
+.field label {width:200px; display:inline-block; vertical-align:top;}
 form .example, .explanation {color:#777; font-size:90%;}
 form .example {margin-top:-0.6em;}
 .explanation {margin:0.2em 0;}

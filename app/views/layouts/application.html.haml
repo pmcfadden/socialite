@@ -35,7 +35,7 @@
             %li
               = link_to_unless_current_action 'Submit a new story', new_submission_path
             %li
-              = link_to_unless_current_action 'Best of', best_of_path
+              = link_to_unless_current_action 'Best of', best_of_submissions_path
             - if current_user.nil?
               %li
                 = link_to "Sign in", new_session_path(:user)
@@ -46,6 +46,8 @@
                 = link_to "Sign out", destroy_user_session_path
             %li
               = link_to_unless_current_action "About", about_path
+            %li
+              = link_to_unless_current_action "Stats", statistics_path
             - if current_user.try :admin
               %li
                 = link_to_unless_current_action "Admin", admin_path

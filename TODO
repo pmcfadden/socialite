@@ -1,5 +1,4 @@
 STYLE 2 admin section to change the style (choose among all JQuery UI themes?) 
-BOOKMARKLET a bookmarklet to submit posts from the bookmark toolbar 
 STATISTICS show stats like users with highest karma and stuff 
 THUMBNAIL index page shows thumbnails of urls or videos or images (toggled on or off in the admin section?)
 RSS FEEDS offer rss feeds of the submissions 

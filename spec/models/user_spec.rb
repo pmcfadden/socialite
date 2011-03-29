@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe User do
 
+  it "should fetch highest karma users" do
+    highest = ObjectMother.create_user :karma => 10
+    lowest = ObjectMother.create_user :karma => 5
+    User.highest_karma_users.should == [highest, lowest]
+  end
+
   it "should auto confirm all users by default without confirmation email" do
     ObjectMother.create_user.confirmed?.should be(true)
   end

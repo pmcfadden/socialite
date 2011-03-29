@@ -4,8 +4,10 @@ Socialite::Application.routes.draw do
 
   match 'submissions/:id/vote_up', :to => 'submissions#vote_up', :via => "post", :defaults => { :format => 'js'}, :as => 'vote_up'
   match 'about', :to => "application#about", :via => "get", :as => 'about'
-  match 'best_of', :to => "submissions#best_of", :via => "get", :as => 'best_of'
+  match 'users/best_of', :to => "users#best_of", :via => "get", :as => "best_of_users"
+  match 'best_of', :to => "submissions#best_of", :via => "get", :as => 'best_of_submissions'
   match 'new', :to => "submissions#most_recent", :via => "get", :as => 'new'
+  match 'stats', :to => "statistics#index", :via => "get", :as => 'statistics'
 
   get 'admin', :to => "admin#index", :as => 'admin'
 

@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     User.includes([:submissions, :comments]).group("users.id").where(["submissions.is_spam = ? or comments.is_spam = ?", true, true])
   end
 
+  def self.highest_karma_users
+    User.order('karma DESC').limit(10)
+  end
+
   def setup_default_values
     self[:karma] ||= 0
     self[:confirmed_at] ||= Time.now if !AppSettings.confirm_email_on_registration
