@@ -1,0 +1,7 @@
+Log in as admin
+Change the name of the app
+Make sure the name has changed in the top nav bar and in the browser tab
+Change the icon
+Make sure the icon changed to the new one
+Modify the about page including some html
+Make sure the new content is displayed correctly
