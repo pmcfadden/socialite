@@ -13,7 +13,7 @@ gem 'devise'
 gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development
 gem 'haml'
-gem "rails-settings", :git => "git://github.com/100hz/rails-settings.git"
+gem "rails-settings", :path => "vendor/gems/rails-settings"
 gem 'kaminari' #pagination
 gem 'thin'
 
