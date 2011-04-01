@@ -8,7 +8,7 @@ gem 'sqlite3'
 
 # authentication
 # we needed to comment out the use of authentication headers for 401 errors so we froze this gem
-gem 'devise', :path => "vendor/gems/devise-1.2.1"
+gem 'devise'
 
 gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development
