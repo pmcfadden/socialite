@@ -12,11 +12,11 @@
       $(document).ready(function(){
         $('.undo-mark-comment-as-spam-link').bind('ajax:success', function(obj, data){
           data = eval("(" + data + ")");
-          $('#admin-links-' + data['id']).text(data['message']);
+          $(this).text(data['message']);
         });
         $('.mark-comment-as-spam-link').bind('ajax:success', function(obj, data){
           data = eval("(" + data + ")");
-          $('#admin-links-' + data['id']).text(data['message']);
+          $(this).text(data['message']);
         });
       });
 

@@ -1,3 +1,4 @@
+when shoing the comment count -- only count the non-spam
 setup an exception notifier for prod
 logo comes down with notice messages
 STYLE 2 admin section to change the style (choose among all JQuery UI themes?) 
