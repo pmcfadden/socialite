@@ -12,7 +12,7 @@
     $('#voting-booth-#{submission.id}').bind('ajax:success', function(obj, data){
       data = eval("(" + data + ")");
       $('#score-for-submission-' + data['id']).text(data['score']);
-      $('#voting-booth-' + data['id']).addClass('invisible');
+      $('#voting-booth-' + data['id']).toggleClass('hidden');
     });
   });
 

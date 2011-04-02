@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :verify_user_is_not_deleted
 
+  def set_html_as_content_type
+    response.headers["Content-Type"] = 'text/html'
+  end
+
   def verify_user_is_not_deleted
     raise "The account '#{current_user}' was deleted" if user_signed_in? and current_user.deleted?
   end

@@ -51,13 +51,13 @@
             - if current_user.try :admin
               %li
                 = link_to_unless_current_action "Admin", admin_path
-        %p{:class => "notice"}
-          = notice
-        %p{:class => "alert"}
-          = alert
 
         .floating-wrapper
           .layout-content
+            %p{:class => "notice"}
+              = notice
+            %p{:class => "alert"}
+              = alert
             = content_for?(:application) ? yield(:application) : yield
             :javascript
               $(document).ready(function(){

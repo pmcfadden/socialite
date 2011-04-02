@@ -1,9 +1,8 @@
 FIXES
 --
-bugfix: ive seen javascript error on the submission page after submitting a few comments
+the ui when unmarking a comment as spam on the moderate page is not great -- it ends up saying [ marked as spam no longer marked as spam ] 
 when showing the comment count -- only count the non-spam
 setup an exception notifier for prod
-logo comes down on the page with notice messages
 
 FEATURES
 --

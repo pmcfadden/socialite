@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def bookmarklet_url
     "javascript:window.location=%22#{new_submission_url}?submission[url]=%22+encodeURIComponent(document.location)+%22&submission[title]=%22+encodeURIComponent(document.title)"
   end

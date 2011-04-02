@@ -6,5 +6,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new values
     @comment.save
     flash[:pre_sign_in_notice] = "Thanks, your comment was received."
+    set_html_as_content_type
   end
 end
