@@ -13,6 +13,7 @@ describe User do
   end
 
   it "should let devise confirm users if settings say so" do
+    ActionMailer::Base.default_url_options[:host] = 'localhost'
     AppSettings.confirm_email_on_registration = true
     ObjectMother.create_user.confirmed?.should be(false)
   end
