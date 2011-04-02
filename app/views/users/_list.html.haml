@@ -2,7 +2,8 @@
   - users.each do |user|
     %tr
       %td= render :partial => 'users/user', :locals => {:user => user}
-      %td= link_to 'edit', edit_user_path(user)
-      %td= link_to 'delete', user_path(user), :confirm => 'Are you sure?', :method => :delete
+      - if current_user_is_admin?
+        %td= link_to 'edit', edit_user_path(user)
+        %td= link_to 'delete', user_path(user), :confirm => 'Are you sure?', :method => :delete
 
 = paginate users
