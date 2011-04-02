@@ -1,8 +1,6 @@
 FIXES
 --
-users - best of requires admin privileges -- it should not
 bugfix: ive seen javascript error on the submission page after submitting a few comments
-UX: clear the comment box after leaving a comment successfully (adding another comment brings up a pre-populated comment box)
 when showing the comment count -- only count the non-spam
 setup an exception notifier for prod
 logo comes down on the page with notice messages
