@@ -11,3 +11,10 @@ AppSettings.defaults['smtp_authentication_password'] = nil
 AppSettings.defaults['smtp_enable_starttls_auto'] = true
 AppSettings.defaults['smtp_tls'] = true
 AppSettings.defaults['from_email'] = 'no-reply@example.com'
+
+Socialite::Application.configure do
+  config.after_initialize do
+    # reload the default url host for all mailers
+    config.action_mailer.default_url_options = {:host => AppSettings.smtp_default_url_host } if AppSettings.table_exists?
+  end
+end

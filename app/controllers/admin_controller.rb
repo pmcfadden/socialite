@@ -27,8 +27,11 @@ class AdminController < ApplicationController
     begin
       TestEmailMailer.send_test_email(address).deliver
       flash[:notice] = "Test email sent. You should soon receive an email at #{address}."
-    rescue 
-      flash[:alert] = "Could not send test email: #{$!}"
+    rescue Exception => e
+      flash[:alert] = "Could not send test email: #{e}"
+
+      logger.warn flash[:alert]
+      logger.warn e.backtrace
     end
     redirect_to :confirmation_email_settings
   end
