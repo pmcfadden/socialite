@@ -46,4 +46,18 @@ module ApplicationHelper
     submission.url.blank? ? submission_path(submission) : submission.url
   end
 
+  def setup_action_mailer
+      ActionMailer::Base.default_url_options[:host] = AppSettings.smtp_default_url_host
+      ActionMailer::Base.smtp_settings = {
+                        :address => AppSettings.smtp_address,
+                        :port => AppSettings.smtp_port,
+                        :domain => AppSettings.smtp_domain,
+                        :authentication => AppSettings.smtp_authentication,
+                        :user_name => AppSettings.smtp_authentication_username,
+                        :password => AppSettings.smtp_authentication_password,
+                        :tls => AppSettings.smtp_tls,
+                        :enable_starttls_auto => AppSettings.smtp_enable_starttls_auto,
+                        }
+  end
+
 end

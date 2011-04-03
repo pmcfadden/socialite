@@ -1,16 +1,18 @@
 FIXES
 --
+handle failures in sending the confirmation email
+setup an exception notifier for prod
+when showing the comment count -- only count the non-spam
 ajax actions (marking comment as spam - marking submission as spam - voting up) should change the UI in the same way refreshing the page will
   for instance marking as spam should make the admin links red and show an undo link
   undoing marking as spam should make the admin links black again and it should say 'mark as spam' instead of 'no longer marked as spam'
   voting up should dim the post
-when showing the comment count -- only count the non-spam
-setup an exception notifier for prod
+custom more informative 500 page
 why is the favicon not shown?
-handle failures in sending the confimation email
 
 FEATURES
 --
+SALTS AND PEPPERS provide a way to randomize the salts and peppers and cookie secrets upon install
 STYLE 2 admin section to change the style (choose among all JQuery UI themes?) 
 THUMBNAIL index page shows thumbnails of urls or videos or images (toggled on or off in the admin section?)
 RSS FEEDS offer rss feeds of the submissions 

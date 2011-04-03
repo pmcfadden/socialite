@@ -7,8 +7,9 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 
 # authentication
-# we needed to comment out the use of authentication headers for 401 errors so we froze this gem
 gem 'devise'
+
+gem 'exception_notification', :require => 'exception_notifier'
 
 gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development

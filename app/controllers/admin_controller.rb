@@ -44,7 +44,7 @@ class AdminController < ApplicationController
       AppSettings.update_settings new_settings
       
       # set this now so all mailers can use it
-      ActionMailer::Base.default_url_options[:host] = AppSettings.smtp_default_url_host
+      setup_action_mailer
 
       redirect_to :confirmation_email_settings, :notice => 'Settings saved.'
 

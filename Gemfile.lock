@@ -52,6 +52,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    exception_notification (2.4.0)
     fast-stemmer (1.0.0)
     haml (3.0.25)
     haml-rails (0.3.4)
@@ -132,6 +133,7 @@ PLATFORMS
 DEPENDENCIES
   classifier!
   devise
+  exception_notification
   fast-stemmer
   haml
   haml-rails

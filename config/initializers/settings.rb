@@ -14,7 +14,10 @@ AppSettings.defaults['from_email'] = 'no-reply@example.com'
 
 Socialite::Application.configure do
   config.after_initialize do
-    # reload the default url host for all mailers
-    ActionMailer::Base.default_url_options[:host] = AppSettings.smtp_default_url_host if AppSettings.table_exists?
+    if AppSettings.table_exists?
+      require 'app/helpers/application_helper'
+      include ApplicationHelper
+      setup_action_mailer
+    end
   end
 end
