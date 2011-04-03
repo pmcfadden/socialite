@@ -13,6 +13,8 @@ Socialite::Application.routes.draw do
 
   get 'sign_in_then_redirect', :to => "application#sign_in_then_redirect"
 
+  match 'admin/raise', :to => "admin#raise_dummy_exception" # call this url to test exception notifications in prod
+
   match 'admin/moderate/submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
   match 'admin/moderate/comments', :to => "admin#moderate_comments", :via => "get", :as => 'moderate_comments'
 

@@ -1,6 +1,10 @@
 class AdminController < ApplicationController
   before_filter :require_admin!
 
+  def raise_dummy_exception
+    raise Exception.new "This is a dummy exception. Ignore it safely."
+  end
+
   def index
   end
 
@@ -44,7 +48,7 @@ class AdminController < ApplicationController
       AppSettings.update_settings new_settings
       
       # set this now so all mailers can use it
-      setup_action_mailer
+      setup_mailers
 
       redirect_to :confirmation_email_settings, :notice => 'Settings saved.'
 

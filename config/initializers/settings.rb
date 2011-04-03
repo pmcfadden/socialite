@@ -11,13 +11,3 @@ AppSettings.defaults['smtp_authentication_password'] = nil
 AppSettings.defaults['smtp_enable_starttls_auto'] = true
 AppSettings.defaults['smtp_tls'] = true
 AppSettings.defaults['from_email'] = 'no-reply@example.com'
-
-Socialite::Application.configure do
-  config.after_initialize do
-    if AppSettings.table_exists?
-      require 'app/helpers/application_helper'
-      include ApplicationHelper
-      setup_action_mailer
-    end
-  end
-end

@@ -1,13 +1,12 @@
 FIXES
 --
+have an admin page to enable/disable exception notifications and change the recipient email
 handle failures in sending the confirmation email
-setup an exception notifier for prod
 when showing the comment count -- only count the non-spam
 ajax actions (marking comment as spam - marking submission as spam - voting up) should change the UI in the same way refreshing the page will
   for instance marking as spam should make the admin links red and show an undo link
   undoing marking as spam should make the admin links black again and it should say 'mark as spam' instead of 'no longer marked as spam'
   voting up should dim the post
-custom more informative 500 page
 why is the favicon not shown?
 
 FEATURES
