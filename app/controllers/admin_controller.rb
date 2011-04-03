@@ -38,7 +38,7 @@ class AdminController < ApplicationController
 
   def save_confirmation_email_settings
     begin
-      new_settings = turn_ones_into_true_for_checkboxes params[:app_settings]
+      new_settings = turn_ones_and_zeros_into_booleans params[:app_settings]
       new_settings[:smtp_port] = new_settings[:smtp_port].to_i if new_settings[:smtp_port]
 
       AppSettings.update_settings new_settings
@@ -68,7 +68,7 @@ class AdminController < ApplicationController
     submission.mark_as_spam
     Antispam.new.switch_to_spam submission
     submission.save
-    render :text => "{id: #{submission.id}, message: '#{I18n.t 'marked_as_spam'}'}"
+    render :text => "({id: #{submission.id}, message: '#{I18n.t 'marked_as_spam'}'})"
   end
   
   def undo_mark_comment_as_spam
@@ -85,14 +85,15 @@ class AdminController < ApplicationController
     submission.is_spam = false
     submission.save
     Antispam.new.switch_to_content submission
-    render :text => "{id: #{submission.id}, message: '#{I18n.t 'no_longer_marked_as_spam'}'}"
+    render :text => "({id: #{submission.id}, message: '#{I18n.t 'no_longer_marked_as_spam'}'})"
   end
 
   private
-  def turn_ones_into_true_for_checkboxes parameters
+  def turn_ones_and_zeros_into_booleans parameters
       parameters.each do |k,v|
-        value = v == "1" ? true : v
-        parameters[k] = value
+        v = v == "1" ? true : v
+        v = v == "0" ? false : v
+        parameters[k] = v
       end
       parameters
   end

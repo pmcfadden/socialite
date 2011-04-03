@@ -29,7 +29,7 @@ describe 'Using the saved post hack:' do
     @submission = ObjectMother.create_submission
   end
 
-  describe "voting up a comment when not signed in" do
+  describe "voting up a submission when not signed in" do
     it "should go through after signing in" do
       initial_score = @submission.score
 
@@ -44,7 +44,7 @@ describe 'Using the saved post hack:' do
     end
   end
 
-  describe "voting up a comment when not signed in" do
+  describe "voting up a submission when not signed in" do
     it "should go through after registering as a new user" do
       initial_score = @submission.score
 

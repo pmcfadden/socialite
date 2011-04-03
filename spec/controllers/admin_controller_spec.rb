@@ -59,6 +59,11 @@ describe AdminController do
   end
 
   describe "confirmation email settings" do
+    it "should consider a setting of '0' to be false" do 
+      post :save_confirmation_email_settings, :app_settings => {:smtp_tls => "0"}
+      AppSettings.smtp_tls.should == false
+    end
+
     it "should consider a setting of '1' to be true" do 
       post :save_confirmation_email_settings, :app_settings => {:smtp_tls => "1"}
       AppSettings.smtp_tls.should == true

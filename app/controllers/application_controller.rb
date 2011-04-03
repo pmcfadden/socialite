@@ -39,8 +39,11 @@ class ApplicationController < ActionController::Base
       saved_params = session[:pre_sign_in_post][:params]
       metaclass = (class << controller_instance; self; end)
 
+      # fake the environment of the previous request
       metaclass.send(:define_method, :request) { return current_request }
       metaclass.send(:define_method, :params) { return saved_params }
+      # prevent rendering at all costs
+      metaclass.send(:define_method, :render) {|*args| nil }
 
       controller_instance.send(session[:pre_sign_in_post][:action])
       flash[:notice] = flash[:pre_sign_in_notice] if flash[:pre_sign_in_notice]

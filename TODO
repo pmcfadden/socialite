@@ -1,8 +1,13 @@
 FIXES
 --
-the ui when unmarking a comment as spam on the moderate page is not great -- it ends up saying [ marked as spam no longer marked as spam ] 
+ajax actions (marking comment as spam - marking submission as spam - voting up) should change the UI in the same way refreshing the page will
+  for instance marking as spam should make the admin links red and show an undo link
+  undoing marking as spam should make the admin links black again and it should say 'mark as spam' instead of 'no longer marked as spam'
+  voting up should dim the post
 when showing the comment count -- only count the non-spam
 setup an exception notifier for prod
+why is the favicon not shown?
+handle failures in sending the confimation email
 
 FEATURES
 --

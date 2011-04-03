@@ -15,6 +15,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     @submission.vote_up current_user
     flash[:pre_sign_in_notice] = "Thanks, your vote was acknowledged."
+    render :text => "({id: #{@submission.id}, score: #{@submission.score} })"
   end
     
   # GET /submissions
