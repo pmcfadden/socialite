@@ -17,17 +17,14 @@ describe AdminController do
     it "should update settings with the new recipient email or the new disabled state" do
       post :save_exception_notifier_settings, :app_settings => {:exception_notifier_recipient => "test-recipient"}
       AppSettings.exception_notifier_recipient.should == "test-recipient"
-      # figure out how to test middleware options
     end
 
     it "should toggle on and off the exception notifier" do
       post :save_exception_notifier_settings, :app_settings => {:exception_notifier_enabled => "1"}
       AppSettings.exception_notifier_enabled.should == true
-      # figure out how to test middleware options
 
       post :save_exception_notifier_settings, :app_settings => {:exception_notifier_enabled => "0"}
       AppSettings.exception_notifier_enabled.should == false
-      # figure out how to test middleware options
     end
   end
 
@@ -89,11 +86,6 @@ describe AdminController do
   end
 
   describe "confirmation email settings" do
-    it "should update the exception notifier with the new domain" do
-      post :save_confirmation_email_settings, :app_settings => {:smtp_domain => "example.com"}
-      # figure out how to test middleware options
-    end
-
     it "should consider a setting of '0' to be false" do 
       post :save_confirmation_email_settings, :app_settings => {:smtp_tls => "0"}
       AppSettings.smtp_tls.should == false

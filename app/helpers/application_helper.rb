@@ -63,13 +63,7 @@ module ApplicationHelper
 
   def setup_exception_notifier
       Socialite::Application.config.middleware.use ::ExceptionNotifierToggler
-
-      options = { :email_prefix => "[Error] ",
-                  :sender_address => %{notifier@#{AppSettings.smtp_domain}},
-                  :exception_recipients => AppSettings.exception_notifier_recipient
-                }
-
-      Socialite::Application.config.middleware.use ::ExceptionNotifier, options
+      Socialite::Application.config.middleware.use ::ExceptionNotifier
   end
 
 end
