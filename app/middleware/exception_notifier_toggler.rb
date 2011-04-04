@@ -8,10 +8,9 @@ class ExceptionNotifierToggler
 
   def call(env)
     options = env['exception_notifier.options'] ||= {}
-    options['disabled'] = !AppSettings.exception_notifier_enabled
-    options['exception_recipients'] = AppSettings.exception_notifier_recipient
-    options['sender_address'] = "notifier@#{AppSettings.smtp_domain}"
-    options['email_prefix'] = "[Error] "
+    options[:disabled] = !AppSettings.exception_notifier_enabled
+    options[:exception_recipients] = AppSettings.exception_notifier_recipient
+    options[:sender_address] = "notifier@#{AppSettings.smtp_domain}"
     @app.call(env)
   end
 end

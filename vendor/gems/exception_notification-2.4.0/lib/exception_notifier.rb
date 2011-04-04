@@ -21,7 +21,7 @@ class ExceptionNotifier
     options = (env['exception_notifier.options'] ||= {})
     options.reverse_merge!(@options)
 
-    unless Array.wrap(options[:ignore_exceptions]).include?(exception.class) or options['disabled']
+    unless Array.wrap(options[:ignore_exceptions]).include?(exception.class) or options[:disabled]
       Notifier.exception_notification(env, exception).deliver
       env['exception_notifier.delivered'] = true
     end
