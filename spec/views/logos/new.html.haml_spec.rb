@@ -7,7 +7,6 @@ describe "logos/new.html.haml" do
 
   it "renders new logo form" do
     render
-    assert_select "form", :action => logo_path, :method => "post" do
-    end
+    assert_select "form", :action => logo_path, :method => "post"
   end
 end

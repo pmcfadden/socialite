@@ -13,7 +13,7 @@ Socialite::Application.routes.draw do
 
   get 'sign_in_then_redirect', :to => "application#sign_in_then_redirect"
 
-  match 'admin/raise', :to => "admin#raise_dummy_exception" # call this url to test exception notifications in prod
+  match 'admin/raise_dummy_error', :to => "admin#raise_dummy_error"
 
   match 'admin/moderate/submissions', :to => "admin#moderate_submissions", :via => "get", :as => 'moderate_submissions'
   match 'admin/moderate/comments', :to => "admin#moderate_comments", :via => "get", :as => 'moderate_comments'
@@ -21,7 +21,11 @@ Socialite::Application.routes.draw do
   match 'admin/confirmation_email_settings', :to => "admin#confirmation_email_settings", :via => "get", :as => 'confirmation_email_settings'
   match 'admin/save_confirmation_email_settings', :to => "admin#save_confirmation_email_settings", :via => "post", :as => 'save_confirmation_email_settings'
 
+  match 'admin/exception_notifier_settings', :to => "admin#exception_notifier_settings", :via => "get", :as => 'exception_notifier_settings'
+  match 'admin/save_exception_notifier_settings', :to => "admin#save_exception_notifier_settings", :via => "post", :as => 'save_exception_notifier_settings'
+
   match 'admin/send_test_email', :to => "admin#send_test_email", :via => "post", :as => 'send_test_email'
+  match 'admin/test_exception_notifier', :to => "admin#test_exception_notifier", :via => "post", :as => 'test_exception_notifier'
 
   match 'admin/change_name', :to => "admin#change_name", :via => "get", :as => 'change_name'
   match 'admin/save_app_name', :to => "admin#save_app_name", :via => "post", :as => 'save_app_name'

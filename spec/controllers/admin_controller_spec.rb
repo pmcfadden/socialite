@@ -13,6 +13,24 @@ describe AdminController do
 
   end
 
+  describe "save exception notifier settings" do
+    it "should update settings with the new recipient email or the new disabled state" do
+      post :save_exception_notifier_settings, :app_settings => {:exception_notifier_recipient => "test-recipient"}
+      AppSettings.exception_notifier_recipient.should == "test-recipient"
+      # figure out how to test middleware options
+    end
+
+    it "should toggle on and off the exception notifier" do
+      post :save_exception_notifier_settings, :app_settings => {:exception_notifier_enabled => "1"}
+      AppSettings.exception_notifier_enabled.should == true
+      # figure out how to test middleware options
+
+      post :save_exception_notifier_settings, :app_settings => {:exception_notifier_enabled => "0"}
+      AppSettings.exception_notifier_enabled.should == false
+      # figure out how to test middleware options
+    end
+  end
+
   describe "moderate submissions" do
     it "should list submissions to moderate including spam ones" do
       spammer = ObjectMother.create_user
@@ -46,6 +64,18 @@ describe AdminController do
     end
   end
 
+  describe "test exception notifier" do
+    it "should send an email to the exception notifier recipient" do
+      class FakeEmail; def deliver; end; end
+      TestEmailMailer.stub(:send_test_email){FakeEmail.new}
+
+      post :test_exception_notifier
+
+      flash[:notice].blank?.should == false
+      response.should redirect_to(:exception_notifier_settings)
+    end
+  end
+
   describe "send test email" do
     it "should send a test email through the test email mailer" do
       class FakeEmail; def deliver; end; end
@@ -53,12 +83,17 @@ describe AdminController do
 
       post :send_test_email, :test_email => {:email => "user@example.com"}
 
-      flash[:notice].blank?.should_not be(true)
+      flash[:notice].blank?.should == false
       response.should redirect_to(:confirmation_email_settings)
     end
   end
 
   describe "confirmation email settings" do
+    it "should update the exception notifier with the new domain" do
+      post :save_confirmation_email_settings, :app_settings => {:smtp_domain => "example.com"}
+      # figure out how to test middleware options
+    end
+
     it "should consider a setting of '0' to be false" do 
       post :save_confirmation_email_settings, :app_settings => {:smtp_tls => "0"}
       AppSettings.smtp_tls.should == false

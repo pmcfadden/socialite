@@ -1,0 +1,37 @@
+%h1 Automatic notifications on error
+%p
+  = "You should set up automatic notifications so that you receive an email whenever something goes wrong with #{app_name}."
+
+= form_for AppSettings, :url => {:controller => 'admin', :action => 'save_exception_notifier_settings'}, :method => :post do |f|
+  %p{:class => 'explanation'}
+    Enable automatic notifications by checking the following box:
+
+  .field
+    = f.label :exception_notifier_enabled, "Enable automatic notifications"
+    = f.check_box :exception_notifier_enabled
+
+  %p{:class => 'explanation'}
+    Notifications will go to the following email address:
+
+  .field
+    = f.label :exception_notifier_recipient, "Recipient"
+    = f.text_field :exception_notifier_recipient
+    .example e.g. username@gmail.com
+
+  %br
+  .actions
+    = f.submit 'Save settings'
+
+%hr
+%h1 Send a test email
+= form_for :test_exception_notifier, :url => {:controller => 'admin', :action => 'test_exception_notifier'}  do |f|
+  %p 
+    After saving the settings, you should send a test email to the recipient to make sure everything works correctly:
+  = f.submit 'Send test email'
+
+%hr
+%h1 Raise a dummy error
+= form_for :raise_dummy_error, :url => {:controller => 'admin', :action => 'raise_dummy_error'} do |f|
+  %p Finally, you can test raising a dummy error to see if you get automatic notifications.
+  %p Just press the back button to come back to this page after the error was raised:
+  = f.submit 'Raise dummy error'

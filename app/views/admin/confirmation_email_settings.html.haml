@@ -59,7 +59,7 @@
   .actions
     = f.submit 'Save settings'
 
-%br
+%hr
 %h1 Send a test email
 = form_for :test_email, :url => {:controller => 'admin', :action => 'send_test_email'} do |f|
   %p 

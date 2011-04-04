@@ -11,3 +11,4 @@ AppSettings.defaults['smtp_authentication_password'] = nil
 AppSettings.defaults['smtp_enable_starttls_auto'] = true
 AppSettings.defaults['smtp_tls'] = true
 AppSettings.defaults['from_email'] = 'no-reply@example.com'
+AppSettings.defaults['exception_notifier_enabled'] = false

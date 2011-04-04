@@ -9,7 +9,7 @@ gem 'sqlite3'
 # authentication
 gem 'devise'
 
-gem 'exception_notification', :require => 'exception_notifier'
+gem 'exception_notification', :path => 'vendor/gems/exception_notification-2.4.0'
 
 gem 'hpricot', :group => :development
 gem 'ruby_parser', :group => :development

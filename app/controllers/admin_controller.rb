@@ -1,8 +1,8 @@
 class AdminController < ApplicationController
   before_filter :require_admin!
 
-  def raise_dummy_exception
-    raise Exception.new "This is a dummy exception. Ignore it safely."
+  def raise_dummy_error
+    raise Exception.new "This is a dummy error for testing error handling. Ignore it safely."
   end
 
   def index
@@ -26,8 +26,19 @@ class AdminController < ApplicationController
       redirect_to :change_name, :notice => 'The new name was saved.'
   end
 
+  def test_exception_notifier
+    address = AppSettings.exception_notifier_recipient
+    deliver_test_email address
+    redirect_to :exception_notifier_settings
+  end
+
   def send_test_email
     address = params[:test_email][:email]
+    deliver_test_email address
+    redirect_to :confirmation_email_settings
+  end
+
+  def deliver_test_email address
     begin
       TestEmailMailer.send_test_email(address).deliver
       flash[:notice] = "Test email sent. You should soon receive an email at #{address}."
@@ -37,19 +48,17 @@ class AdminController < ApplicationController
       logger.warn flash[:alert]
       logger.warn e.backtrace
     end
-    redirect_to :confirmation_email_settings
+  end
+
+  def save_exception_notifier_settings
+      AppSettings.update_settings params[:app_settings]
+      redirect_to :exception_notifier_settings, :notice => 'Settings saved.'
   end
 
   def save_confirmation_email_settings
     begin
-      new_settings = turn_ones_and_zeros_into_booleans params[:app_settings]
-      new_settings[:smtp_port] = new_settings[:smtp_port].to_i if new_settings[:smtp_port]
-
-      AppSettings.update_settings new_settings
-      
-      # set this now so all mailers can use it
-      setup_mailers
-
+      AppSettings.update_settings params[:app_settings]
+      setup_action_mailer
       redirect_to :confirmation_email_settings, :notice => 'Settings saved.'
 
     rescue ActiveRecord::RecordInvalid
@@ -92,13 +101,4 @@ class AdminController < ApplicationController
     render :text => "({id: #{submission.id}, message: '#{I18n.t 'no_longer_marked_as_spam'}'})"
   end
 
-  private
-  def turn_ones_and_zeros_into_booleans parameters
-      parameters.each do |k,v|
-        v = v == "1" ? true : v
-        v = v == "0" ? false : v
-        parameters[k] = v
-      end
-      parameters
-  end
 end
