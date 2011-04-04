@@ -21,8 +21,8 @@ Socialite::Application.routes.draw do
   match 'admin/confirmation_email_settings', :to => "admin#confirmation_email_settings", :via => "get", :as => 'confirmation_email_settings'
   match 'admin/save_confirmation_email_settings', :to => "admin#save_confirmation_email_settings", :via => "post", :as => 'save_confirmation_email_settings'
 
-  match 'admin/exception_notifier_settings', :to => "admin#exception_notifier_settings", :via => "get", :as => 'exception_notifier_settings'
-  match 'admin/save_exception_notifier_settings', :to => "admin#save_exception_notifier_settings", :via => "post", :as => 'save_exception_notifier_settings'
+  match 'admin/automatic_notifications', :to => "admin#automatic_notifications", :via => "get", :as => 'automatic_notifications'
+  match 'admin/save_automatic_notifications', :to => "admin#save_automatic_notifications", :via => "post", :as => 'save_automatic_notifications'
 
   match 'admin/send_test_email', :to => "admin#send_test_email", :via => "post", :as => 'send_test_email'
   match 'admin/test_exception_notifier', :to => "admin#test_exception_notifier", :via => "post", :as => 'test_exception_notifier'

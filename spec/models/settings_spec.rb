@@ -11,5 +11,6 @@ describe AppSettings do
     AppSettings.a.should == 1
     AppSettings.b.should == 2
   end
+
 end
 

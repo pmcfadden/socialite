@@ -1,6 +1,7 @@
 FIXES
 --
-how to test middleware
+rebrand the admin section for confirmation emails to email settings
+how to test middleware? how to test the exception notifier toggler?
 handle failures in sending the confirmation email
 when showing the comment count -- only count the non-spam
 ajax actions (marking comment as spam - marking submission as spam - voting up) should change the UI in the same way refreshing the page will

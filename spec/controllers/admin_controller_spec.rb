@@ -13,17 +13,17 @@ describe AdminController do
 
   end
 
-  describe "save exception notifier settings" do
+  describe "save automatic notifications" do
     it "should update settings with the new recipient email or the new disabled state" do
-      post :save_exception_notifier_settings, :app_settings => {:exception_notifier_recipient => "test-recipient"}
+      post :save_automatic_notifications, :app_settings => {:exception_notifier_recipient => "test-recipient"}
       AppSettings.exception_notifier_recipient.should == "test-recipient"
     end
 
     it "should toggle on and off the exception notifier" do
-      post :save_exception_notifier_settings, :app_settings => {:exception_notifier_enabled => "1"}
+      post :save_automatic_notifications, :app_settings => {:exception_notifier_enabled => "1"}
       AppSettings.exception_notifier_enabled.should == true
 
-      post :save_exception_notifier_settings, :app_settings => {:exception_notifier_enabled => "0"}
+      post :save_automatic_notifications, :app_settings => {:exception_notifier_enabled => "0"}
       AppSettings.exception_notifier_enabled.should == false
     end
   end
@@ -69,7 +69,7 @@ describe AdminController do
       post :test_exception_notifier
 
       flash[:notice].blank?.should == false
-      response.should redirect_to(:exception_notifier_settings)
+      response.should redirect_to(:automatic_notifications)
     end
   end
 

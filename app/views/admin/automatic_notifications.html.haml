@@ -2,7 +2,7 @@
 %p
   = "You should set up automatic notifications so that you receive an email whenever something goes wrong with #{app_name}."
 
-= form_for AppSettings, :url => {:controller => 'admin', :action => 'save_exception_notifier_settings'}, :method => :post do |f|
+= form_for AppSettings, :url => {:controller => 'admin', :action => 'save_automatic_notifications'}, :method => :post do |f|
   %p{:class => 'explanation'}
     Enable automatic notifications by checking the following box:
 

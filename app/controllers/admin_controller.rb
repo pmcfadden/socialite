@@ -29,7 +29,7 @@ class AdminController < ApplicationController
   def test_exception_notifier
     address = AppSettings.exception_notifier_recipient
     deliver_test_email address
-    redirect_to :exception_notifier_settings
+    redirect_to :automatic_notifications
   end
 
   def send_test_email
@@ -50,21 +50,15 @@ class AdminController < ApplicationController
     end
   end
 
-  def save_exception_notifier_settings
-      AppSettings.update_settings params[:app_settings]
-      redirect_to :exception_notifier_settings, :notice => 'Settings saved.'
+  def save_automatic_notifications
+    AppSettings.update_settings params[:app_settings]
+    redirect_to :automatic_notifications, :notice => 'Settings saved.'
   end
 
   def save_confirmation_email_settings
-    begin
-      AppSettings.update_settings params[:app_settings]
-      setup_action_mailer
-      redirect_to :confirmation_email_settings, :notice => 'Settings saved.'
-
-    rescue ActiveRecord::RecordInvalid
-      flash[:alert] = $!.message
-      render :action => "confirmation_email_settings"
-    end
+    AppSettings.update_settings params[:app_settings]
+    setup_action_mailer
+    redirect_to :confirmation_email_settings, :notice => 'Settings saved.'
   end
 
   def mark_comment_as_spam
